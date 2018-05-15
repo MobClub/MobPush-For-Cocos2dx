@@ -1,0 +1,4 @@
+include ':libcocos2dx', ':c2dxbridge'
+project(':libcocos2dx').projectDir = new File(settingsDir, '../cocos2d/cocos/platform/android/libcocos2dx')
+include ':MobPush-For-Cocos2dx'
+project(':MobPush-For-Cocos2dx').projectDir = new File(settingsDir, 'app')

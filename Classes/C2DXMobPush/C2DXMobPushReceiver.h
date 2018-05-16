@@ -22,7 +22,7 @@ namespace mob
             virtual void onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) = 0;
             virtual void onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) = 0;
             virtual void onTagsCallback(std::list<std::string>& tags, int i, int j1) = 0;
-            virtual void onAliasCallback(const char* alias, jint i, int j1) = 0;
+            virtual void onAliasCallback(const char* alias, int i, int j1) = 0;
         };
     }
 }

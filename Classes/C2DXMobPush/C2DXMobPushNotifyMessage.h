@@ -14,7 +14,7 @@ private:
     long timestamp;//当前服务器时间
 public:
     C2DXMobPushNotifyMessage();
-    virtual ~C2DXAndroidCallback();
+    virtual ~C2DXMobPushNotifyMessage();
 };
 
 

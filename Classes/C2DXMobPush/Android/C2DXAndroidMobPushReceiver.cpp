@@ -12,27 +12,24 @@ C2DXAndroidMobPushReceiver::C2DXAndroidMobPushReceiver() {
     c2DXMobPushReceiver = NULL;
 }
 
-void C2DXAndroidMobPushReceiver::onCustomMessageReceive(jobject context,
-                                                        jobject mobPushCustomMessage) {
-    c2DXMobPushReceiver->onCustomMessageReceive(context, mobPushCustomMessage);
+void C2DXAndroidMobPushReceiver::onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage) {
+    c2DXMobPushReceiver->onCustomMessageReceive(mobPushCustomMessage);
 }
 
-void C2DXAndroidMobPushReceiver::onNotifyMessageReceive(jobject context,
-                                                        jobject mobPushNotifyMessage) {
-    c2DXMobPushReceiver->onNotifyMessageReceive(context, mobPushNotifyMessage);
+void C2DXAndroidMobPushReceiver::onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
+    c2DXMobPushReceiver->onNotifyMessageReceive(mobPushNotifyMessage);
 }
-void C2DXAndroidMobPushReceiver::onNotifyMessageOpenedReceive(jobject context,
-                                                              jobject mobPushNotifyMessage) {
-    c2DXMobPushReceiver->onNotifyMessageOpenedReceive(context, mobPushNotifyMessage);
+void C2DXAndroidMobPushReceiver::onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
+    c2DXMobPushReceiver->onNotifyMessageOpenedReceive(mobPushNotifyMessage);
 }
 
 void
-C2DXAndroidMobPushReceiver::onTagsCallback(jobject context, jobjectArray tags, jint i, jint j1) {
-    c2DXMobPushReceiver->onTagsCallback(context, tags, i, j1);
+C2DXAndroidMobPushReceiver::onTagsCallback(std::list<std::string>& tags, int i, int j1) {
+    c2DXMobPushReceiver->onTagsCallback(tags, i, j1);
 }
 
-void C2DXAndroidMobPushReceiver::onAliasCallback(jobject context, jstring alias, jint i, jint j1) {
-    c2DXMobPushReceiver->onAliasCallback(context, alias, i, j1);
+void C2DXAndroidMobPushReceiver::onAliasCallback(const char* alias, int i, int j1) {
+    c2DXMobPushReceiver->onAliasCallback(alias, i, j1);
 }
 
 void C2DXAndroidMobPushReceiver::setC2DXMobPushReceiver(C2DXMobPushReceiver* receiver) {

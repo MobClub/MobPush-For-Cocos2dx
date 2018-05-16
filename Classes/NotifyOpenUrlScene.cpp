@@ -106,6 +106,6 @@ void NotifyOpenUrl::menuCloseCallback(Ref *pSender) {
 }
 
 void NotifyOpenUrl::getSendReqResult(bool result) {
-    CCLOG(">>>>>>>>%s", "aaaa");
-    CCLOG(">>>>>>>>%s", result);
+    CCLOG(">>>>>>>>%d", "aaaa");
+//    CCLOG(">>>>>>>>%s", result);
 }

@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnCus
   (JNIEnv *env, jobject jthiz, jobject jobject1, jobject jobject2)
 {
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
-    receiver->onCustomMessageReceive(jobject1, jobject2);
+//    receiver->onCustomMessageReceive(jobject2);
 }
 
 /*
@@ -48,7 +48,7 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNot
   (JNIEnv *env, jobject jthiz, jobject jobject1, jobject jobject2)
 {
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
-    receiver->onNotifyMessageReceive(jobject1, jobject2);
+//    receiver->onNotifyMessageReceive(jobject2);
 }
 
 /*
@@ -60,7 +60,7 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNot
   (JNIEnv *env, jobject jthiz, jobject jobject1, jobject jobject2)
 {
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
-    receiver->onNotifyMessageOpenedReceive(jobject1, jobject2);
+//    receiver->onNotifyMessageOpenedReceive(jobject2);
 }
 
 /*
@@ -72,7 +72,7 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnTag
   (JNIEnv *env, jobject jthiz, jobject jobject1, jobjectArray jobjectArray1, jint jint1, jint jint2)
 {
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
-    receiver->onTagsCallback(jobject1, jobjectArray1, jint1, jint2);
+//    receiver->onTagsCallback(jobjectArray1, jint1, jint2);
 }
 
 /*
@@ -84,6 +84,6 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnAli
   (JNIEnv *env, jobject jthiz, jobject jobject1, jstring jstring1, jint jint1, jint jint2)
 {
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
-    receiver->onAliasCallback(jobject1, jstring1, jint1, jint2);
+//    receiver->onAliasCallback(jstring1, jint1, jint2);
 }
 

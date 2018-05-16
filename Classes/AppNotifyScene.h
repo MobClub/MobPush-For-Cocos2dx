@@ -32,13 +32,13 @@ private:
     EditBox* mEditBox;
 };
 
-class PushReceiver : public C2DXMobPushReceiver
-{
-    void onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage);
-    void onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage);
-    void onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage);
-    void onTagsCallback(std::list<std::string>& tags, int i, int j1);
-    void onAliasCallback(const char* alias, int i, int j1);
-};
+//class PushReceiver : public C2DXMobPushReceiver
+//{
+//    void onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage);
+//    void onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage);
+//    void onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage);
+//    void onTagsCallback(std::list<std::string>& tags, int i, int j1);
+//    void onAliasCallback(const char* alias, int i, int j1);
+//};
 
 #endif // __APPNOTIFY_SCENE_H__

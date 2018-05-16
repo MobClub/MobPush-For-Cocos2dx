@@ -107,6 +107,6 @@ void TimeNotify::menuCloseCallback(Ref *pSender) {
 }
 
 void TimeNotify::getSendReqResult(bool result) {
-    CCLOG(">>>>>>>>%s", "aaaa");
-    CCLOG(">>>>>>>>%s", result);
+    CCLOG(">>>>>>>>%d", "aaaa");
+//    CCLOG(">>>>>>>>%s", result);
 }

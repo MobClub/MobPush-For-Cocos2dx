@@ -107,6 +107,6 @@ void LocalNotify::menuCloseCallback(Ref *pSender) {
 }
 
 void LocalNotify::getSendReqResult(bool result) {
-    CCLOG(">>>>>>>>%s", "aaaa");
-    CCLOG(">>>>>>>>%s", result);
+    CCLOG(">>>>>>>>%d", "aaaa");
+//    CCLOG(">>>>>>>>%s", result);
 }

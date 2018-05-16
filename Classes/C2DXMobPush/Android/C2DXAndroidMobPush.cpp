@@ -122,28 +122,28 @@ void C2DXAndroidMobPush::setCustomNotification(long when, const char *tickerText
                                                std::list<std::string> inboxStyleContent,
                                                const char *smallIcon, boolean voice, boolean shake,
                                                boolean light) {
-    JNIEnv *env = JniHelper::getEnv();
-    JniMethodInfo jm;
-    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/CustomNotification", "newInstance",
-                                   "()Lcom/mob/mobpush/cocos2dx/CustomNotification;");
-    jobject jo = env->CallStaticObjectMethod(jm.classID, jm.methodID);
-
-    jmethodID jmethodID1 = env->GetMethodID(jm.classID, "getNotificationManager",
-                                            "()Landroid/app/NotificationManager;");
-    jobject jom = env->CallObjectMethod(jo, jmethodID1);
-
-    jmethodID  jmethodID2 = env->GetMethodID(jm.classID, "getNotification",
-                     "Landroid/content/Context;Landroid/app/NotificationManager;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;IILjava/lang/String;[Ljava/lang/String;Ljava/lang/String;ZZZ)Landroid/app/Notification;");
-
-    JniHelper::getStaticMethodInfo(jm, "com/mob/MobSDK", "getContext",
-                                   "()Landroid/content/Context;");
-    jobject jc = env->CallStaticObjectMethod(jm.classID, jm.methodID);
-    jobject jon = env->CallObjectMethod(jo,jmethodID2, jc, jom, when, tickerText, title, content, flag, style, styleContent, inboxStyleContent, smallIcon, voice, shake, light);
-
-    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "setCustomNotification",
-                                   "(Lcom/mob/pushsdk/MobPushCustomNotification)V");
-
-    env->CallStaticVoidMethod(jm.classID, jm.methodID, jon);
+//    JNIEnv *env = JniHelper::getEnv();
+//    JniMethodInfo jm;
+//    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/CustomNotification", "newInstance",
+//                                   "()Lcom/mob/mobpush/cocos2dx/CustomNotification;");
+//    jobject jo = env->CallStaticObjectMethod(jm.classID, jm.methodID);
+//
+//    jmethodID jmethodID1 = env->GetMethodID(jm.classID, "getNotificationManager",
+//                                            "()Landroid/app/NotificationManager;");
+//    jobject jom = env->CallObjectMethod(jo, jmethodID1);
+//
+//    jmethodID  jmethodID2 = env->GetMethodID(jm.classID, "getNotification",
+//                     "Landroid/content/Context;Landroid/app/NotificationManager;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;IILjava/lang/String;[Ljava/lang/String;Ljava/lang/String;ZZZ)Landroid/app/Notification;");
+//
+//    JniHelper::getStaticMethodInfo(jm, "com/mob/MobSDK", "getContext",
+//                                   "()Landroid/content/Context;");
+//    jobject jc = env->CallStaticObjectMethod(jm.classID, jm.methodID);
+//    jobject jon = env->CallObjectMethod(jo,jmethodID2, jc, jom, when, tickerText, title, content, flag, style, styleContent, NULL, smallIcon, voice, shake, light);
+//
+//    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "setCustomNotification",
+//                                   "(Lcom/mob/pushsdk/MobPushCustomNotification)V");
+//
+//    env->CallStaticVoidMethod(jm.classID, jm.methodID, jon);
 }
 
 void C2DXAndroidMobPush::req(int type, const char *text, int space, const char *extras,

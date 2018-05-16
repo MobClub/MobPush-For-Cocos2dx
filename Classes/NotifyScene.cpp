@@ -107,6 +107,6 @@ void Notify::menuCloseCallback(Ref *pSender) {
 }
 
 void Notify::getSendReqResult(bool result) {
-    CCLOG(">>>>>>>>%s", "aaaa");
-    CCLOG(">>>>>>>>%s", result);
+    CCLOG(">>>>>>>>%d", "aaaa");
+//    CCLOG(">>>>>>>>%s", result);
 }

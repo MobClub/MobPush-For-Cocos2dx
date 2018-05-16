@@ -90,13 +90,13 @@ bool AppNotify::init() {
 //            CCLOG(">>>>>>>>%s", mEditBox->getText());
 //            C2DXMobPush::getRegistrationId(&AppNotify::getId);
 //            C2DXMobPush::setAlias("xiaoxin");
-            C2DXMobPush::req(2, mEditBox->getText(), 0, NULL, &AppNotify::getSendReqResult);
+//            C2DXMobPush::req(2, mEditBox->getText(), 0, NULL, &AppNotify::getSendReqResult);
         }
     });
 
     this->addChild(button);
 
-    C2DXMobPush::addPushReceiver(new PushReceiver());
+//    C2DXMobPush::addPushReceiver(new PushReceiver());
     return true;
 }
 
@@ -116,31 +116,31 @@ void AppNotify::menuCloseCallback(Ref *pSender) {
 }
 
 void AppNotify::getId(const char *c) {
-    CCLOG(">>>>>>>>%s", "aaaa");
-    CCLOG(">>>>>>>>%s", c);
+    CCLOG(">>>>>>>>%d", "aaaa");
+    CCLOG(">>>>>>>>%d", c);
 }
 
 void AppNotify::getSendReqResult(bool result) {
-    CCLOG(">>>>>>>>%s", "aaaa");
-    CCLOG(">>>>>>>>%s", result);
+    CCLOG(">>>>>>>>%d", "aaaa");
+//    CCLOG(">>>>>>>>%s", result);
 }
 
-void PushReceiver::onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage) {
-    CCLOG(">>>>>>>>%s", "onCustomMessageReceive");
-}
-
-void PushReceiver::onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
-    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-}
-
-void PushReceiver::onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
-    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-}
-
-void PushReceiver::onTagsCallback(std::list<std::string>& tags, int i, int j1) {
-    CCLOG(">>>>>>>>%s", "onTagsCallback>>>>>>");
-}
-
-void PushReceiver::onAliasCallback(const char* alias, int i, int j1) {
-    CCLOG(">>>>>>>>%s>>>>onAliasCallback", alias);
-}
+//void PushReceiver::onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage) {
+//    CCLOG(">>>>>>>>%s", "onCustomMessageReceive");
+//}
+//
+//void PushReceiver::onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
+//    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
+//}
+//
+//void PushReceiver::onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
+//    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
+//}
+//
+//void PushReceiver::onTagsCallback(std::list<std::string>& tags, int i, int j1) {
+//    CCLOG(">>>>>>>>%s", "onTagsCallback>>>>>>");
+//}
+//
+//void PushReceiver::onAliasCallback(const char* alias, int i, int j1) {
+//    CCLOG(">>>>>>>>%s>>>>onAliasCallback", alias);
+//}

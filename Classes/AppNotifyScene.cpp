@@ -1,13 +1,16 @@
 #include <ui/UIButton.h>
 #include <ui/UIEditBox/UIEditBox.h>
+#include <C2DXMobPush/C2DXMobPush.h>
 #include "AppNotifyScene.h"
 #include "AppDelegate.h"
+#include "cocos2d.h"
 
 #define  LOG_TAG    "appnotifyscene"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 
 USING_NS_CC;
 using namespace cocos2d::ui;
+using namespace mob::mobpush;
 
 Scene *AppNotify::createScene() {
     return AppNotify::create();
@@ -59,12 +62,12 @@ bool AppNotify::init() {
     // 3. add your codes below...
 
 
-    auto s = Size(250, 15);  //设置编辑框大小
+    auto s = Size(visibleSize.width - 40, 30);  //设置编辑框大小
     //Scale9Sprite类似android上的9图工具,可对图片进行拉伸而不失真
     auto m9pic = Scale9Sprite::create();
 
     mEditBox = EditBox::create(s, m9pic);
-    mEditBox->setFontSize(15);        //编辑框文本大小
+    mEditBox->setFontSize(13);        //编辑框文本大小
     mEditBox->setFontColor(Color3B::WHITE);  //编辑框文本颜色
     mEditBox->setPlaceHolder("请输入内容:");  //编辑框提示语句
     mEditBox->setPlaceholderFontColor(Color3B::GRAY); //编辑框提示语句颜色
@@ -73,22 +76,26 @@ bool AppNotify::init() {
     mEditBox->setPosition(Vec2(visibleSize.width / 2 + origin.x,
                                origin.y + visibleSize.height -
                                mEditBox->getContentSize().height));
-    mEditBox->setDelegate(new Ed());
     this->addChild(mEditBox);
 
     auto button = Button::create();
-    button->setTitleText("发送");
+    button->setTitleText("发送应用内通知");
     button->setTitleFontSize(13);
     button->setPosition(Vec2(visibleSize.width / 2 + origin.x,
                              origin.y + visibleSize.height -
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-            CCLOG(">>>>>>>>%s", mEditBox->getText());
+//            CCLOG(">>>>>>>>%s", mEditBox->getText());
+//            C2DXMobPush::getRegistrationId(&AppNotify::getId);
+//            C2DXMobPush::setAlias("xiaoxin");
+            C2DXMobPush::req(2, mEditBox->getText(), 0, NULL, &AppNotify::getSendReqResult);
         }
     });
 
     this->addChild(button);
+
+    C2DXMobPush::addPushReceiver(new PushReceiver());
     return true;
 }
 
@@ -107,7 +114,32 @@ void AppNotify::menuCloseCallback(Ref *pSender) {
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 }
 
+void AppNotify::getId(const char *c) {
+    CCLOG(">>>>>>>>%s", "aaaa");
+    CCLOG(">>>>>>>>%s", c);
+}
 
-void Ed::editBoxReturn(EditBox* editBox){
+void AppNotify::getSendReqResult(jobject result) {
+    CCLOG(">>>>>>>>%s", "aaaa");
+    CCLOG(">>>>>>>>%s", result);
+}
 
+void PushReceiver::onCustomMessageReceive(jobject context, jobject mobPushCustomMessage) {
+    CCLOG(">>>>>>>>%s", "onCustomMessageReceive");
+}
+
+void PushReceiver::onNotifyMessageReceive(jobject context, jobject mobPushNotifyMessage) {
+    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
+}
+
+void PushReceiver::onNotifyMessageOpenedReceive(jobject context, jobject mobPushNotifyMessage) {
+    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
+}
+
+void PushReceiver::onTagsCallback(jobject context, jobjectArray tags, jint i, jint j1) {
+    CCLOG(">>>>>>>>%s", "onTagsCallback>>>>>>");
+}
+
+void PushReceiver::onAliasCallback(jobject context, jstring alias, jint i, jint j1) {
+    CCLOG(">>>>>>>>%s>>>>onAliasCallback", JniHelper::getEnv()->GetStringUTFChars(alias, NULL));
 }

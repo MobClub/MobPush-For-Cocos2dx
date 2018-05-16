@@ -1,7 +1,10 @@
 #include <ui/UIButton.h>
 #include "HelloWorldScene.h"
-#include "SimpleAudioEngine.h"
 #include "AppNotifyScene.h"
+#include "NotifyScene.h"
+#include "TimeNotifyScene.h"
+#include "LocalNotifyScene.h"
+#include "NotifyOpenUrlScene.h"
 
 #define  LOG_TAG    "hellowordscene"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
@@ -157,13 +160,13 @@ void HelloWorld::onTouch(Ref *sender, TouchEventType type) {
             if (id == 1) {
                 Director::getInstance()->pushScene(AppNotify::createScene());
             } else if (id == 2) {
-                CCLOG(">>>>>>>>>>>%d", 2);
+                Director::getInstance()->pushScene(Notify::createScene());
             } else if (id == 3) {
-                CCLOG(">>>>>>>>>>>%d", 3);
+                Director::getInstance()->pushScene(TimeNotify::createScene());
             } else if (id == 4) {
-                CCLOG(">>>>>>>>>>>%d", 4);
+                Director::getInstance()->pushScene(LocalNotify::createScene());
             } else if (id == 5) {
-                CCLOG(">>>>>>>>>>>%d", 5);
+                Director::getInstance()->pushScene(NotifyOpenUrl::createScene());
             }
             break;
 

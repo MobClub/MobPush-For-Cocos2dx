@@ -4,9 +4,11 @@
 #include <ui/UIButton.h>
 #include <ui/UIEditBox/UIEditBox.h>
 #include "cocos2d.h"
+#include "./C2DXMobPush/C2DXMobPushReceiver.h"
 
 using namespace cocos2d;
 using namespace cocos2d::ui;
+using namespace mob::mobpush;
 
 class AppNotify : public cocos2d::Scene
 {
@@ -23,13 +25,20 @@ public:
 
     void onTouch(Ref* sender,TouchEventType type);
 
+    static void getId(const char* c);
+    static void getSendReqResult(jobject result);
+
 private:
     EditBox* mEditBox;
 };
 
-class Ed : public cocos2d::ui::EditBoxDelegate
+class PushReceiver : public C2DXMobPushReceiver
 {
-    void editBoxReturn(EditBox* editBox);
+    void onCustomMessageReceive(jobject context, jobject mobPushCustomMessage);
+    void onNotifyMessageReceive(jobject context, jobject mobPushNotifyMessage);
+    void onNotifyMessageOpenedReceive(jobject context, jobject mobPushNotifyMessage);
+    void onTagsCallback(jobject context, jobjectArray tags, jint i, jint j1);
+    void onAliasCallback(jobject context, jstring alias, jint i, jint j1);
 };
 
 #endif // __APPNOTIFY_SCENE_H__

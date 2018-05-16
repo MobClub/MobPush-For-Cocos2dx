@@ -16,7 +16,7 @@
 
 using namespace mob::mobpush;
 
-void getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
+void C2DXMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
     //Andorid
@@ -26,7 +26,73 @@ void getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
 
     //iOS
     C2DXiOSMobPush::getRegistrationId(scene, callback);
+#endif
 
+}
+
+void C2DXMobPush::addPushReceiver(C2DXMobPushReceiver *pushReceiver) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::addPushReceiver(pushReceiver);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+    C2DXiOSMobPush::addPushReceiver(pushReceiver);
+#endif
+}
+
+void C2DXMobPush::removePushReceiver(C2DXMobPushReceiver *pushReceiver) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::removePushReceiver(pushReceiver);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+    C2DXiOSMobPush::removePushReceiver(pushReceiver);
+#endif
+}
+
+void C2DXMobPush::addTags(std::list<std::string> tags) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::addTags(tags);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+    C2DXiOSMobPush::addTags(tags);
+#endif
+}
+
+void C2DXMobPush::setAlias(const char *alias) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::setAlias(alias);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+    C2DXiOSMobPush::setAlias(tags);
+#endif
+}
+
+void C2DXMobPush::req(int type, const char *text, int space, const char *extras,
+                      C2DXReqResultEvent reqResultEvent) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::req(type, text, space, extras, reqResultEvent);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+    C2DXiOSMobPush::req(type, text, space, extras, reqResultEvent);
 #endif
 }
 

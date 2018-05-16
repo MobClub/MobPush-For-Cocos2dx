@@ -7,6 +7,7 @@
 #define __C2DXMobPushSample__C2DXMobPushCallback__
 
 #include <stdio.h>
+#include "../../cocos2d/external/jpeg/include/android/jmorecfg.h"
 
 namespace mob
 {
@@ -18,6 +19,7 @@ namespace mob
          *  @param C2DXGetRegistrationIdResultEvent 回调registrationId
          */
         typedef void(*C2DXGetRegistrationIdResultEvent) (const char * registrationId);
+        typedef void(*C2DXReqResultEvent) (jobject reqResult);
     }
 }
 

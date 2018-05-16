@@ -34,14 +34,14 @@ namespace mob
              *
              *  @param pushReceiver 设置推送监听
              */
-            static void addPushReceiver(C2DXMobPushReceiver pushReceiver);
+            static void addPushReceiver(C2DXMobPushReceiver* pushReceiver);
 			
 			/**
              *  移除推送监听
              *
 			 *  @param pushReceiver 移除推送监听
              */
-            static void removePushReceiver(C2DXMobPushReceiver pushReceiver);
+            static void removePushReceiver(C2DXMobPushReceiver* pushReceiver);
 			
 			/**
              *  停止推送
@@ -63,22 +63,32 @@ namespace mob
 			 *
 			 * @param alias 别名名称（为空时无效）
 			 */
-            static void setAlias(char alias);
+            static void setAlias(const char* alias);
 			
 			/**
 			 * 添加标签
 			 *
 			 * @param tags 标签集合
 			 */
-            static void addTags(char tags[]);
+            static void addTags(std::list<std::string> tags);
 			
 			/**
 			 * 添加本地通知
 			 *
 			 * @param notification 本地通知对象
 			 */
-            static void addLocalNotification(C2DXMobPushLocalNotification notification);
-			
+            static void addLocalNotification(C2DXMobPushLocalNotification* notification);
+
+            /**
+			 * 模拟发送推送消息
+			 *
+			 * @param type 消息类型：1、通知测试；2、内推测试；3、定时
+			 * @param text  模拟发送内容，500字节以内，UTF-8
+			 * @param space 仅对定时消息有效，单位分钟，默认1分钟
+             *
+			 */
+            static void req(int type, const char* text, int space, const char* extras, C2DXReqResultEvent reqResultEvent);
+
         };
         
     }

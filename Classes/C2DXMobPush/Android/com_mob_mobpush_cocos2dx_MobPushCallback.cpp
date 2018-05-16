@@ -2,6 +2,7 @@
 //#include <jni/JniHelper.h>
 #include "C2DXAndroidCallback.h"
 #include "C2DXAndroidMobPush.h"
+#include "com_mob_mobpush_cocos2dx_MobPushCallback.h"
 
 USING_NS_CC;
 using namespace mob::mobpush;
@@ -23,12 +24,12 @@ JNIEXPORT jint JNICALL Java_com_mob_mobpush_cocos2dx_MobPushCallback_nativeOnCre
  * Signature: (Ljava/lang/Object;)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushCallback_nativeOnCallback
-        (JNIEnv *env, jobject jthiz, jstring jresult) {
+        (JNIEnv *env, jobject jthiz, jobject jresult) {
 
     C2DXAndroidCallback *callback = (C2DXAndroidCallback *) getCxxObject(env, jthiz);
-    const char *cresult = env->GetStringUTFChars(jresult, JNI_FALSE);
-    callback->onCallback((const char *) jresult);
-    env->ReleaseStringUTFChars(jresult, cresult);
+    const char *cresult = env->GetStringUTFChars((jstring)jresult, JNI_FALSE);
+    callback->onCallback((const char *) cresult);
+    env->ReleaseStringUTFChars((jstring)jresult, cresult);
 }
 
 /*

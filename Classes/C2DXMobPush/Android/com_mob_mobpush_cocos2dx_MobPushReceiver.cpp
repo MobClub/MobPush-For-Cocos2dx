@@ -1,4 +1,7 @@
 #include <jni.h>
+#include "com_mob_mobpush_cocos2dx_MobPushReceiver.h"
+#include "C2DXAndroidMobPushReceiver.h"
+#include "C2DXAndroidMobPush.h"
 
 /*
  * Class:     com_mob_mobpush_cocos2dx_MobPushReceiver
@@ -8,8 +11,8 @@
 JNIEXPORT jint JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnCreateCxxObject
   (JNIEnv *, jobject)
 {
-
-
+    C2DXAndroidMobPushReceiver *receiver = new C2DXAndroidMobPushReceiver();
+    return (jint) receiver;
 }
 
 /*
@@ -18,9 +21,10 @@ JNIEXPORT jint JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnCre
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnDestoryCxxObject
-  (JNIEnv *, jobject)
+  (JNIEnv * env, jobject jthiz)
 {
-
+    C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
+    delete receiver;
 }
 
 /*
@@ -29,9 +33,10 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnDes
  * Signature: (Landroid/content/Context;Lcom/mob/pushsdk/MobPushCustomMessage;)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnCustomMessageReceive
-  (JNIEnv *, jobject, jobject, jobject)
+  (JNIEnv *env, jobject jthiz, jobject jobject1, jobject jobject2)
 {
-
+    C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
+    receiver->onCustomMessageReceive(jobject1, jobject2);
 }
 
 /*
@@ -40,9 +45,10 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnCus
  * Signature: (Landroid/content/Context;Lcom/mob/pushsdk/MobPushNotifyMessage;)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNotifyMessageReceive
-  (JNIEnv *, jobject, jobject, jobject)
+  (JNIEnv *env, jobject jthiz, jobject jobject1, jobject jobject2)
 {
-
+    C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
+    receiver->onNotifyMessageReceive(jobject1, jobject2);
 }
 
 /*
@@ -51,9 +57,10 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNot
  * Signature: (Landroid/content/Context;Lcom/mob/pushsdk/MobPushNotifyMessage;)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNotifyMessageOpenedReceive
-  (JNIEnv *, jobject, jobject, jobject)
+  (JNIEnv *env, jobject jthiz, jobject jobject1, jobject jobject2)
 {
-
+    C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
+    receiver->onNotifyMessageOpenedReceive(jobject1, jobject2);
 }
 
 /*
@@ -62,9 +69,10 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNot
  * Signature: (Landroid/content/Context;[Ljava/lang/String;II)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnTagsCallback
-  (JNIEnv *, jobject, jobject, jobjectArray, jint, jint)
+  (JNIEnv *env, jobject jthiz, jobject jobject1, jobjectArray jobjectArray1, jint jint1, jint jint2)
 {
-
+    C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
+    receiver->onTagsCallback(jobject1, jobjectArray1, jint1, jint2);
 }
 
 /*
@@ -73,8 +81,9 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnTag
  * Signature: (Landroid/content/Context;Ljava/lang/String;II)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnAliasCallback
-  (JNIEnv *, jobject, jobject, jstring, jint, jint)
+  (JNIEnv *env, jobject jthiz, jobject jobject1, jstring jstring1, jint jint1, jint jint2)
 {
-
+    C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
+    receiver->onAliasCallback(jobject1, jstring1, jint1, jint2);
 }
 

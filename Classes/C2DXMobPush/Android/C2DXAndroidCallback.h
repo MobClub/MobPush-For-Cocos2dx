@@ -5,8 +5,6 @@
 #ifndef PROJ_ANDROID_STUDIO_C2DXANDROIDCALLBACK_H
 #define PROJ_ANDROID_STUDIO_C2DXANDROIDCALLBACK_H
 
-#endif //PROJ_ANDROID_STUDIO_C2DXANDROIDCALLBACK_H
-
 #include <jni.h>
 #include "../C2DXMobPushCallback.h"
 
@@ -29,4 +27,4 @@ public:
     C2DXGetRegistrationIdResultEvent getC2DXAndroidCallback();
 };
 
-#endif
+#endif //PROJ_ANDROID_STUDIO_C2DXANDROIDCALLBACK_H

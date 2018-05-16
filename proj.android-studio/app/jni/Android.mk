@@ -12,10 +12,22 @@ LOCAL_MODULE := MyGame_shared
 
 LOCAL_MODULE_FILENAME := libMyGame
 
-LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
-                   $(LOCAL_PATH)/../../../Classes/AppDelegate.cpp \
-                   $(LOCAL_PATH)/../../../Classes/HelloWorldScene.cpp \
-                   $(LOCAL_PATH)/../../../Classes/AppNotifyScene.cpp
+LOCAL_SRC_FILES := hellocpp/main.cpp \
+                   ../../../Classes/AppDelegate.cpp \
+                   ../../../Classes/HelloWorldScene.cpp \
+                   ../../../Classes/AppNotifyScene.cpp \
+                   ../../../Classes/NotifyScene.cpp \
+                   ../../../Classes/TimeNotifyScene.cpp \
+                   ../../../Classes/LocalNotifyScene.cpp \
+                   ../../../Classes/NotifyOpenUrlScene.cpp \
+                   ../../../Classes/C2DXMobPush/C2DXMobPush.cpp \
+                   ../../../Classes/C2DXMobPush/Android/C2DXAndroidMobPush.cpp \
+                   ../../../Classes/C2DXMobPush/Android/C2DXAndroidCallback.cpp \
+                   ../../../Classes/C2DXMobPush/Android/C2DXAndroidSReqCallback.cpp \
+                   ../../../Classes/C2DXMobPush/Android/C2DXAndroidMobPushReceiver.cpp \
+                   ../../../Classes/C2DXMobPush/Android/com_mob_mobpush_cocos2dx_MobPushCallback.cpp \
+                   ../../../Classes/C2DXMobPush/Android/com_mob_mobpush_cocos2dx_MobPushSReqCallback.cpp \
+                   ../../../Classes/C2DXMobPush/Android/com_mob_mobpush_cocos2dx_MobPushReceiver.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes
 

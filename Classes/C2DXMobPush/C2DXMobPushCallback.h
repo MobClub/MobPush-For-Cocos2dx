@@ -19,7 +19,7 @@ namespace mob
          *  @param C2DXGetRegistrationIdResultEvent 回调registrationId
          */
         typedef void(*C2DXGetRegistrationIdResultEvent) (const char * registrationId);
-        typedef void(*C2DXReqResultEvent) (jobject reqResult);
+        typedef void(*C2DXReqResultEvent) (bool reqResult);
     }
 }
 

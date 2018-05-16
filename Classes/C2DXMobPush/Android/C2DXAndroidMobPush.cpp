@@ -12,6 +12,19 @@ USING_NS_CC;
 using namespace mob::mobpush;
 using namespace std;
 
+void C2DXAndroidMobPush::initMobPush(const char *appkey, const char *appScrect) {
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/MobSDK", "getContext",
+                                   "()Landroid/content/Context;");
+    jobject jc = env->CallStaticObjectMethod(jm.classID, jm.methodID);
+
+    JniHelper::getStaticMethodInfo(jm, "com/mob/MobSDK", "init",
+                                   "(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)V");
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, jc, env->NewStringUTF(appkey),
+                              env->NewStringUTF(appScrect));
+}
+
 void C2DXAndroidMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
     JNIEnv *env = JniHelper::getEnv();
 
@@ -87,13 +100,50 @@ void C2DXAndroidMobPush::addTags(std::list<std::string> tags) {
                                    "([Ljava/lang/String;)V");
     jobjectArray joa = env->NewObjectArray(tags.size(), env->FindClass("java/lang/String"), NULL);
 
-    std::list<std::string>::iterator it = tags.begin();
     int i = 0;
-    while (it != tags.end()) {
+    for (std::list<std::string>::iterator it = tags.begin(); it != tags.end() ; it++, i++) {
         jstring jString = env->NewStringUTF(it->c_str());
-        env->SetObjectArrayElement(joa, i++, jString);
+        env->SetObjectArrayElement(joa, i, jString);
     }
     env->CallStaticVoidMethod(jm.classID, jm.methodID, joa);
+}
+
+void C2DXAndroidMobPush::addLocalNotification(const char *text, int space) {
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/SendPushHelper", "sendLocalNotify",
+                                   "(Ljava/lang/String;I)V");
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, env->NewStringUTF(text), space);
+}
+
+void C2DXAndroidMobPush::setCustomNotification(long when, const char *tickerText, const char *title,
+                                               const char *content, int flag, int style,
+                                               const char *styleContent,
+                                               std::list<std::string> inboxStyleContent,
+                                               const char *smallIcon, boolean voice, boolean shake,
+                                               boolean light) {
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/CustomNotification", "newInstance",
+                                   "()Lcom/mob/mobpush/cocos2dx/CustomNotification;");
+    jobject jo = env->CallStaticObjectMethod(jm.classID, jm.methodID);
+
+    jmethodID jmethodID1 = env->GetMethodID(jm.classID, "getNotificationManager",
+                                            "()Landroid/app/NotificationManager;");
+    jobject jom = env->CallObjectMethod(jo, jmethodID1);
+
+    jmethodID  jmethodID2 = env->GetMethodID(jm.classID, "getNotification",
+                     "Landroid/content/Context;Landroid/app/NotificationManager;JLjava/lang/String;Ljava/lang/String;Ljava/lang/String;IILjava/lang/String;[Ljava/lang/String;Ljava/lang/String;ZZZ)Landroid/app/Notification;");
+
+    JniHelper::getStaticMethodInfo(jm, "com/mob/MobSDK", "getContext",
+                                   "()Landroid/content/Context;");
+    jobject jc = env->CallStaticObjectMethod(jm.classID, jm.methodID);
+    jobject jon = env->CallObjectMethod(jo,jmethodID2, jc, jom, when, tickerText, title, content, flag, style, styleContent, inboxStyleContent, smallIcon, voice, shake, light);
+
+    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "setCustomNotification",
+                                   "(Lcom/mob/pushsdk/MobPushCustomNotification)V");
+
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, jon);
 }
 
 void C2DXAndroidMobPush::req(int type, const char *text, int space, const char *extras,
@@ -111,11 +161,11 @@ void C2DXAndroidMobPush::req(int type, const char *text, int space, const char *
     jobject jz = env->CallStaticObjectMethod(jniMethodInfo.classID, jniMethodInfo.methodID);
 
     C2DXAndroidSReqCallback *c2DXAndroidSReqCallback = (C2DXAndroidSReqCallback *) getCxxObject(env,
-                                                                                    jz);
+                                                                                                jz);
     c2DXAndroidSReqCallback->setC2DXAndroidSReqCallback(reqResultEvent);
 
-    env->CallStaticVoidMethod(jm.classID, jm.methodID, type, env->NewStringUTF(text), 0,
-                                env->NewStringUTF(extras),jz);
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, type, env->NewStringUTF(text), space,
+                              env->NewStringUTF(extras), jz);
 
 }
 

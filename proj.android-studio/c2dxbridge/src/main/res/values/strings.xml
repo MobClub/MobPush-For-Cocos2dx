@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">c2dxbridge</string>
+    <string name="item_local">本地通知</string>
+    <string name="toast_input_not_allowed_null">推送内容不能为空</string>
 </resources>

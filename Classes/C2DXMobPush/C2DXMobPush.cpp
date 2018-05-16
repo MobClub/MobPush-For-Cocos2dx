@@ -16,6 +16,19 @@
 
 using namespace mob::mobpush;
 
+void C2DXMobPush::initMobPush(const char *appkey, const char *appScrect) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::initMobPush(appkey, appScrect);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+    C2DXiOSMobPush::initMobPush(appkey,appScrect);
+#endif
+}
+
 void C2DXMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
@@ -79,6 +92,41 @@ void C2DXMobPush::setAlias(const char *alias) {
 
     //iOS
     C2DXiOSMobPush::setAlias(tags);
+#endif
+}
+
+void C2DXMobPush::addLocalNotification(const char *text, int space) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::addLocalNotification(text, space);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+    C2DXiOSMobPush::sendLocalNotification(tags);
+#endif
+}
+
+void C2DXMobPush::setCustomNotification(long when, const char *tickerText, const char *title,
+                                        const char *content, int flag, int style,
+                                        const char *styleContent,
+                                        std::list<std::string> inboxStyleContent,
+                                        const char *smallIcon, boolean voice, boolean shake,
+                                        boolean light) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::setCustomNotification(when, tickerText, title, content, flag, style,
+                                              styleContent, inboxStyleContent, smallIcon, voice,
+                                              shake, light);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+    C2DXiOSMobPush::setCustomNotification(when, tickerText, title, content, flag, style,
+                                              styleContent, inboxStyleContent, smallIcon, voice,
+                                              shake, light);
 #endif
 }
 

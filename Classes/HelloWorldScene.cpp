@@ -132,7 +132,7 @@ bool HelloWorld::init() {
     button->setPosition(Vec2(visibleSize.width / 2 + origin.x,
                              origin.y + visibleSize.height - button->getContentSize().height * 10));
     button->addTouchEventListener(this, (SEL_TouchEvent) &HelloWorld::onTouch);
-    this->addChild(button);
+//    this->addChild(button);
 
     return true;
 }

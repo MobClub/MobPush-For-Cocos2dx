@@ -26,19 +26,10 @@ public:
     void onTouch(Ref* sender,TouchEventType type);
 
     static void getId(const char* c);
-    static void getSendReqResult(jobject result);
+    static void getSendReqResult(bool result);
 
 private:
     EditBox* mEditBox;
-};
-
-class PushReceiver3 : public C2DXMobPushReceiver
-{
-    void onCustomMessageReceive(jobject context, jobject mobPushCustomMessage);
-    void onNotifyMessageReceive(jobject context, jobject mobPushNotifyMessage);
-    void onNotifyMessageOpenedReceive(jobject context, jobject mobPushNotifyMessage);
-    void onTagsCallback(jobject context, jobjectArray tags, jint i, jint j1);
-    void onAliasCallback(jobject context, jstring alias, jint i, jint j1);
 };
 
 #endif // __APPNOTIFY_SCENE_H__

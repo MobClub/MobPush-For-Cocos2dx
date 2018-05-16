@@ -87,7 +87,6 @@ bool NotifyOpenUrl::init() {
     });
 
     this->addChild(button);
-    C2DXMobPush::addPushReceiver(new PushReceiver4());
     return true;
 }
 
@@ -106,27 +105,7 @@ void NotifyOpenUrl::menuCloseCallback(Ref *pSender) {
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 }
 
-void NotifyOpenUrl::getSendReqResult(jobject result) {
+void NotifyOpenUrl::getSendReqResult(bool result) {
     CCLOG(">>>>>>>>%s", "aaaa");
     CCLOG(">>>>>>>>%s", result);
-}
-//
-void PushReceiver4::onCustomMessageReceive(jobject context, jobject mobPushCustomMessage) {
-    CCLOG(">>>>>>>>%s", "onCustomMessageReceive");
-}
-
-void PushReceiver4::onNotifyMessageReceive(jobject context, jobject mobPushNotifyMessage) {
-    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-}
-
-void PushReceiver4::onNotifyMessageOpenedReceive(jobject context, jobject mobPushNotifyMessage) {
-    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-}
-
-void PushReceiver4::onTagsCallback(jobject context, jobjectArray tags, jint i, jint j1) {
-    CCLOG(">>>>>>>>%s", "onTagsCallback>>>>>>");
-}
-
-void PushReceiver4::onAliasCallback(jobject context, jstring alias, jint i, jint j1) {
-    CCLOG(">>>>>>>>%s>>>>onAliasCallback", JniHelper::getEnv()->GetStringUTFChars(alias, NULL));
 }

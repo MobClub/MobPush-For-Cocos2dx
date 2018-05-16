@@ -1,6 +1,7 @@
 #include <ui/UIButton.h>
 #include <ui/UIEditBox/UIEditBox.h>
 #include <C2DXMobPush/C2DXMobPush.h>
+#include <C2DXMobPush/C2DXMobPushCustomMessage.h>
 #include "AppNotifyScene.h"
 #include "AppDelegate.h"
 #include "cocos2d.h"
@@ -119,27 +120,27 @@ void AppNotify::getId(const char *c) {
     CCLOG(">>>>>>>>%s", c);
 }
 
-void AppNotify::getSendReqResult(jobject result) {
+void AppNotify::getSendReqResult(bool result) {
     CCLOG(">>>>>>>>%s", "aaaa");
     CCLOG(">>>>>>>>%s", result);
 }
 
-void PushReceiver::onCustomMessageReceive(jobject context, jobject mobPushCustomMessage) {
+void PushReceiver::onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage) {
     CCLOG(">>>>>>>>%s", "onCustomMessageReceive");
 }
 
-void PushReceiver::onNotifyMessageReceive(jobject context, jobject mobPushNotifyMessage) {
+void PushReceiver::onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
     CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
 }
 
-void PushReceiver::onNotifyMessageOpenedReceive(jobject context, jobject mobPushNotifyMessage) {
+void PushReceiver::onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
     CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
 }
 
-void PushReceiver::onTagsCallback(jobject context, jobjectArray tags, jint i, jint j1) {
+void PushReceiver::onTagsCallback(std::list<std::string>& tags, int i, int j1) {
     CCLOG(">>>>>>>>%s", "onTagsCallback>>>>>>");
 }
 
-void PushReceiver::onAliasCallback(jobject context, jstring alias, jint i, jint j1) {
-    CCLOG(">>>>>>>>%s>>>>onAliasCallback", JniHelper::getEnv()->GetStringUTFChars(alias, NULL));
+void PushReceiver::onAliasCallback(const char* alias, int i, int j1) {
+    CCLOG(">>>>>>>>%s>>>>onAliasCallback", alias);
 }

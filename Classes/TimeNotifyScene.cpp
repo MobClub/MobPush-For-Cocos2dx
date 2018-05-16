@@ -83,12 +83,11 @@ bool TimeNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-            C2DXMobPush::req(1, mEditBox->getText(), 0, NULL, &TimeNotify::getSendReqResult);
+            C2DXMobPush::req(3, mEditBox->getText(), 1, NULL, &TimeNotify::getSendReqResult);
         }
     });
 
     this->addChild(button);
-    C2DXMobPush::addPushReceiver(new PushReceiver2());
     return true;
 }
 
@@ -107,27 +106,7 @@ void TimeNotify::menuCloseCallback(Ref *pSender) {
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 }
 
-void TimeNotify::getSendReqResult(jobject result) {
+void TimeNotify::getSendReqResult(bool result) {
     CCLOG(">>>>>>>>%s", "aaaa");
     CCLOG(">>>>>>>>%s", result);
-}
-//
-void PushReceiver2::onCustomMessageReceive(jobject context, jobject mobPushCustomMessage) {
-    CCLOG(">>>>>>>>%s", "onCustomMessageReceive");
-}
-
-void PushReceiver2::onNotifyMessageReceive(jobject context, jobject mobPushNotifyMessage) {
-    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-}
-
-void PushReceiver2::onNotifyMessageOpenedReceive(jobject context, jobject mobPushNotifyMessage) {
-    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-}
-
-void PushReceiver2::onTagsCallback(jobject context, jobjectArray tags, jint i, jint j1) {
-    CCLOG(">>>>>>>>%s", "onTagsCallback>>>>>>");
-}
-
-void PushReceiver2::onAliasCallback(jobject context, jstring alias, jint i, jint j1) {
-    CCLOG(">>>>>>>>%s>>>>onAliasCallback", JniHelper::getEnv()->GetStringUTFChars(alias, NULL));
 }

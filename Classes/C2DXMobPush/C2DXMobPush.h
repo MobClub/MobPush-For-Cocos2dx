@@ -14,70 +14,71 @@
 
 USING_NS_CC;
 
-namespace mob
-{
-    namespace mobpush
-    {
-        class C2DXMobPush
-        {
+namespace mob {
+    namespace mobpush {
+        class C2DXMobPush {
         public:
-        
+
+            static void initMobPush(const char *appkey, const char *appScrect);
+
             /**
              *  获取注册id
              *
              *  @param callback 返回注册id的回调
              */
             static void getRegistrationId(C2DXGetRegistrationIdResultEvent callback);
-        
+
             /**
              *  设置推送监听
              *
              *  @param pushReceiver 设置推送监听
              */
-            static void addPushReceiver(C2DXMobPushReceiver* pushReceiver);
-			
-			/**
+            static void addPushReceiver(C2DXMobPushReceiver *pushReceiver);
+
+            /**
              *  移除推送监听
              *
-			 *  @param pushReceiver 移除推送监听
+             *  @param pushReceiver 移除推送监听
              */
-            static void removePushReceiver(C2DXMobPushReceiver* pushReceiver);
-			
-			/**
-             *  停止推送
+            static void removePushReceiver(C2DXMobPushReceiver *pushReceiver);
+
+            /**
+             * 设置别名
+             *
+             * @param alias 别名名称（为空时无效）
              */
-            static void stopPush();
-			
-			/**
-             *  重新打开推送服务
+            static void setAlias(const char *alias);
+
+            static char getAlias();
+
+            static char clearAllAlias();
+
+            /**
+             * 添加标签
+             *
+             * @param tags 标签集合
              */
-            static void restartPush();
-			
-			/**
-             *  判断推送服务是否已经停止
-             */
-            static void isPushStopped();
-			
-			/**
-			 * 设置别名
-			 *
-			 * @param alias 别名名称（为空时无效）
-			 */
-            static void setAlias(const char* alias);
-			
-			/**
-			 * 添加标签
-			 *
-			 * @param tags 标签集合
-			 */
             static void addTags(std::list<std::string> tags);
-			
-			/**
-			 * 添加本地通知
-			 *
-			 * @param notification 本地通知对象
-			 */
-            static void addLocalNotification(C2DXMobPushLocalNotification* notification);
+
+            static void getTags();
+
+            static void deleteTags(char *tag);
+
+            static void clearAllTags();
+
+            /**
+             * 添加本地通知
+             *
+             * @param notification 本地通知对象
+             */
+            static void addLocalNotification(const char *text, int space);
+
+            static void setCustomNotification(long when, const char *tickerText, const char *title,
+                                              const char *content, int flag, int style,
+                                              const char *styleContent,
+                                              std::list<std::string> inboxStyleContent,
+                                              const char *smallIcon, boolean voice, boolean shake,
+                                              boolean light);
 
             /**
 			 * 模拟发送推送消息
@@ -87,10 +88,11 @@ namespace mob
 			 * @param space 仅对定时消息有效，单位分钟，默认1分钟
              *
 			 */
-            static void req(int type, const char* text, int space, const char* extras, C2DXReqResultEvent reqResultEvent);
+            static void req(int type, const char *text, int space, const char *extras,
+                            C2DXReqResultEvent reqResultEvent);
 
         };
-        
+
     }
 }
 

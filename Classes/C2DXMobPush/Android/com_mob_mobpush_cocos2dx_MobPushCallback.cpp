@@ -25,7 +25,6 @@ JNIEXPORT jint JNICALL Java_com_mob_mobpush_cocos2dx_MobPushCallback_nativeOnCre
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushCallback_nativeOnCallback
         (JNIEnv *env, jobject jthiz, jobject jresult) {
-
     C2DXAndroidCallback *callback = (C2DXAndroidCallback *) getCxxObject(env, jthiz);
     const char *cresult = env->GetStringUTFChars((jstring)jresult, JNI_FALSE);
     callback->onCallback((const char *) cresult);

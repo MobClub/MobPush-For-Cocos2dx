@@ -83,12 +83,11 @@ bool LocalNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-            C2DXMobPush::req(1, mEditBox->getText(), 0, NULL, &LocalNotify::getSendReqResult);
+            C2DXMobPush::addLocalNotification(mEditBox->getText(), 1);
         }
     });
 
     this->addChild(button);
-    C2DXMobPush::addPushReceiver(new PushReceiver3());
     return true;
 }
 
@@ -107,27 +106,7 @@ void LocalNotify::menuCloseCallback(Ref *pSender) {
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 }
 
-void LocalNotify::getSendReqResult(jobject result) {
+void LocalNotify::getSendReqResult(bool result) {
     CCLOG(">>>>>>>>%s", "aaaa");
     CCLOG(">>>>>>>>%s", result);
-}
-//
-void PushReceiver3::onCustomMessageReceive(jobject context, jobject mobPushCustomMessage) {
-    CCLOG(">>>>>>>>%s", "onCustomMessageReceive");
-}
-
-void PushReceiver3::onNotifyMessageReceive(jobject context, jobject mobPushNotifyMessage) {
-    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-}
-
-void PushReceiver3::onNotifyMessageOpenedReceive(jobject context, jobject mobPushNotifyMessage) {
-    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-}
-
-void PushReceiver3::onTagsCallback(jobject context, jobjectArray tags, jint i, jint j1) {
-    CCLOG(">>>>>>>>%s", "onTagsCallback>>>>>>");
-}
-
-void PushReceiver3::onAliasCallback(jobject context, jstring alias, jint i, jint j1) {
-    CCLOG(">>>>>>>>%s>>>>onAliasCallback", JniHelper::getEnv()->GetStringUTFChars(alias, NULL));
 }

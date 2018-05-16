@@ -22,11 +22,19 @@ namespace mob
         class C2DXAndroidMobPush
         {
         public:
+            static void initMobPush(const char* appkey, const char* appScrect);
             static void getRegistrationId(C2DXGetRegistrationIdResultEvent callback);
             static void addPushReceiver(C2DXMobPushReceiver* receiver);
             static void removePushReceiver(C2DXMobPushReceiver* receiver);
             static void addTags(std::list<std::string> tags);
             static void setAlias(const char* alias);
+            static void addLocalNotification(const char* text, int space);
+            static void setCustomNotification(long when, const char *tickerText, const char *title,
+                                              const char *content, int flag, int style,
+                                              const char *styleContent,
+                                              std::list<std::string> inboxStyleContent,
+                                              const char *smallIcon, boolean voice, boolean shake,
+                                              boolean light);
             static void req(int type, const char* text, int space, const char* extras, C2DXReqResultEvent reqResultEvent);
         };
 

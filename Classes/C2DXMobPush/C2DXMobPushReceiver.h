@@ -6,6 +6,8 @@
 #define PROJ_ANDROID_STUDIO_C2DXMOBPUSHRECEIVER_H
 
 #include "cocos2d.h"
+#include "C2DXMobPushNotifyMessage.h"
+#include "C2DXMobPushCustomMessage.h"
 
 USING_NS_CC;
 
@@ -16,11 +18,11 @@ namespace mob
         class C2DXMobPushReceiver
         {
         public:
-            virtual void onCustomMessageReceive(jobject context, jobject mobPushCustomMessage) = 0;
-            virtual void onNotifyMessageReceive(jobject context, jobject mobPushNotifyMessage) = 0;
-            virtual void onNotifyMessageOpenedReceive(jobject context, jobject mobPushNotifyMessage) = 0;
-            virtual void onTagsCallback(jobject context, jobjectArray tags, jint i, jint j1) = 0;
-            virtual void onAliasCallback(jobject context, jstring alias, jint i, jint j1) = 0;
+            virtual void onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage) = 0;
+            virtual void onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) = 0;
+            virtual void onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) = 0;
+            virtual void onTagsCallback(std::list<std::string>& tags, int i, int j1) = 0;
+            virtual void onAliasCallback(const char* alias, jint i, int j1) = 0;
         };
     }
 }

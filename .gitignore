@@ -6,3 +6,7 @@
 /proj.android-studio/gradlew
 /proj.android-studio/gradlew.bat
 /proj.android-studio/java_pid9352.hprof
+/proj.android-studio/c2dxbridge/*.iml
+/proj.android-studio/app/*.iml
+/cocos2d/cocos/platform/android/libcocos2dx/build
+/cocos2d/cocos/platform/android/libcocos2dx/*.iml

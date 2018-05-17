@@ -62,7 +62,7 @@ namespace mob {
 
             static void getTags();
 
-            static void deleteTags(char *tag);
+            static void deleteTags(std::list<std::string> tags);
 
             static void clearAllTags();
 

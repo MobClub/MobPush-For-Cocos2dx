@@ -1,7 +1,6 @@
 #include <ui/UIButton.h>
 #include <ui/UIEditBox/UIEditBox.h>
 #include <C2DXMobPush/C2DXMobPush.h>
-#include <C2DXMobPush/C2DXMobPushCustomMessage.h>
 #include "AppNotifyScene.h"
 #include "AppDelegate.h"
 #include "cocos2d.h"
@@ -87,60 +86,49 @@ bool AppNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-//            CCLOG(">>>>>>>>%s", mEditBox->getText());
 //            C2DXMobPush::getRegistrationId(&AppNotify::getId);
-//            C2DXMobPush::setAlias("xiaoxin");
-//            C2DXMobPush::req(2, mEditBox->getText(), 0, NULL, &AppNotify::getSendReqResult);
+            C2DXMobPush::setAlias("xiaoxin");
+            C2DXMobPush::req(2, mEditBox->getText(), 0, NULL, &AppNotify::getSendReqResult);
         }
     });
 
     this->addChild(button);
 
-//    C2DXMobPush::addPushReceiver(new PushReceiver());
+    C2DXMobPush::setC2DXMessageCallBack(&AppNotify::onC2DXMessageCallBack);
+    C2DXMobPush::setC2DXAliasCallBack(&AppNotify::onC2DXAliasCallBack);
+    C2DXMobPush::setC2DXTagsCallBack(&AppNotify::onC2DXTagsCallBack);
+    C2DXMobPush::addPushReceiver();
+    C2DXMobPush::getRegistrationId(&AppNotify::getId);
     return true;
 }
 
 
 void AppNotify::menuCloseCallback(Ref *pSender) {
-    //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->popScene();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
-
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
-
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
 }
 
 void AppNotify::getId(const char *c) {
-    CCLOG(">>>>>>>>%d", "aaaa");
-    CCLOG(">>>>>>>>%d", c);
+    CCLOG(">>>getId>>>>>%s", c);
 }
 
 void AppNotify::getSendReqResult(bool result) {
-    CCLOG(">>>>>>>>%d", "aaaa");
-//    CCLOG(">>>>>>>>%s", result);
+    if (result) {
+        CCLOG(">>>getSendReqResult>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>getSendReqResult>>>>%s", "false");
+    }
 }
 
-//void PushReceiver::onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage) {
-//    CCLOG(">>>>>>>>%s", "onCustomMessageReceive");
-//}
-//
-//void PushReceiver::onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
-//    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-//}
-//
-//void PushReceiver::onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
-//    CCLOG(">>>>>>>>%s", "onNotifyMessageReceive");
-//}
-//
-//void PushReceiver::onTagsCallback(std::list<std::string>& tags, int i, int j1) {
-//    CCLOG(">>>>>>>>%s", "onTagsCallback>>>>>>");
-//}
-//
-//void PushReceiver::onAliasCallback(const char* alias, int i, int j1) {
-//    CCLOG(">>>>>>>>%s>>>>onAliasCallback", alias);
-//}
+void AppNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
+    CCLOG(">>>onC2DXMessageCallBack>>>AppNotifyScene>>%s", "onC2DXMessageCallBack");
+}
+
+void AppNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
+
+    CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
+}
+
+void AppNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
+    CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
+
+}

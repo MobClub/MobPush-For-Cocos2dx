@@ -26,42 +26,42 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnDes
 /*
  * Class:     com_mob_mobpush_cocos2dx_MobPushReceiver
  * Method:    nativeOnCustomMessageReceive
- * Signature: (Landroid/content/Context;Lcom/mob/pushsdk/MobPushCustomMessage;)V
+ * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnCustomMessageReceive
-  (JNIEnv *, jobject, jobject, jobject);
+  (JNIEnv *, jobject, jstring);
 
 /*
  * Class:     com_mob_mobpush_cocos2dx_MobPushReceiver
  * Method:    nativeOnNotifyMessageReceive
- * Signature: (Landroid/content/Context;Lcom/mob/pushsdk/MobPushNotifyMessage;)V
+ * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNotifyMessageReceive
-  (JNIEnv *, jobject, jobject, jobject);
+  (JNIEnv *, jobject, jstring);
 
 /*
  * Class:     com_mob_mobpush_cocos2dx_MobPushReceiver
  * Method:    nativeOnNotifyMessageOpenedReceive
- * Signature: (Landroid/content/Context;Lcom/mob/pushsdk/MobPushNotifyMessage;)V
+ * Signature: (Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNotifyMessageOpenedReceive
-  (JNIEnv *, jobject, jobject, jobject);
+  (JNIEnv *, jobject, jstring);
 
 /*
  * Class:     com_mob_mobpush_cocos2dx_MobPushReceiver
  * Method:    nativeOnTagsCallback
- * Signature: (Landroid/content/Context;[Ljava/lang/String;II)V
+ * Signature: ([Ljava/lang/String;II)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnTagsCallback
-  (JNIEnv *, jobject, jobject, jobjectArray, jint, jint);
+  (JNIEnv *, jobject, jobjectArray, jint, jint);
 
 /*
  * Class:     com_mob_mobpush_cocos2dx_MobPushReceiver
  * Method:    nativeOnAliasCallback
- * Signature: (Landroid/content/Context;Ljava/lang/String;II)V
+ * Signature: (Ljava/lang/String;II)V
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnAliasCallback
-  (JNIEnv *, jobject, jobject, jstring, jint, jint);
+  (JNIEnv *, jobject, jstring, jint, jint);
 
 #ifdef __cplusplus
 }

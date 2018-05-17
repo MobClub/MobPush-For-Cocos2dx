@@ -11,7 +11,6 @@
 #include "cocos2d.h"
 #include "jni.h"
 #include "../C2DXMobPushCallback.h"
-#include "../C2DXMobPushReceiver.h"
 
 USING_NS_CC;
 
@@ -24,8 +23,8 @@ namespace mob
         public:
             static void initMobPush(const char* appkey, const char* appScrect);
             static void getRegistrationId(C2DXGetRegistrationIdResultEvent callback);
-            static void addPushReceiver(C2DXMobPushReceiver* receiver);
-            static void removePushReceiver(C2DXMobPushReceiver* receiver);
+            static void addPushReceiver();
+            static void removePushReceiver();
             static void addTags(std::list<std::string> tags);
             static void setAlias(const char* alias);
             static void addLocalNotification(const char* text, int space);

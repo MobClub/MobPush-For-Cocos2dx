@@ -2,42 +2,38 @@
 // Created by yyfu on 2018/5/14.
 //
 
-#include <jni.h>
 #include "C2DXAndroidMobPushReceiver.h"
-
+#include "C2DXMobPush/C2DXMobPushCallback.h"
 
 using namespace mob::mobpush;
 
+
+C2DXMessageCallBack C2DXAndroidMobPushReceiver::messageCallBack = NULL;
+C2DXTagsCallBack C2DXAndroidMobPushReceiver::tagsCallBack = NULL;
+C2DXAliasCallBack C2DXAndroidMobPushReceiver::aliasCallBack = NULL;
+
 C2DXAndroidMobPushReceiver::C2DXAndroidMobPushReceiver() {
-    c2DXMobPushReceiver = NULL;
 }
 
-void C2DXAndroidMobPushReceiver::onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage) {
-    c2DXMobPushReceiver->onCustomMessageReceive(mobPushCustomMessage);
+void C2DXAndroidMobPushReceiver::onCustomMessageReceive(C2DXMobPushMessage* mobPushCustomMessage) {
+    messageCallBack(1,mobPushCustomMessage);
 }
 
-void C2DXAndroidMobPushReceiver::onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
-    c2DXMobPushReceiver->onNotifyMessageReceive(mobPushNotifyMessage);
+void C2DXAndroidMobPushReceiver::onNotifyMessageReceive(C2DXMobPushMessage* mobPushNotifyMessage) {
+    messageCallBack(1,mobPushNotifyMessage);
 }
-void C2DXAndroidMobPushReceiver::onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage) {
-    c2DXMobPushReceiver->onNotifyMessageOpenedReceive(mobPushNotifyMessage);
+void C2DXAndroidMobPushReceiver::onNotifyMessageOpenedReceive(C2DXMobPushMessage* mobPushNotifyMessage) {
+    messageCallBack(1,mobPushNotifyMessage);
 }
 
 void
 C2DXAndroidMobPushReceiver::onTagsCallback(std::list<std::string>& tags, int i, int j1) {
-    c2DXMobPushReceiver->onTagsCallback(tags, i, j1);
+    tagsCallBack(tags, i, j1);
 }
 
 void C2DXAndroidMobPushReceiver::onAliasCallback(const char* alias, int i, int j1) {
-    c2DXMobPushReceiver->onAliasCallback(alias, i, j1);
-}
-
-void C2DXAndroidMobPushReceiver::setC2DXMobPushReceiver(C2DXMobPushReceiver* receiver) {
-    c2DXMobPushReceiver = receiver;
-}
-
-C2DXMobPushReceiver* C2DXAndroidMobPushReceiver::getC2DXMobPushReceiver() {
-    return c2DXMobPushReceiver;
+    CCLOG(">>>>>onAlias>>333>>%s", alias);
+    aliasCallBack(alias, i, j1);
 }
 
 C2DXAndroidMobPushReceiver::~C2DXAndroidMobPushReceiver() {

@@ -4,11 +4,9 @@
 #include <ui/UIButton.h>
 #include <ui/UIEditBox/UIEditBox.h>
 #include "cocos2d.h"
-#include "C2DXMobPush/C2DXMobPushReceiver.h"
 
 using namespace cocos2d;
 using namespace cocos2d::ui;
-using namespace mob::mobpush;
 
 class Notify : public cocos2d::Scene
 {
@@ -28,6 +26,11 @@ public:
     static void getId(const char* c);
     static void getSendReqResult(bool result);
 
+    static void onC2DXMessageCallBack(int action, C2DXMobPushMessage *message);
+
+    static void onC2DXAliasCallBack(const char *alias, int operation, int errorCode);
+
+    static void onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode);
 private:
     EditBox* mEditBox;
 };

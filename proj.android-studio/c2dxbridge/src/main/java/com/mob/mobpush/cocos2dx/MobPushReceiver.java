@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.mob.pushsdk.MobPushCustomMessage;
 import com.mob.pushsdk.MobPushNotifyMessage;
+import com.mob.tools.utils.Hashon;
 
 /**
  * Created by yyfu on 2018/5/14.
@@ -11,34 +12,41 @@ import com.mob.pushsdk.MobPushNotifyMessage;
 
 public class MobPushReceiver implements com.mob.pushsdk.MobPushReceiver {
     private int cxxObject;
+    private Hashon hashon;
 
     public MobPushReceiver() {
+        System.out.println(">>>>>MobPushReceiver>>>>>");
+
+        hashon = new Hashon();
         this.cxxObject = nativeOnCreateCxxObject();
     }
 
     @Override
     public void onCustomMessageReceive(Context context, MobPushCustomMessage mobPushCustomMessage) {
-        nativeOnCustomMessageReceive(context, mobPushCustomMessage);
+        System.out.println(">>>>>onNotifyMessageReceive>>>>>"+mobPushCustomMessage.toString());
+        nativeOnCustomMessageReceive(mobPushCustomMessage.getMessageId());
     }
 
     @Override
     public void onNotifyMessageReceive(Context context, MobPushNotifyMessage mobPushNotifyMessage) {
-        nativeOnNotifyMessageReceive(context, mobPushNotifyMessage);
+        System.out.println(">>>>>onNotifyMessageReceive>>>>>"+mobPushNotifyMessage.getMessageId());
+        nativeOnNotifyMessageReceive(mobPushNotifyMessage.getMessageId());
     }
 
     @Override
     public void onNotifyMessageOpenedReceive(Context context, MobPushNotifyMessage mobPushNotifyMessage) {
-        nativeOnNotifyMessageOpenedReceive(context, mobPushNotifyMessage);
+        System.out.println(">>>>>onNotifyMessageOpenedReceive>>>>>"+mobPushNotifyMessage.getMessageId());
+        nativeOnNotifyMessageOpenedReceive(mobPushNotifyMessage.getMessageId());
     }
 
     @Override
     public void onTagsCallback(Context context, String[] strings, int i, int i1) {
-        nativeOnTagsCallback(context, strings, i, i1);
+//        nativeOnTagsCallback(strings, i, i1);
     }
 
     @Override
     public void onAliasCallback(Context context, String s, int i, int i1) {
-        nativeOnAliasCallback(context, s, i, i1);
+        nativeOnAliasCallback(s, i, i1);
     }
 
     @Override
@@ -51,15 +59,15 @@ public class MobPushReceiver implements com.mob.pushsdk.MobPushReceiver {
 
     private native void nativeOnDestoryCxxObject();
 
-    private native void nativeOnCustomMessageReceive(Context context, MobPushCustomMessage mobPushCustomMessage);
+    private native void nativeOnCustomMessageReceive(String customMessageJson);
 
-    private native void nativeOnNotifyMessageReceive(Context context, MobPushNotifyMessage mobPushNotifyMessage);
+    private native void nativeOnNotifyMessageReceive(String notifyMessageJson);
 
-    private native void nativeOnNotifyMessageOpenedReceive(Context context, MobPushNotifyMessage mobPushNotifyMessage);
+    private native void nativeOnNotifyMessageOpenedReceive(String notifyMessageJson);
 
-    private native void nativeOnTagsCallback(Context context, String[] strings, int i, int i1);
+    private native void nativeOnTagsCallback(String[] strings, int i, int i1);
 
-    private native void nativeOnAliasCallback(Context context, String s, int i, int i1);
+    private native void nativeOnAliasCallback(String s, int i, int i1);
 
     public int getCxxObject() {
         return cxxObject;

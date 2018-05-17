@@ -88,6 +88,9 @@ bool TimeNotify::init() {
     });
 
     this->addChild(button);
+    C2DXMobPush::setC2DXMessageCallBack(&TimeNotify::onC2DXMessageCallBack);
+    C2DXMobPush::setC2DXAliasCallBack(&TimeNotify::onC2DXAliasCallBack);
+    C2DXMobPush::setC2DXTagsCallBack(&TimeNotify::onC2DXTagsCallBack);
     return true;
 }
 
@@ -109,4 +112,17 @@ void TimeNotify::menuCloseCallback(Ref *pSender) {
 void TimeNotify::getSendReqResult(bool result) {
     CCLOG(">>>>>>>>%d", "aaaa");
 //    CCLOG(">>>>>>>>%s", result);
+}
+void TimeNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
+    CCLOG(">>>onC2DXMessageCallBack>>>TimeNotify>>%s", "onC2DXMessageCallBack");
+}
+
+void TimeNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
+
+    CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
+}
+
+void TimeNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
+    CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
+
 }

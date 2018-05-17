@@ -45,7 +45,7 @@ void C2DXAndroidMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent call
     env->CallStaticVoidMethod(jm.classID, jm.methodID, jJavaCallBackImpl);
 }
 
-void C2DXAndroidMobPush::addPushReceiver(C2DXMobPushReceiver *receiver) {
+void C2DXAndroidMobPush::addPushReceiver() {
     JNIEnv *env = JniHelper::getEnv();
     JniMethodInfo jm;
     JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "addPushReceiver",
@@ -57,15 +57,10 @@ void C2DXAndroidMobPush::addPushReceiver(C2DXMobPushReceiver *receiver) {
                                    "()Lcom/mob/mobpush/cocos2dx/MobPushReceiver;");
     jobject jReceiver = env->CallStaticObjectMethod(jmJavaMobPushReceiverImpl.classID,
                                                     jmJavaMobPushReceiverImpl.methodID);
-
-    C2DXAndroidMobPushReceiver *c2DXAndroidMobPushReceiver = (C2DXAndroidMobPushReceiver *) getCxxObject(
-            env, jReceiver);
-    c2DXAndroidMobPushReceiver->setC2DXMobPushReceiver(receiver);
-
     env->CallStaticVoidMethod(jm.classID, jm.methodID, jReceiver);
 }
 
-void C2DXAndroidMobPush::removePushReceiver(C2DXMobPushReceiver *receiver) {
+void C2DXAndroidMobPush::removePushReceiver() {
     JNIEnv *env = JniHelper::getEnv();
     JniMethodInfo jm;
     JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "removePushReceiver",
@@ -78,9 +73,8 @@ void C2DXAndroidMobPush::removePushReceiver(C2DXMobPushReceiver *receiver) {
     jobject jReceiver = env->CallStaticObjectMethod(jmJavaMobPushReceiverImpl.classID,
                                                     jmJavaMobPushReceiverImpl.methodID);
 
-    C2DXAndroidMobPushReceiver *c2DXAndroidMobPushReceiver = (C2DXAndroidMobPushReceiver *) getCxxObject(
-            env, jReceiver);
-    c2DXAndroidMobPushReceiver->setC2DXMobPushReceiver(receiver);
+//    C2DXAndroidMobPushReceiver *c2DXAndroidMobPushReceiver = (C2DXAndroidMobPushReceiver *) getCxxObject(
+//            env, jReceiver);
 
     env->CallStaticVoidMethod(jm.classID, jm.methodID, jReceiver);
 }

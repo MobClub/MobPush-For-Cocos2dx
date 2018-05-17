@@ -2,6 +2,7 @@
 // Created by yyfu on 2018/5/11.
 //
 
+#include <C2DXMobPush/Android/C2DXAndroidMobPushReceiver.h>
 #include "C2DXMobPush.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
@@ -11,6 +12,7 @@
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 #include "Android/C2DXAndroidMobPush.h"
+#include "Android/C2DXAndroidMobPushReceiver.h"
 
 #endif
 
@@ -43,29 +45,16 @@ void C2DXMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
 
 }
 
-void C2DXMobPush::addPushReceiver(C2DXMobPushReceiver *pushReceiver) {
+void C2DXMobPush::addPushReceiver() {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
     //Andorid
-    C2DXAndroidMobPush::addPushReceiver(pushReceiver);
+    C2DXAndroidMobPush::addPushReceiver();
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
     C2DXiOSMobPush::addPushReceiver(pushReceiver);
-#endif
-}
-
-void C2DXMobPush::removePushReceiver(C2DXMobPushReceiver *pushReceiver) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
-    //Andorid
-    C2DXAndroidMobPush::removePushReceiver(pushReceiver);
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-    //iOS
-    C2DXiOSMobPush::removePushReceiver(pushReceiver);
 #endif
 }
 
@@ -129,6 +118,46 @@ void C2DXMobPush::setCustomNotification(long when, const char *tickerText, const
                                               shake, light);
 #endif
 }
+
+void C2DXMobPush::setC2DXMessageCallBack(C2DXMessageCallBack messageCallBack){
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPushReceiver::messageCallBack = messageCallBack;
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+
+#endif
+}
+
+void C2DXMobPush::setC2DXAliasCallBack(C2DXAliasCallBack aliasCallBack){
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPushReceiver::aliasCallBack = aliasCallBack;
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+
+#endif
+}
+
+void C2DXMobPush::setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack){
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+//    C2DXAndroidMobPushReceiver::tagsCallBack = tagsCallBack;
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+
+#endif
+}
+
 
 void C2DXMobPush::req(int type, const char *text, int space, const char *extras,
                       C2DXReqResultEvent reqResultEvent) {

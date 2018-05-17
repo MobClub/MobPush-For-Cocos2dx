@@ -4,7 +4,6 @@
 #include "NotifyScene.h"
 #include "TimeNotifyScene.h"
 #include "LocalNotifyScene.h"
-#include "NotifyOpenUrlScene.h"
 
 #define  LOG_TAG    "hellowordscene"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
@@ -165,8 +164,6 @@ void HelloWorld::onTouch(Ref *sender, TouchEventType type) {
                 Director::getInstance()->pushScene(TimeNotify::createScene());
             } else if (id == 4) {
                 Director::getInstance()->pushScene(LocalNotify::createScene());
-            } else if (id == 5) {
-                Director::getInstance()->pushScene(NotifyOpenUrl::createScene());
             }
             break;
 

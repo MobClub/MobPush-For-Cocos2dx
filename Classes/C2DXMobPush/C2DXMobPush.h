@@ -9,8 +9,6 @@
 
 #include "cocos2d.h"
 #include "C2DXMobPushCallback.h"
-#include "C2DXMobPushReceiver.h"
-#include "C2DXMobPushLocalNotification.h"
 
 USING_NS_CC;
 
@@ -33,14 +31,7 @@ namespace mob {
              *
              *  @param pushReceiver 设置推送监听
              */
-            static void addPushReceiver(C2DXMobPushReceiver *pushReceiver);
-
-            /**
-             *  移除推送监听
-             *
-             *  @param pushReceiver 移除推送监听
-             */
-            static void removePushReceiver(C2DXMobPushReceiver *pushReceiver);
+            static void addPushReceiver();
 
             /**
              * 设置别名
@@ -49,9 +40,15 @@ namespace mob {
              */
             static void setAlias(const char *alias);
 
-            static char getAlias();
+            /**
+             * 获取当前设置的别名
+             */
+            static void getAlias();
 
-            static char clearAllAlias();
+            /**
+	         * 删除别名
+	         */
+            static void clearAllAlias();
 
             /**
              * 添加标签
@@ -65,6 +62,12 @@ namespace mob {
             static void deleteTags(std::list<std::string> tags);
 
             static void clearAllTags();
+
+            static void setC2DXMessageCallBack(C2DXMessageCallBack messageCallBack);
+
+            static void setC2DXAliasCallBack(C2DXAliasCallBack aliasCallBack);
+
+            static void setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack);
 
             /**
              * 添加本地通知

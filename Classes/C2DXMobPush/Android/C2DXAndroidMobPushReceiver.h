@@ -6,7 +6,7 @@
 #define PROJ_ANDROID_STUDIO_C2DXANDROIDMOBPUSHRECEIVER_H
 
 #include <jni.h>
-#include "../C2DXMobPushReceiver.h"
+#include <C2DXMobPush/C2DXMobPushCallback.h>
 
 using namespace mob::mobpush;
 
@@ -17,19 +17,20 @@ public:
 
     virtual ~C2DXAndroidMobPushReceiver();
 
-private:
-    C2DXMobPushReceiver* c2DXMobPushReceiver;
+public:
+    static C2DXMessageCallBack messageCallBack;
+    static C2DXAliasCallBack aliasCallBack;
+    static C2DXTagsCallBack tagsCallBack;
 
 public:
-    void onCustomMessageReceive(C2DXMobPushCustomMessage mobPushCustomMessage);
-    void onNotifyMessageReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage);
-    void onNotifyMessageOpenedReceive(C2DXMobPushNotifyMessage mobPushNotifyMessage);
+    void onCustomMessageReceive(C2DXMobPushMessage *mobPushCustomMessage);
+    void onNotifyMessageReceive(C2DXMobPushMessage *mobPushNotifyMessage);
+    void onNotifyMessageOpenedReceive(C2DXMobPushMessage *mobPushNotifyMessage);
     void onTagsCallback(std::list<std::string>& tags, int i, int j1);
     void onAliasCallback(const char* alias, int i, int j1);
-
-    void setC2DXMobPushReceiver(C2DXMobPushReceiver* receiver);
-    C2DXMobPushReceiver* getC2DXMobPushReceiver();
 };
+
+//C2DXAndroidMobPushReceiver::messageCallBack = NULL;
 
 
 #endif //PROJ_ANDROID_STUDIO_C2DXANDROIDMOBPUSHRECEIVER_H

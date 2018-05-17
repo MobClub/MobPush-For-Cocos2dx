@@ -88,6 +88,9 @@ bool Notify::init() {
     });
 
     this->addChild(button);
+    C2DXMobPush::setC2DXMessageCallBack(&Notify::onC2DXMessageCallBack);
+    C2DXMobPush::setC2DXAliasCallBack(&Notify::onC2DXAliasCallBack);
+    C2DXMobPush::setC2DXTagsCallBack(&Notify::onC2DXTagsCallBack);
     return true;
 }
 
@@ -107,6 +110,22 @@ void Notify::menuCloseCallback(Ref *pSender) {
 }
 
 void Notify::getSendReqResult(bool result) {
-    CCLOG(">>>>>>>>%d", "aaaa");
-//    CCLOG(">>>>>>>>%s", result);
+    if (result) {
+        CCLOG(">>>getSendReqResult>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>getSendReqResult>>>>%s", "false");
+    }
+}
+void Notify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
+    CCLOG(">>>onC2DXMessageCallBack>>>Notify>>%s", "onC2DXMessageCallBack");
+}
+
+void Notify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
+
+    CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
+}
+
+void Notify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
+    CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
+
 }

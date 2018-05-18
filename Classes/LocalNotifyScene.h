@@ -24,15 +24,6 @@ public:
 
     void onTouch(Ref* sender,TouchEventType type);
 
-    static void getId(const char* c);
-    static void getSendReqResult(bool result);
-
-    static void onC2DXMessageCallBack(int action, C2DXMobPushMessage *message);
-
-    static void onC2DXAliasCallBack(const char *alias, int operation, int errorCode);
-
-    static void onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode);
-
 private:
     EditBox* mEditBox;
 };

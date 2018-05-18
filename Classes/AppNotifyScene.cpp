@@ -94,10 +94,8 @@ bool AppNotify::init() {
 
     this->addChild(button);
 
-    C2DXMobPush::setC2DXMessageCallBack(&AppNotify::onC2DXMessageCallBack);
     C2DXMobPush::setC2DXAliasCallBack(&AppNotify::onC2DXAliasCallBack);
     C2DXMobPush::setC2DXTagsCallBack(&AppNotify::onC2DXTagsCallBack);
-    C2DXMobPush::addPushReceiver();
     C2DXMobPush::getRegistrationId(&AppNotify::getId);
     return true;
 }
@@ -117,10 +115,6 @@ void AppNotify::getSendReqResult(bool result) {
     } else {
         CCLOG(">>>>getSendReqResult>>>>%s", "false");
     }
-}
-
-void AppNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
-    CCLOG(">>>onC2DXMessageCallBack>>>AppNotifyScene>>%s", "onC2DXMessageCallBack");
 }
 
 void AppNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {

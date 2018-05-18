@@ -92,10 +92,7 @@ bool LocalNotify::init() {
 
     this->addChild(button);
 
-    C2DXMobPush::setC2DXMessageCallBack(&LocalNotify::onC2DXMessageCallBack);
-    C2DXMobPush::setC2DXAliasCallBack(&LocalNotify::onC2DXAliasCallBack);
-//    C2DXMobPush::setC2DXTagsCallBack(&LocalNotify::onC2DXTagsCallBack);
-    C2DXMobPush::addPushReceiver();
+    
     return true;
 }
 
@@ -108,23 +105,4 @@ void LocalNotify::menuCloseCallback(Ref *pSender) {
 
     //EventCustom customEndEvent("game_scene_close_event");
     //_eventDispatcher->dispatchEvent(&customEndEvent);
-}
-
-void LocalNotify::getSendReqResult(bool result) {
-    CCLOG(">>>>>>>>%d", "aaaa");
-//    CCLOG(">>>>>>>>%s", result);
-}
-
-void LocalNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
-    CCLOG(">>>onC2DXMessageCallBack>>>LocalNotify>>%s", "onC2DXMessageCallBack");
-}
-
-void LocalNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
-
-    CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
-}
-
-void LocalNotify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
-    CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
-
 }

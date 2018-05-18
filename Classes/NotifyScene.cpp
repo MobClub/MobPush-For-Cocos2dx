@@ -88,9 +88,9 @@ bool Notify::init() {
     });
 
     this->addChild(button);
-    C2DXMobPush::setC2DXMessageCallBack(&Notify::onC2DXMessageCallBack);
+//    C2DXMobPush::setC2DXMessageCallBack(&Notify::onC2DXMessageCallBack);
     C2DXMobPush::setC2DXAliasCallBack(&Notify::onC2DXAliasCallBack);
-//    C2DXMobPush::setC2DXTagsCallBack(&Notify::onC2DXTagsCallBack);
+    C2DXMobPush::setC2DXTagsCallBack(&Notify::onC2DXTagsCallBack);
     return true;
 }
 
@@ -112,9 +112,9 @@ void Notify::getSendReqResult(bool result) {
         CCLOG(">>>>getSendReqResult>>>>%s", "false");
     }
 }
-void Notify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
-    CCLOG(">>>onC2DXMessageCallBack>>>Notify>>%s", "onC2DXMessageCallBack");
-}
+//void Notify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
+//    CCLOG(">>>onC2DXMessageCallBack>>>Notify>>%s", "onC2DXMessageCallBack");
+//}
 
 void Notify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
 

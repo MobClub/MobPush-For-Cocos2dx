@@ -67,8 +67,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     noti->type = (AuthorizationType) (AuthorizationTypeBadge | AuthorizationTypeAlert | AuthorizationTypeSound);
     C2DXMobPush::setCustomNotification(noti);
     
-    
     #endif
+    
+    C2DXMobPush::setC2DXMessageCallBack(&AppDelegate::onC2DXMessageCallBack);
+    C2DXMobPush::addPushReceiver();
     
     // initialize director
     auto director = Director::getInstance();
@@ -140,4 +142,9 @@ void AppDelegate::applicationWillEnterForeground() {
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
     SimpleAudioEngine::getInstance()->resumeAllEffects();
 #endif
+}
+
+
+void AppDelegate::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
+    CCLOG(">>>onC2DXMessageCallBack>>>AppDelegate>>%s", "onC2DXMessageCallBack");
 }

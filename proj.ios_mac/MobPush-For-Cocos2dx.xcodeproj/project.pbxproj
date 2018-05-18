@@ -15,6 +15,19 @@
 		294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D0D631D0D56D500F7F5D4 /* CoreText.framework */; };
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
+		44DE8A9520AE6D210061B9BC /* C2DXMobPush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8A7B20AE6D210061B9BC /* C2DXMobPush.cpp */; };
+		44DE8AA720AE6D490061B9BC /* AppNotifyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8A9F20AE6D490061B9BC /* AppNotifyScene.cpp */; };
+		44DE8AA820AE6D490061B9BC /* NotifyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8AA020AE6D490061B9BC /* NotifyScene.cpp */; };
+		44DE8AA920AE6D490061B9BC /* TimeNotifyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8AA420AE6D490061B9BC /* TimeNotifyScene.cpp */; };
+		44DE8AAA20AE6D490061B9BC /* LocalNotifyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8AA520AE6D490061B9BC /* LocalNotifyScene.cpp */; };
+		44DE8AD120AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ACB20AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm */; };
+		44DE8AD220AE6EEA0061B9BC /* C2DXiOSMobPush.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ACC20AE6EEA0061B9BC /* C2DXiOSMobPush.mm */; };
+		44DE8AD320AE6EEA0061B9BC /* AppController+MobPushInit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ACE20AE6EEA0061B9BC /* AppController+MobPushInit.mm */; };
+		44DE8ADA20AE6F090061B9BC /* MobPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE8AD620AE6F090061B9BC /* MobPush.framework */; };
+		44DE8ADB20AE6F090061B9BC /* MOBFoundationEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE8AD820AE6F090061B9BC /* MOBFoundationEx.framework */; };
+		44DE8ADC20AE6F090061B9BC /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE8AD920AE6F090061B9BC /* MOBFoundation.framework */; };
+		44DE8AE120AE6FD80061B9BC /* C2DXMobPushCustomNotification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ADD20AE6FD40061B9BC /* C2DXMobPushCustomNotification.cpp */; };
+		44DE8AE220AE6FD80061B9BC /* C2DXMobPushLocalNotification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8AE020AE6FD80061B9BC /* C2DXMobPushLocalNotification.cpp */; };
 		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
 		46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
 		46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7719C43A67006E1F66 /* CloseSelected.png */; };
@@ -101,6 +114,13 @@
 			remoteGlobalIDString = A07A4C241783777C0073F6A7;
 			remoteInfo = "cocos2dx iOS";
 		};
+		44DE8A7720AE6A300061B9BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 507B40FD1C31BDD30067B53E;
+			remoteInfo = "libcocos2d tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +132,33 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294D0D631D0D56D500F7F5D4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		44DE8A7A20AE6D210061B9BC /* C2DXMobPushTypeDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXMobPushTypeDef.h; sourceTree = "<group>"; };
+		44DE8A7B20AE6D210061B9BC /* C2DXMobPush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = C2DXMobPush.cpp; sourceTree = "<group>"; };
+		44DE8A9220AE6D210061B9BC /* C2DXMobPushCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXMobPushCallback.h; sourceTree = "<group>"; };
+		44DE8A9320AE6D210061B9BC /* C2DXMobPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXMobPush.h; sourceTree = "<group>"; };
+		44DE8A9420AE6D210061B9BC /* C2DXMobPushMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXMobPushMessage.h; sourceTree = "<group>"; };
+		44DE8A9F20AE6D490061B9BC /* AppNotifyScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppNotifyScene.cpp; sourceTree = "<group>"; };
+		44DE8AA020AE6D490061B9BC /* NotifyScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotifyScene.cpp; sourceTree = "<group>"; };
+		44DE8AA120AE6D490061B9BC /* TimeNotifyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeNotifyScene.h; sourceTree = "<group>"; };
+		44DE8AA220AE6D490061B9BC /* LocalNotifyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotifyScene.h; sourceTree = "<group>"; };
+		44DE8AA320AE6D490061B9BC /* NotifyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyScene.h; sourceTree = "<group>"; };
+		44DE8AA420AE6D490061B9BC /* TimeNotifyScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeNotifyScene.cpp; sourceTree = "<group>"; };
+		44DE8AA520AE6D490061B9BC /* LocalNotifyScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LocalNotifyScene.cpp; sourceTree = "<group>"; };
+		44DE8AA620AE6D490061B9BC /* AppNotifyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppNotifyScene.h; sourceTree = "<group>"; };
+		44DE8ACB20AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = C2DXiOSMobPushCallBack.mm; sourceTree = "<group>"; };
+		44DE8ACC20AE6EEA0061B9BC /* C2DXiOSMobPush.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = C2DXiOSMobPush.mm; sourceTree = "<group>"; };
+		44DE8ACD20AE6EEA0061B9BC /* C2DXiOSMobPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXiOSMobPush.h; sourceTree = "<group>"; };
+		44DE8ACE20AE6EEA0061B9BC /* AppController+MobPushInit.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "AppController+MobPushInit.mm"; sourceTree = "<group>"; };
+		44DE8ACF20AE6EEA0061B9BC /* AppController+MobPushInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppController+MobPushInit.h"; sourceTree = "<group>"; };
+		44DE8AD020AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXiOSMobPushCallBack.h; sourceTree = "<group>"; };
+		44DE8AD620AE6F090061B9BC /* MobPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPush.framework; sourceTree = "<group>"; };
+		44DE8AD820AE6F090061B9BC /* MOBFoundationEx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundationEx.framework; sourceTree = "<group>"; };
+		44DE8AD920AE6F090061B9BC /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		44DE8ADD20AE6FD40061B9BC /* C2DXMobPushCustomNotification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = C2DXMobPushCustomNotification.cpp; sourceTree = "<group>"; };
+		44DE8ADE20AE6FD50061B9BC /* C2DXMobPushLocalNotification.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = C2DXMobPushLocalNotification.hpp; sourceTree = "<group>"; };
+		44DE8ADF20AE6FD70061B9BC /* C2DXMobPushCustomNotification.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = C2DXMobPushCustomNotification.hpp; sourceTree = "<group>"; };
+		44DE8AE020AE6FD80061B9BC /* C2DXMobPushLocalNotification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = C2DXMobPushLocalNotification.cpp; sourceTree = "<group>"; };
+		44DE8AE320AE71460061B9BC /* MobPush-For-Cocos2dx-mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MobPush-For-Cocos2dx-mobile.entitlements"; sourceTree = "<group>"; };
 		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
 		46880B7A19C43A67006E1F66 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HelloWorld.png; sourceTree = "<group>"; };
@@ -179,12 +226,15 @@
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				44DE8ADB20AE6F090061B9BC /* MOBFoundationEx.framework in Frameworks */,
+				44DE8ADA20AE6F090061B9BC /* MobPush.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
 				BF1712471292920000B8313A /* libz.dylib in Frameworks */,
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
 				D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */,
+				44DE8ADC20AE6F090061B9BC /* MOBFoundation.framework in Frameworks */,
 				D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +290,7 @@
 			children = (
 				1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */,
 				1AC6FB07180E9839004C840B /* libcocos2d iOS.a */,
+				44DE8A7820AE6A300061B9BC /* libcocos2d tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,6 +298,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				44DE8AE320AE71460061B9BC /* MobPush-For-Cocos2dx-mobile.entitlements */,
+				44DE8AD420AE6F090061B9BC /* SDK */,
 				46880B8319C43A87006E1F66 /* Classes */,
 				46880B7519C43A67006E1F66 /* Resources */,
 				1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */,
@@ -285,6 +338,62 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		44DE8A7920AE6D210061B9BC /* C2DXMobPush */ = {
+			isa = PBXGroup;
+			children = (
+				44DE8ACA20AE6EEA0061B9BC /* iOS */,
+				44DE8A7A20AE6D210061B9BC /* C2DXMobPushTypeDef.h */,
+				44DE8A7B20AE6D210061B9BC /* C2DXMobPush.cpp */,
+				44DE8A9220AE6D210061B9BC /* C2DXMobPushCallback.h */,
+				44DE8A9320AE6D210061B9BC /* C2DXMobPush.h */,
+				44DE8A9420AE6D210061B9BC /* C2DXMobPushMessage.h */,
+				44DE8ADD20AE6FD40061B9BC /* C2DXMobPushCustomNotification.cpp */,
+				44DE8ADF20AE6FD70061B9BC /* C2DXMobPushCustomNotification.hpp */,
+				44DE8AE020AE6FD80061B9BC /* C2DXMobPushLocalNotification.cpp */,
+				44DE8ADE20AE6FD50061B9BC /* C2DXMobPushLocalNotification.hpp */,
+			);
+			path = C2DXMobPush;
+			sourceTree = "<group>";
+		};
+		44DE8ACA20AE6EEA0061B9BC /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				44DE8ACB20AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm */,
+				44DE8ACC20AE6EEA0061B9BC /* C2DXiOSMobPush.mm */,
+				44DE8ACD20AE6EEA0061B9BC /* C2DXiOSMobPush.h */,
+				44DE8ACE20AE6EEA0061B9BC /* AppController+MobPushInit.mm */,
+				44DE8ACF20AE6EEA0061B9BC /* AppController+MobPushInit.h */,
+				44DE8AD020AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.h */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		44DE8AD420AE6F090061B9BC /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				44DE8AD520AE6F090061B9BC /* MobPush */,
+				44DE8AD720AE6F090061B9BC /* Required */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		44DE8AD520AE6F090061B9BC /* MobPush */ = {
+			isa = PBXGroup;
+			children = (
+				44DE8AD620AE6F090061B9BC /* MobPush.framework */,
+			);
+			path = MobPush;
+			sourceTree = "<group>";
+		};
+		44DE8AD720AE6F090061B9BC /* Required */ = {
+			isa = PBXGroup;
+			children = (
+				44DE8AD820AE6F090061B9BC /* MOBFoundationEx.framework */,
+				44DE8AD920AE6F090061B9BC /* MOBFoundation.framework */,
+			);
+			path = Required;
+			sourceTree = "<group>";
+		};
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +410,15 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				44DE8A9F20AE6D490061B9BC /* AppNotifyScene.cpp */,
+				44DE8AA620AE6D490061B9BC /* AppNotifyScene.h */,
+				44DE8AA520AE6D490061B9BC /* LocalNotifyScene.cpp */,
+				44DE8AA220AE6D490061B9BC /* LocalNotifyScene.h */,
+				44DE8AA020AE6D490061B9BC /* NotifyScene.cpp */,
+				44DE8AA320AE6D490061B9BC /* NotifyScene.h */,
+				44DE8AA420AE6D490061B9BC /* TimeNotifyScene.cpp */,
+				44DE8AA120AE6D490061B9BC /* TimeNotifyScene.h */,
+				44DE8A7920AE6D210061B9BC /* C2DXMobPush */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
@@ -403,6 +521,20 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = LW5266U92D;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MobPush-For-Cocos2dx" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -443,6 +575,13 @@
 			fileType = archive.ar;
 			path = "libcocos2d iOS.a";
 			remoteRef = 1AC6FB06180E9839004C840B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		44DE8A7820AE6A300061B9BC /* libcocos2d tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libcocos2d tvOS.a";
+			remoteRef = 44DE8A7720AE6A300061B9BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -500,9 +639,19 @@
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				44DE8AD120AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				44DE8AA720AE6D490061B9BC /* AppNotifyScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				44DE8A9520AE6D210061B9BC /* C2DXMobPush.cpp in Sources */,
+				44DE8AA820AE6D490061B9BC /* NotifyScene.cpp in Sources */,
+				44DE8AA920AE6D490061B9BC /* TimeNotifyScene.cpp in Sources */,
+				44DE8AAA20AE6D490061B9BC /* LocalNotifyScene.cpp in Sources */,
+				44DE8AD320AE6EEA0061B9BC /* AppController+MobPushInit.mm in Sources */,
+				44DE8AD220AE6EEA0061B9BC /* C2DXiOSMobPush.mm in Sources */,
+				44DE8AE120AE6FD80061B9BC /* C2DXMobPushCustomNotification.cpp in Sources */,
+				44DE8AE220AE6FD80061B9BC /* C2DXMobPushLocalNotification.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,9 +685,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = "MobPush-For-Cocos2dx-mobile.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = LW5266U92D;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDK/MobPush",
+					"$(PROJECT_DIR)/SDK/Required",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -557,6 +714,9 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush;
+				PROVISIONING_PROFILE = "ca26bd93-305e-4b31-b4be-63c10904935e";
+				PROVISIONING_PROFILE_SPECIFIER = MobPushDev;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -569,9 +729,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = "MobPush-For-Cocos2dx-mobile.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SDK/MobPush",
+					"$(PROJECT_DIR)/SDK/Required",
+				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
@@ -589,6 +757,8 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mob.MobPush;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";

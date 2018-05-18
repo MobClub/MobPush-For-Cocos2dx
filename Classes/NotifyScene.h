@@ -5,6 +5,8 @@
 #include <ui/UIEditBox/UIEditBox.h>
 #include "cocos2d.h"
 
+#import "C2DXMobPushMessage.h"
+
 using namespace cocos2d;
 using namespace cocos2d::ui;
 

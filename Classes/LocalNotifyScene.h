@@ -3,7 +3,7 @@
 
 #include <ui/UIButton.h>
 #include <ui/UIEditBox/UIEditBox.h>
-#include <C2DXMobPush/C2DXMobPushMessage.h>
+#include "C2DXMobPushMessage.h"
 #include "cocos2d.h"
 
 using namespace cocos2d;

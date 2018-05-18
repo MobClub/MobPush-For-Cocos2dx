@@ -83,7 +83,7 @@ bool LocalNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-            C2DXMobPush::addLocalNotification(mEditBox->getText(), 1);
+//            C2DXMobPush::addLocalNotification(mEditBox->getText(), 1);
         }
     });
 

@@ -2,7 +2,6 @@
 // Created by yyfu on 2018/5/11.
 //
 
-#include <C2DXMobPush/Android/C2DXAndroidMobPushReceiver.h>
 #include "C2DXMobPush.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
@@ -11,6 +10,7 @@
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
+#include <C2DXMobPush/Android/C2DXAndroidMobPushReceiver.h>
 #include "Android/C2DXAndroidMobPush.h"
 #include "Android/C2DXAndroidMobPushReceiver.h"
 
@@ -27,7 +27,7 @@ void C2DXMobPush::initMobPush(const char *appkey, const char *appScrect) {
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::initMobPush(appkey,appScrect);
+//    C2DXiOSMobPush::initMobPush(appkey,appScrect);
 #endif
 }
 
@@ -40,7 +40,7 @@ void C2DXMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::getRegistrationId(scene, callback);
+    C2DXiOSMobPush::getRegistrationId(callback);
 #endif
 
 }
@@ -54,7 +54,7 @@ void C2DXMobPush::addPushReceiver() {
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::addPushReceiver(pushReceiver);
+    C2DXiOSMobPush::addPushReceiver();
 #endif
 }
 
@@ -80,11 +80,11 @@ void C2DXMobPush::setAlias(const char *alias) {
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::setAlias(tags);
+    C2DXiOSMobPush::setAlias(alias);
 #endif
 }
 
-void C2DXMobPush::addLocalNotification(const char *text, int space) {
+void C2DXMobPush::addLocalNotification(mob::mobpush::C2DXMobPushLocalNotification *noti) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
     //Andorid
@@ -93,16 +93,11 @@ void C2DXMobPush::addLocalNotification(const char *text, int space) {
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::sendLocalNotification(tags);
+    C2DXiOSMobPush::addLocalNotification(noti);
 #endif
 }
 
-void C2DXMobPush::setCustomNotification(long when, const char *tickerText, const char *title,
-                                        const char *content, int flag, int style,
-                                        const char *styleContent,
-                                        std::list<std::string> inboxStyleContent,
-                                        const char *smallIcon, boolean voice, boolean shake,
-                                        boolean light) {
+void C2DXMobPush::setCustomNotification(mob::mobpush::C2DXMobPushCustomNotification *noti) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
     //Andorid
@@ -113,9 +108,7 @@ void C2DXMobPush::setCustomNotification(long when, const char *tickerText, const
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::setCustomNotification(when, tickerText, title, content, flag, style,
-                                              styleContent, inboxStyleContent, smallIcon, voice,
-                                              shake, light);
+    C2DXiOSMobPush::setCustomNotification(noti);
 #endif
 }
 

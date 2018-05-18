@@ -85,7 +85,7 @@ namespace mob {
             
             static void setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack);
             
-            static void iOSMessageCallBack(int action, C2DXMobPushMessage *message);
+            static void iOSMessageCallBack(int action, const char *message);
             
         };
         

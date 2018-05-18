@@ -12,6 +12,7 @@
 #import <MobPush/MobPush.h>
 #import <MobPush/MobPush+Test.h>
 #import <MobPush/MPushMessage.h>
+#import <MOBFoundation/MOBFJson.h>
 #import "C2DXiOSMobPushCallBack.h"
 
 using namespace mob::mobpush;
@@ -539,10 +540,143 @@ void C2DXiOSMobPush::setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack)
     _tagsCallBack = tagsCallBack;
 }
 
-void C2DXiOSMobPush::iOSMessageCallBack(int action, C2DXMobPushMessage *message)
+void C2DXiOSMobPush::iOSMessageCallBack(int action, const char *message)
 {
+    C2DXMobPushMessage *ccMessage = new C2DXMobPushMessage();
+    if (message)
+    {
+        NSString *params = [NSString stringWithCString:message encoding:NSUTF8StringEncoding];
+        NSDictionary *dict = [MOBFJson objectFromJSONString:params];
+        
+        int msgType = [dict[@"msgType"] intValue];
+        
+        switch (msgType)
+        {
+            case 1:
+            {
+                ccMessage->messageType = Custom;
+                
+                NSString *content = dict[@"content"];
+                long long timeStamp = [dict[@"timeStamp"] longLongValue];
+                NSString *messageId = dict[@"messageId"];
+                NSDictionary *extra = dict[@"extra"];
+                if (content)
+                {
+                    ccMessage->content = convertNSStringToC2DXString(content);
+                }
+                
+                if (messageId)
+                {
+                    ccMessage->messageId = convertNSStringToC2DXString(messageId);
+                }
+                
+                if (extra.count)
+                {
+                    ccMessage->extrasMap = convertNSDictToCCDict(extra);
+                }
+                
+                if (timeStamp)
+                {
+                    ccMessage->timestamp = timeStamp;
+                }
+            }
+                break;
+                
+            case 2:
+            {
+                ccMessage->messageType = Notify;
+                
+                NSString *content = dict[@"content"];
+                NSString *title = dict[@"subTitle"];
+                NSString *subtitle = dict[@"subtitle"];
+                int badge = [dict[@"badge"] intValue];
+                NSString *sound = dict[@"sound"];
+                NSString *mobpushMessageId = dict[@"messageId"];
+                NSDictionary *extra = dict[@"extra"];
+                
+                if (content)
+                {
+                    ccMessage->content = convertNSStringToC2DXString(content);
+                }
+                
+                if (title)
+                {
+                    ccMessage->title = convertNSStringToC2DXString(title);
+                }
+                
+                if (subtitle)
+                {
+                    ccMessage->subTitle = convertNSStringToC2DXString(subtitle);
+                }
+                
+                if (badge)
+                {
+                    ccMessage->badge = badge;
+                }
+                
+                if (sound)
+                {
+                    ccMessage->sound = convertNSStringToC2DXString(sound);
+                    
+                }
+                
+                if (mobpushMessageId)
+                {
+                    ccMessage->messageId = convertNSStringToC2DXString(mobpushMessageId);
+                }
+                
+                if (extra.count)
+                {
+                    ccMessage->extrasMap = convertNSDictToCCDict(extra);
+                }
+            }
+                break;
+                
+            case 3:
+            {
+                ccMessage->messageType = Local;
+                
+                NSString *content = dict[@"content"];
+                NSString *title = dict[@"subTitle"];
+                NSString *subtitle = dict[@"subtitle"];
+                int badge = [dict[@"badge"] intValue];
+                NSString *sound = dict[@"sound"];
+                if (content)
+                {
+                    ccMessage->content = convertNSStringToC2DXString(content);
+                }
+                
+                if (title)
+                {
+                    ccMessage->title = convertNSStringToC2DXString(title);
+                }
+                
+                if (subtitle)
+                {
+                    ccMessage->subTitle = convertNSStringToC2DXString(subtitle);
+                }
+                
+                if (badge)
+                {
+                    ccMessage->badge = badge;
+                }
+                
+                if (sound)
+                {
+                    ccMessage->sound = convertNSStringToC2DXString(sound);
+
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
     if (_messageCallBack)
     {
-        _messageCallBack(action, message);
+        _messageCallBack(action, ccMessage);
     }
 }

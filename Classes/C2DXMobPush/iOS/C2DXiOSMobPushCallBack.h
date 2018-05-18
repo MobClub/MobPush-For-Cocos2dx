@@ -15,6 +15,4 @@
 
 - (void)addPushObserver;
 
-- (void)didFinishLaunching;
-
 @end

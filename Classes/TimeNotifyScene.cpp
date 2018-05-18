@@ -90,7 +90,7 @@ bool TimeNotify::init() {
     this->addChild(button);
     C2DXMobPush::setC2DXMessageCallBack(&TimeNotify::onC2DXMessageCallBack);
     C2DXMobPush::setC2DXAliasCallBack(&TimeNotify::onC2DXAliasCallBack);
-//    C2DXMobPush::setC2DXTagsCallBack(&TimeNotify::onC2DXTagsCallBack);
+    C2DXMobPush::setC2DXTagsCallBack(&TimeNotify::onC2DXTagsCallBack);
     return true;
 }
 
@@ -98,10 +98,6 @@ bool TimeNotify::init() {
 void TimeNotify::menuCloseCallback(Ref *pSender) {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->popScene();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
 
     /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
 
@@ -122,7 +118,7 @@ void TimeNotify::onC2DXAliasCallBack(const char *alias, int operation, int error
     CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
 }
 
-void TimeNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
+void TimeNotify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
     CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
 
 }

@@ -86,7 +86,7 @@ bool AppNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-//            C2DXMobPush::getRegistrationId(&AppNotify::getId);
+            C2DXMobPush::getRegistrationId(&AppNotify::getId);
             C2DXMobPush::setAlias("xiaoxin");
             C2DXMobPush::req(2, mEditBox->getText(), 0, NULL, &AppNotify::getSendReqResult);
         }
@@ -96,7 +96,7 @@ bool AppNotify::init() {
 
     C2DXMobPush::setC2DXMessageCallBack(&AppNotify::onC2DXMessageCallBack);
     C2DXMobPush::setC2DXAliasCallBack(&AppNotify::onC2DXAliasCallBack);
-//    C2DXMobPush::setC2DXTagsCallBack(&AppNotify::onC2DXTagsCallBack);
+    C2DXMobPush::setC2DXTagsCallBack(&AppNotify::onC2DXTagsCallBack);
     C2DXMobPush::addPushReceiver();
     C2DXMobPush::getRegistrationId(&AppNotify::getId);
     return true;
@@ -128,7 +128,8 @@ void AppNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorC
     CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
 }
 
-void AppNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
+void AppNotify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
+    
     CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
 
 }

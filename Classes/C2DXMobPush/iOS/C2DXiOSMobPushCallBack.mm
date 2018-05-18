@@ -24,11 +24,6 @@ using namespace mob::mobpush;
     return instance;
 }
 
-- (void)didFinishLaunching
-{
-    [MobPush setAPNsForProduction:_isPro];
-}
-
 - (void)addPushObserver
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -170,7 +165,6 @@ using namespace mob::mobpush;
             break;
         case MPushMessageTypeLocal:
         { // 本地通知回调
-            
             [reslut setObject:@3 forKey:@"msgType"];
             
             NSString *body = message.notification.body;

@@ -5,6 +5,7 @@
 #include "cocos2d.h"
 #include "C2DXMobPush/C2DXMobPush.h"
 #include "AppNotifyScene.h"
+#include "C2DXMobPushLocalNotification.hpp"
 
 #define  LOG_TAG    "localnotifyscene"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
@@ -83,7 +84,9 @@ bool LocalNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-//            C2DXMobPush::addLocalNotification(mEditBox->getText(), 1);
+            C2DXMobPushLocalNotification *noti = new C2DXMobPushLocalNotification();
+            noti->content = mEditBox->getText();
+            C2DXMobPush::addLocalNotification(noti);
         }
     });
 
@@ -100,10 +103,6 @@ bool LocalNotify::init() {
 void LocalNotify::menuCloseCallback(Ref *pSender) {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->popScene();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
 
     /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
 
@@ -125,7 +124,7 @@ void LocalNotify::onC2DXAliasCallBack(const char *alias, int operation, int erro
     CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
 }
 
-void LocalNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
+void LocalNotify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
     CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
 
 }

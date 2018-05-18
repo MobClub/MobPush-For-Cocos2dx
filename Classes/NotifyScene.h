@@ -32,7 +32,7 @@ public:
 
     static void onC2DXAliasCallBack(const char *alias, int operation, int errorCode);
 
-    static void onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode);
+    static void onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode);
 private:
     EditBox* mEditBox;
 };

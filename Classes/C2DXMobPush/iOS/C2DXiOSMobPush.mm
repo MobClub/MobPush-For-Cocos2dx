@@ -465,12 +465,23 @@ void C2DXiOSMobPush::addLocalNotification(mob::mobpush::C2DXMobPushLocalNotifica
     MPushMessage *message = [[MPushMessage alloc] init];
     message.messageType = MPushMessageTypeLocal;
     MPushNotification *notification = [[MPushNotification alloc] init];
-    
-    notification.title = [NSString stringWithUTF8String:noti->title];
-    notification.body = [NSString stringWithUTF8String:noti->content];
-    notification.sound = [NSString stringWithUTF8String:noti->sound];
+    if (noti->title)
+    {
+        notification.title = [NSString stringWithUTF8String:noti->title];
+    }
+    if (noti->content)
+    {
+        notification.body = [NSString stringWithUTF8String:noti->content];
+    }
+    if (noti->sound)
+    {
+        notification.sound = [NSString stringWithUTF8String:noti->sound];
+    }
     notification.badge = (NSInteger)noti->badge;
-    notification.subTitle = [NSString stringWithUTF8String:noti->subTitle];
+    if (noti->subTitle)
+    {
+        notification.subTitle = [NSString stringWithUTF8String:noti->subTitle];
+    }
     
     long timeStamp = noti->timeStamp;
     if (timeStamp == 0)
@@ -511,14 +522,14 @@ void C2DXiOSMobPush::req(int type, const char *text, int space, const char *extr
                                      {
                                          if (reqResultEvent)
                                          {
-                                             reqResultEvent(true);
+                                             reqResultEvent(false);
                                          }
                                      }
                                      else
                                      {
                                          if (reqResultEvent)
                                          {
-                                             reqResultEvent(false);
+                                             reqResultEvent(true);
                                          }
                                      }
                                      

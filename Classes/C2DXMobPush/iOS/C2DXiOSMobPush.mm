@@ -285,6 +285,9 @@ NSArray* convertC2DXArrayToNSArray(C2DXArray *array)
     return NULL;
 }
 
+static mob::mobpush::C2DXMessageCallBack _messageCallBack;
+static mob::mobpush::C2DXAliasCallBack _aliasCallBack;
+static mob::mobpush::C2DXTagsCallBack _tagsCallBack;
 
 void C2DXiOSMobPush::setAPNsForProduction(bool isPro)
 {
@@ -312,6 +315,20 @@ void C2DXiOSMobPush::setAlias(const char *alias)
     NSString *aliasStr = [NSString stringWithUTF8String:alias];
     [MobPush setAlias:aliasStr result:^(NSError *error) {
         
+        int errorCode;
+        if (error)
+        {
+            errorCode = (int)error.code;
+        }
+        else
+        {// operation = 1 设置
+            errorCode = 0;
+        }
+        
+        if (_aliasCallBack)
+        {
+            _aliasCallBack([aliasStr UTF8String], 1, errorCode);
+        }
     }];
 }
 
@@ -319,12 +336,42 @@ void C2DXiOSMobPush::getAlias()
 {
     [MobPush getAliasWithResult:^(NSString *alias, NSError *error) {
         
+        int errorCode;
+        if (error)
+        {
+            errorCode = (int)error.code;
+        }
+        else
+        {
+            errorCode = 0;
+        }
+        
+        if (_aliasCallBack)
+        { // operation = 0 获取
+            _aliasCallBack([alias UTF8String], 0, errorCode);
+        }
     }];
 }
 
 void C2DXiOSMobPush::clearAllAlias()
 {
     [MobPush deleteAlias:^(NSError *error) {
+        int errorCode;
+        if (error)
+        {
+            errorCode = (int)error.code;
+        }
+        else
+        {
+            errorCode = 0;
+        }
+        
+        NSString *alias = nil;
+        
+        if (_aliasCallBack)
+        { // operation = 2 删除
+            _aliasCallBack([alias UTF8String], 2, errorCode);
+        }
         
     }];
 }
@@ -333,6 +380,20 @@ void C2DXiOSMobPush::getTags()
 {
     [MobPush getTagsWithResult:^(NSArray *tags, NSError *error) {
         C2DXArray *tagsArr = convertNSArrayToC2DXArray(tags);
+        int errorCode;
+        if (error)
+        {
+            errorCode = (int)error.code;
+        }
+        else
+        {
+            errorCode = 0;
+        }
+        
+        if (_tagsCallBack)
+        { // operation = 0 获取
+            _tagsCallBack(tagsArr, 0, errorCode);
+        }
     }];
 }
 
@@ -340,7 +401,20 @@ void C2DXiOSMobPush::addTags(C2DXArray *tags)
 {
     NSArray *tagsArr = convertC2DXArrayToNSArray(tags);
     [MobPush addTags:tagsArr result:^(NSError *error) {
-//        C2DXTagsCallBack();
+        int errorCode;
+        if (error)
+        {
+            errorCode = (int)error.code;
+        }
+        else
+        {
+            errorCode = 0;
+        }
+        
+        if (_tagsCallBack)
+        { // operation = 1 设置
+            _tagsCallBack(tags, 1, errorCode);
+        }
     }];
 }
 
@@ -348,14 +422,40 @@ void C2DXiOSMobPush::deleteTags(C2DXArray *tags)
 {
     NSArray *tagsArr = convertC2DXArrayToNSArray(tags);
     [MobPush deleteTags:tagsArr result:^(NSError *error) {
+        int errorCode;
+        if (error)
+        {
+            errorCode = (int)error.code;
+        }
+        else
+        {
+            errorCode = 0;
+        }
         
+        if (_tagsCallBack)
+        { // operation = 2 删除
+            _tagsCallBack(tags, 2, errorCode);
+        }
     }];
 }
 
 void C2DXiOSMobPush::clearAllTags()
 {
     [MobPush cleanAllTags:^(NSError *error) {
+        int errorCode;
+        if (error)
+        {
+            errorCode = (int)error.code;
+        }
+        else
+        {
+            errorCode = 0;
+        }
         
+        if (_tagsCallBack)
+        { // operation = 3 清空
+            _tagsCallBack(nil, 3, errorCode);
+        }
     }];
 }
 
@@ -424,3 +524,25 @@ void C2DXiOSMobPush::req(int type, const char *text, int space, const char *extr
                                  }];
 }
 
+void C2DXiOSMobPush::setC2DXMessageCallBack(C2DXMessageCallBack messageCallBack)
+{
+    _messageCallBack = messageCallBack;
+}
+
+void C2DXiOSMobPush::setC2DXAliasCallBack(C2DXAliasCallBack aliasCallBack)
+{
+    _aliasCallBack = aliasCallBack;
+}
+
+void C2DXiOSMobPush::setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack)
+{
+    _tagsCallBack = tagsCallBack;
+}
+
+void C2DXiOSMobPush::iOSMessageCallBack(int action, C2DXMobPushMessage *message)
+{
+    if (_messageCallBack)
+    {
+        _messageCallBack(action, message);
+    }
+}

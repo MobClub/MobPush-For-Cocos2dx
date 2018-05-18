@@ -17,12 +17,12 @@ class C2DXMobPushMessage {
 
 public:
     int style;//标题栏样式
-    std::string title;//标题，如果为空，则默认显示为应用名称
-    std::string content;//内容
-    std::string styleContent;//大段文本和大图模式的样式内容
-    std::list<std::string> inboxStyleContent;//收件箱样式的内容
+    C2DXString *title;//标题，如果为空，则默认显示为应用名称
+    C2DXString *content;//内容
+    C2DXString *styleContent;//大段文本和大图模式的样式内容
+    C2DXArray *inboxStyleContent;//收件箱样式的内容
     C2DXDictionary *extrasMap;//附加字段
-    std::string messageId;//消息id
+    C2DXString *messageId;//消息id
     long timestamp;//发送时间
     bool voice = true;
     bool shake = true;

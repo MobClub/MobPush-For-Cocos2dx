@@ -12,6 +12,8 @@
 #include "C2DXMobPushLocalNotification.hpp"
 #include "C2DXMobPushCustomNotification.hpp"
 
+//#import <MobPush/MPushMessage.h>
+
 USING_NS_CC;
 
 namespace mob {
@@ -82,6 +84,8 @@ namespace mob {
             static void setC2DXAliasCallBack(C2DXAliasCallBack aliasCallBack);
             
             static void setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack);
+            
+            static void iOSMessageCallBack(int action, C2DXMobPushMessage *message);
             
         };
         

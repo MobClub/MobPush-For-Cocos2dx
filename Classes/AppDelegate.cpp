@@ -64,7 +64,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     C2DXMobPush::setAPNsForProduction(false);
     
     C2DXMobPushCustomNotification *noti = new C2DXMobPushCustomNotification();
-    noti->type = (AuthorizationType) (Badge | Alert | Sound);
+    noti->type = (AuthorizationType) (AuthorizationTypeBadge | AuthorizationTypeAlert | AuthorizationTypeSound);
     C2DXMobPush::setCustomNotification(noti);
     
     

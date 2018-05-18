@@ -565,7 +565,7 @@ void C2DXiOSMobPush::iOSMessageCallBack(int action, const char *message)
         {
             case 1:
             {
-                ccMessage->messageType = Custom;
+                ccMessage->messageType = MessageTypeCustom;
                 
                 NSString *content = dict[@"content"];
                 long long timeStamp = [dict[@"timeStamp"] longLongValue];
@@ -595,7 +595,7 @@ void C2DXiOSMobPush::iOSMessageCallBack(int action, const char *message)
                 
             case 2:
             {
-                ccMessage->messageType = Notify;
+                ccMessage->messageType = MessageTypeNotify;
                 
                 NSString *content = dict[@"content"];
                 NSString *title = dict[@"subTitle"];
@@ -645,7 +645,7 @@ void C2DXiOSMobPush::iOSMessageCallBack(int action, const char *message)
                 
             case 3:
             {
-                ccMessage->messageType = Local;
+                ccMessage->messageType = MessageTypeLocal;
                 
                 NSString *content = dict[@"content"];
                 NSString *title = dict[@"subTitle"];

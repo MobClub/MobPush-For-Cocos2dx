@@ -38,7 +38,6 @@ using namespace mob::mobpush;
     int action;
     
     NSMutableDictionary *reslut = [NSMutableDictionary dictionary];
-
     switch (message.messageType)
     {
         case MPushMessageTypeCustom:

@@ -8,9 +8,9 @@
 #include "C2DXMobPushTypeDef.h"
 
 enum MessageType {
-    Custom, //自定义消息
-    Notify,//远程通知
-    Local //本地通知(ios区分本地和远程通知两种类型，android只有Notify一种通知类型)
+    MessageTypeCustom, // 自定义消息
+    MessageTypeNotify, // 远程通知
+    MessageTypeLocal   // 本地通知(iOS 区分本地和远程通知两种类型，android 只有 Notify 一种通知类型)
 };
 
 class C2DXMobPushMessage {
@@ -46,9 +46,6 @@ public:
 #endif
     
     
-
-   
-
 public:
     C2DXMobPushMessage() {
 

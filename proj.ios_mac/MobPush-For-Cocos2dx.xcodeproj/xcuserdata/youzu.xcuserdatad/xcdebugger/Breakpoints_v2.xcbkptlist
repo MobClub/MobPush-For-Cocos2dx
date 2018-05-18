@@ -16,11 +16,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/C2DXMobPush/iOS/C2DXiOSMobPush.mm"
-            timestampString = "548329089.782606"
+            timestampString = "548330926.9812191"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "512"
@@ -32,11 +32,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/C2DXMobPush/iOS/C2DXiOSMobPush.mm"
-            timestampString = "548329122.516717"
+            timestampString = "548330926.981321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "520"
@@ -58,6 +58,22 @@
             startingLineNumber = "113"
             endingLineNumber = "113"
             landmarkName = "TimeNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/AppNotifyScene.cpp"
+            timestampString = "548330926.981467"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "AppNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include "cocos2d.h"
 #include "jni.h"
-#include "../C2DXMobPushCallback.h"
+#include "C2DXMobPushCallback.h"
 
 USING_NS_CC;
 

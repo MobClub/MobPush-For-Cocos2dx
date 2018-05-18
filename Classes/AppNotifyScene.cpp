@@ -1,6 +1,6 @@
 #include <ui/UIButton.h>
 #include <ui/UIEditBox/UIEditBox.h>
-#include <C2DXMobPush/C2DXMobPush.h>
+#include "C2DXMobPush.h"
 #include "AppNotifyScene.h"
 #include "AppDelegate.h"
 #include "cocos2d.h"

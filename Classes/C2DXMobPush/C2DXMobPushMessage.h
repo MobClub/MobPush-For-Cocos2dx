@@ -23,7 +23,7 @@ public:
     std::list<std::string> inboxStyleContent;//收件箱样式的内容
     C2DXDictionary *extrasMap;//附加字段
     std::string messageId;//消息id
-    long timestamp;//发送时间
+    long long timestamp;//发送时间
     bool voice = true;
     bool shake = true;
     bool light = true;

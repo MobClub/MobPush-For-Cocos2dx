@@ -3,7 +3,7 @@
 #include "TimeNotifyScene.h"
 #include "AppDelegate.h"
 #include "cocos2d.h"
-#include "C2DXMobPush/C2DXMobPush.h"
+#include "C2DXMobPush.h"
 #include "AppNotifyScene.h"
 
 #define  LOG_TAG    "timenotifyscene"
@@ -83,6 +83,7 @@ bool TimeNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
+            C2DXMobPush::setAlias("xiaoxintime");
             C2DXMobPush::req(3, mEditBox->getText(), 1, NULL, &TimeNotify::getSendReqResult);
         }
     });
@@ -91,6 +92,7 @@ bool TimeNotify::init() {
     C2DXMobPush::setC2DXMessageCallBack(&TimeNotify::onC2DXMessageCallBack);
     C2DXMobPush::setC2DXAliasCallBack(&TimeNotify::onC2DXAliasCallBack);
     C2DXMobPush::setC2DXTagsCallBack(&TimeNotify::onC2DXTagsCallBack);
+    C2DXMobPush::addPushReceiver();
     return true;
 }
 
@@ -119,10 +121,10 @@ void TimeNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) 
 
 void TimeNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
 
-    CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
+    CCLOG(">>>onC2DXAliasCallBack>>time>>>%s", alias);
 }
 
 void TimeNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
-    CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
+    CCLOG(">>>onC2DXTagsCallBack>>time>>>%s", "onC2DXTagsCallBack");
 
 }

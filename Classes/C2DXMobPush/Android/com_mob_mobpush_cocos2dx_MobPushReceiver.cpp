@@ -2,8 +2,8 @@
 #include "com_mob_mobpush_cocos2dx_MobPushReceiver.h"
 #include "C2DXAndroidMobPushReceiver.h"
 #include "C2DXAndroidMobPush.h"
-#include "../C2DXMobPushMessage.h"
-#include "./JSON/CCJSONConverter.h"
+#include "C2DXMobPushMessage.h"
+#include "CCJSONConverter.h"
 
 /*
  * Class:     com_mob_mobpush_cocos2dx_MobPushReceiver
@@ -35,21 +35,21 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnDes
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnCustomMessageReceive
         (JNIEnv *env, jobject jthiz, jstring js) {
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
-//    CCJSONConverter *ccjsonConverter = CCJSONConverter::sharedConverter();
-//    const char *c=env->GetStringUTFChars(js, NULL);
-//    C2DXDictionary *dictionary = ccjsonConverter->dictionaryFrom(c);
-//    env->ReleaseStringUTFChars(js, c);
-//    cocos2d::Ref *dd = dictionary->objectForKey("ddd");
-////    dd._string.c_str();
-//    cocos2d::Ref *t = dictionary->objectForKey("t");
-//    long a = t.intValue();
-
-//C2DXMobPushCustomMessage customMessage = new C2DXMobPushCustomMessage(dd._string,
-//dictionary->objectForKey(""),a,dictionary->objectForKey(""));
-
+    CCJSONConverter *ccjsonConverter = CCJSONConverter::sharedConverter();
+    const char *c = env->GetStringUTFChars(js, NULL);
+    C2DXDictionary *dictionary = ccjsonConverter->dictionaryFrom(c);
+    env->ReleaseStringUTFChars(js, c);
+    C2DXString *content = (C2DXString *) dictionary->objectForKey("content");
+    C2DXString *messageId = (C2DXString *) dictionary->objectForKey("messageId");
+    C2DXString *tt = (C2DXString *) dictionary->objectForKey("timestamp");
+    const char *cs = tt->_string.c_str();
+    long long ll = atoll(cs);
     C2DXMobPushMessage *message = new C2DXMobPushMessage();
-    message->channel = 1;
+    message->content = content->_string.c_str();
+    message->messageId = messageId->_string.c_str();
+    message->timestamp = ll;
     receiver->onCustomMessageReceive(message);
+    dictionary->autorelease();
 }
 
 /*
@@ -61,8 +61,52 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNot
         (JNIEnv *env, jobject jthiz, jstring js) {
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
 
+    CCJSONConverter *ccjsonConverter = CCJSONConverter::sharedConverter();
+    const char *c = env->GetStringUTFChars(js, NULL);
+    C2DXDictionary *dictionary = ccjsonConverter->dictionaryFrom(c);
+    env->ReleaseStringUTFChars(js, c);
+    CCNumber *style = (CCNumber *) dictionary->objectForKey("style");
+    C2DXString *title = (C2DXString *) dictionary->objectForKey("title");
+    C2DXString *content = (C2DXString *) dictionary->objectForKey("content");
+    C2DXString *styleContent = (C2DXString *) dictionary->objectForKey("styleContent");
+    C2DXString *messageId = (C2DXString *) dictionary->objectForKey("messageId");
+    bool voice = (bool) dictionary->objectForKey("voice");
+    bool shake = (bool) dictionary->objectForKey("shake");
+    bool light = (bool) dictionary->objectForKey("light");
+    CCNumber *channel = (CCNumber *) dictionary->objectForKey("channel");
+
+    CCLOG(">>>>style>>>>>>%d", style->getIntValue());
+    CCLOG(">>>>title>>>>>>%d", title->_string.c_str());
+    CCLOG(">>>>content>>>>>>%d", content->_string.c_str());
+    CCLOG(">>>>styleContent>>>>>>%d", styleContent->_string.c_str());
+    CCLOG(">>>>messageId>>>>>>%d", messageId->_string.c_str());
+    CCLOG(">>>>channel>>>>>>%d", channel->getIntValue());
+    if (voice) {
+        CCLOG(">>>>voice>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>voice>>>>>>%s", "false");
+    }
+    if (shake) {
+        CCLOG(">>>>shake>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>shake>>>>>>%s", "false");
+    }
+    if (light) {
+        CCLOG(">>>>light>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>light>>>>>>%s", "false");
+    }
+
     C2DXMobPushMessage *message = new C2DXMobPushMessage();
-    message->channel = 1;
+    message->style = style->getIntValue();
+    message->title = title->_string.c_str();
+    message->content = content->_string.c_str();
+    message->styleContent = styleContent->_string.c_str();
+    message->messageId = messageId->_string.c_str();
+    message->voice = voice;
+    message->shake = shake;
+    message->light = light;
+    message->channel = channel->getIntValue();
     receiver->onNotifyMessageReceive(message);
 }
 

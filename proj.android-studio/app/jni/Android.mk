@@ -31,6 +31,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../../Classes/C2DXMobPush/Android/JSON/cJSON/cJSON.c
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
+                    $(LOCAL_PATH)/../../../Classes/C2DXMobPush \
+                    $(LOCAL_PATH)/../../../Classes/C2DXMobPush/Android \
+                    $(LOCAL_PATH)/../../../Classes/C2DXMobPush/Android/JSON \
                     $(LOCAL_PATH)/../../../Classes/C2DXMobPush/Android/JSON/cJSON
 
 

@@ -23,6 +23,9 @@ public:
     CCNumber(double v)
             : m_nValue(v),m_dValue(v) {}
 
+    CCNumber(long v)
+            : m_nValue(v),m_dValue(v) {}
+
     static CCNumber * create(int v)
     {
         CCNumber* pRet = new CCNumber(v);
@@ -40,6 +43,7 @@ public:
     void setValue(int v)  { m_nValue=v; m_dValue=v;}
     void setValue(double v)  { m_nValue=v; m_dValue=v;}
 };
+
 
 //class CCBool : public CCObject {
 //private:

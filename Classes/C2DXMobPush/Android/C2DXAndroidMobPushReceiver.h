@@ -6,7 +6,7 @@
 #define PROJ_ANDROID_STUDIO_C2DXANDROIDMOBPUSHRECEIVER_H
 
 #include <jni.h>
-#include <C2DXMobPush/C2DXMobPushCallback.h>
+#include <C2DXMobPushCallback.h>
 
 using namespace mob::mobpush;
 

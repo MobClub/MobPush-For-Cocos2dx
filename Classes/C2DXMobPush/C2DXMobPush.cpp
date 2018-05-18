@@ -2,7 +2,6 @@
 // Created by yyfu on 2018/5/11.
 //
 
-#include <C2DXMobPush/Android/C2DXAndroidMobPushReceiver.h>
 #include "C2DXMobPush.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
@@ -11,8 +10,8 @@
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
+#include <C2DXAndroidMobPushReceiver.h>
 #include "Android/C2DXAndroidMobPush.h"
-#include "Android/C2DXAndroidMobPushReceiver.h"
 
 #endif
 

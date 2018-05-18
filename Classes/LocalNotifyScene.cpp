@@ -3,7 +3,7 @@
 #include "LocalNotifyScene.h"
 #include "AppDelegate.h"
 #include "cocos2d.h"
-#include "C2DXMobPush/C2DXMobPush.h"
+#include "C2DXMobPush.h"
 #include "AppNotifyScene.h"
 
 #define  LOG_TAG    "localnotifyscene"
@@ -83,6 +83,7 @@ bool LocalNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
+            C2DXMobPush::setAlias("xiaoxinLocal");
             C2DXMobPush::addLocalNotification(mEditBox->getText(), 1);
         }
     });
@@ -122,10 +123,10 @@ void LocalNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message)
 
 void LocalNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
 
-    CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
+    CCLOG(">>>onC2DXAliasCallBack>>local>>>%s", alias);
 }
 
 void LocalNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
-    CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
+    CCLOG(">>>onC2DXTagsCallBack>>local>>>%s", "onC2DXTagsCallBack");
 
 }

@@ -6,6 +6,8 @@ import com.mob.pushsdk.MobPushCustomMessage;
 import com.mob.pushsdk.MobPushNotifyMessage;
 import com.mob.tools.utils.Hashon;
 
+import java.util.HashMap;
+
 /**
  * Created by yyfu on 2018/5/14.
  */
@@ -24,19 +26,34 @@ public class MobPushReceiver implements com.mob.pushsdk.MobPushReceiver {
     @Override
     public void onCustomMessageReceive(Context context, MobPushCustomMessage mobPushCustomMessage) {
         System.out.println(">>>>>onNotifyMessageReceive>>>>>"+mobPushCustomMessage.toString());
-        nativeOnCustomMessageReceive(mobPushCustomMessage.getMessageId());
+        HashMap<String, Object> map = hashon.fromJson(hashon.fromObject(mobPushCustomMessage));
+        if(map.containsKey("timestamp")){
+            long timestamp = (long) map.get("timestamp");
+            map.put("timestamp", timestamp+"");
+        }
+        String json = hashon.fromHashMap(map);
+        System.out.println(">>>>>onNotifyMessageReceive>>>json>>"+json);
+        nativeOnCustomMessageReceive(json);
     }
 
     @Override
     public void onNotifyMessageReceive(Context context, MobPushNotifyMessage mobPushNotifyMessage) {
-        System.out.println(">>>>>onNotifyMessageReceive>>>>>"+mobPushNotifyMessage.getMessageId());
-        nativeOnNotifyMessageReceive(mobPushNotifyMessage.getMessageId());
+        System.out.println(">>>>>onNotifyMessageReceive>>>>>"+mobPushNotifyMessage.toString());
+        HashMap<String, Object> map = hashon.fromJson(hashon.fromObject(mobPushNotifyMessage));
+        if(map.containsKey("timestamp")){
+            long timestamp = (long) map.get("timestamp");
+            map.put("timestamp", timestamp+"");
+        }
+        String json = hashon.fromHashMap(map);
+        System.out.println(">>>>>onNotifyMessageReceive>>>json>>"+json);
+        nativeOnNotifyMessageReceive(json);
     }
 
     @Override
     public void onNotifyMessageOpenedReceive(Context context, MobPushNotifyMessage mobPushNotifyMessage) {
-        System.out.println(">>>>>onNotifyMessageOpenedReceive>>>>>"+mobPushNotifyMessage.getMessageId());
-        nativeOnNotifyMessageOpenedReceive(mobPushNotifyMessage.getMessageId());
+        System.out.println(">>>>>onNotifyMessageOpenedReceive>>>>>"+mobPushNotifyMessage.toString());
+        System.out.println(">>>>>onNotifyMessageOpenedReceive>>>json>>"+hashon.fromObject(mobPushNotifyMessage));
+        nativeOnNotifyMessageOpenedReceive(hashon.fromObject(mobPushNotifyMessage));
     }
 
     @Override

@@ -3,7 +3,7 @@
 //
 
 #include "C2DXAndroidMobPushReceiver.h"
-#include "C2DXMobPush/C2DXMobPushCallback.h"
+#include "C2DXMobPushCallback.h"
 
 using namespace mob::mobpush;
 

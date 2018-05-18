@@ -3,7 +3,7 @@
 //
 #include "C2DXAndroidMobPush.h"
 #include "cocos2d.h"
-#include "../C2DXMobPushCallback.h"
+#include "C2DXMobPushCallback.h"
 #include "C2DXAndroidCallback.h"
 #include "C2DXAndroidSReqCallback.h"
 #include "C2DXAndroidMobPushReceiver.h"

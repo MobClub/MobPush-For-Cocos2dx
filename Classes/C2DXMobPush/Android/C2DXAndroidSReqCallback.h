@@ -6,7 +6,7 @@
 #define PROJ_ANDROID_STUDIO_C2DXANDROIDSREQCALLBACK_H
 
 #include <jni.h>
-#include "../C2DXMobPushCallback.h"
+#include "C2DXMobPushCallback.h"
 
 using namespace mob::mobpush;
 

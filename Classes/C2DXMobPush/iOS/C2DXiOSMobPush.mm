@@ -332,20 +332,22 @@ void C2DXiOSMobPush::clearAllAlias()
 void C2DXiOSMobPush::getTags()
 {
     [MobPush getTagsWithResult:^(NSArray *tags, NSError *error) {
-        
+        C2DXArray *tagsArr = convertNSArrayToC2DXArray(tags);
     }];
 }
 
-void C2DXiOSMobPush::addTags(C2DXArray tags)
+void C2DXiOSMobPush::addTags(C2DXArray *tags)
 {
-    [MobPush addTags:nil result:^(NSError *error) {
+    NSArray *tagsArr = convertC2DXArrayToNSArray(tags);
+    [MobPush addTags:tagsArr result:^(NSError *error) {
 //        C2DXTagsCallBack();
     }];
 }
 
-void C2DXiOSMobPush::deleteTags(C2DXArray tags)
+void C2DXiOSMobPush::deleteTags(C2DXArray *tags)
 {
-    [MobPush deleteTags:nil result:^(NSError *error) {
+    NSArray *tagsArr = convertC2DXArrayToNSArray(tags);
+    [MobPush deleteTags:tagsArr result:^(NSError *error) {
         
     }];
 }

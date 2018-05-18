@@ -112,7 +112,7 @@ void C2DXMobPush::clearAllAlias() {
 #endif
 }
 
-void C2DXMobPush::addTags(C2DXArray tags) {
+void C2DXMobPush::addTags(C2DXArray *tags) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     
     //Andorid
@@ -139,7 +139,7 @@ void C2DXMobPush::getTags()
 #endif
 }
 
-void C2DXMobPush::deleteTags(C2DXArray tags)
+void C2DXMobPush::deleteTags(C2DXArray *tags)
 {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     

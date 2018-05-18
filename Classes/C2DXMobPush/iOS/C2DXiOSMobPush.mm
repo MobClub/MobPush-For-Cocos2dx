@@ -19,6 +19,7 @@ using namespace mob::mobpush;
 void C2DXiOSMobPush::setAPNsForProduction(bool isPro)
 {
     [C2DXiOSMobPushCallBack defaultCallBack].isPro = isPro == true ? YES : NO;
+    [MobPush setAPNsForProduction:isPro == true ? YES : NO];
 }
 
 void C2DXiOSMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback)
@@ -33,12 +34,13 @@ void C2DXiOSMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback
 
 void C2DXiOSMobPush::addPushReceiver()
 {
-//    [[C2DXiOSMobPushCallBack defaultCallBack] addPushObserver]
+    [[C2DXiOSMobPushCallBack defaultCallBack] addPushObserver];
 }
 
 void C2DXiOSMobPush::setAlias(const char *alias)
 {
-    [MobPush setAlias:nil result:^(NSError *error) {
+    NSString *aliasStr = [NSString stringWithUTF8String:alias];
+    [MobPush setAlias:aliasStr result:^(NSError *error) {
         
     }];
 }
@@ -64,14 +66,14 @@ void C2DXiOSMobPush::getTags()
     }];
 }
 
-void C2DXiOSMobPush::addTags(std::list<std::string> tags)
+void C2DXiOSMobPush::addTags(C2DXArray tags)
 {
     [MobPush addTags:nil result:^(NSError *error) {
-        
+//        C2DXTagsCallBack();
     }];
 }
 
-void C2DXiOSMobPush::deleteTags(std::list<std::string> tags)
+void C2DXiOSMobPush::deleteTags(C2DXArray tags)
 {
     [MobPush deleteTags:nil result:^(NSError *error) {
         
@@ -87,33 +89,64 @@ void C2DXiOSMobPush::clearAllTags()
 
 void C2DXiOSMobPush::addLocalNotification(mob::mobpush::C2DXMobPushLocalNotification *noti)
 {
-    [MobPush addLocalNotification:nil];
+    MPushMessage *message = [[MPushMessage alloc] init];
+    message.messageType = MPushMessageTypeLocal;
+    MPushNotification *notification = [[MPushNotification alloc] init];
+    
+    notification.title = [NSString stringWithUTF8String:noti->title];
+    notification.body = [NSString stringWithUTF8String:noti->content];
+    notification.sound = [NSString stringWithUTF8String:noti->sound];
+    notification.badge = (NSInteger)noti->badge;
+    notification.subTitle = [NSString stringWithUTF8String:noti->subTitle];
+    
+    long timeStamp = noti->timeStamp;
+    if (timeStamp == 0)
+    {
+        message.isInstantMessage = YES;
+    }
+    else
+    {
+        NSDate *currentDate = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval nowtime = [currentDate timeIntervalSince1970] * 1000;
+        message.taskDate = nowtime + (NSTimeInterval)timeStamp;
+    }
+    
+    message.notification = notification;
+    [MobPush addLocalNotification:message];
 }
 
 void C2DXiOSMobPush::setCustomNotification(mob::mobpush::C2DXMobPushCustomNotification *noti)
 {
-    
+    MPushNotificationConfiguration *noticonfig = [[MPushNotificationConfiguration alloc] init];
+    noticonfig.types = (MPushAuthorizationOptions)noti->type;
+    [MobPush setupNotification:noticonfig];
 }
 
 void C2DXiOSMobPush::req(int type, const char *text, int space, const char *extras,
          C2DXReqResultEvent reqResultEvent)
 {
-    [MobPush sendMessageWithMessageType:MPushMsgTypeNotification
-                                content:nil
-                                  space:@(1)
+    NSString *textStr = [NSString stringWithUTF8String:text];
+
+    [MobPush sendMessageWithMessageType:(MPushMsgType)type
+                                content:textStr
+                                  space:@(space)
                 isProductionEnvironment:[C2DXiOSMobPushCallBack defaultCallBack].isPro
                                  extras:nil
                                  result:^(NSError *error) {
                                      
-                                     NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
-                                     
                                      if (error)
                                      {
-                                         [resultDict setObject:@(0) forKey:@"action"];
+                                         if (reqResultEvent)
+                                         {
+                                             reqResultEvent(true);
+                                         }
                                      }
                                      else
                                      {
-                                         [resultDict setObject:@(1) forKey:@"action"];
+                                         if (reqResultEvent)
+                                         {
+                                             reqResultEvent(false);
+                                         }
                                      }
                                      
                                  }];

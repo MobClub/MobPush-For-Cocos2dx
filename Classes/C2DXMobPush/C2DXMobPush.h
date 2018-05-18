@@ -19,6 +19,8 @@ namespace mob {
         class C2DXMobPush {
         public:
 
+            static void setAPNsForProduction(bool isPro);
+            
             static void initMobPush(const char *appkey, const char *appScrect);
 
             /**
@@ -55,11 +57,11 @@ namespace mob {
              *
              * @param tags 标签集合
              */
-            static void addTags(std::list<std::string> tags);
+            static void addTags(C2DXArray tags);
 
             static void getTags();
 
-            static void deleteTags(std::list<std::string> tags);
+            static void deleteTags(C2DXArray tags);
 
             static void clearAllTags();
 

@@ -18,6 +18,19 @@
 
 using namespace mob::mobpush;
 
+void C2DXMobPush::setAPNsForProduction(bool isPro)
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::setAPNsForProduction(isPro);
+#endif
+}
+
 void C2DXMobPush::initMobPush(const char *appkey, const char *appScrect) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
@@ -58,29 +71,99 @@ void C2DXMobPush::addPushReceiver() {
 #endif
 }
 
-void C2DXMobPush::addTags(std::list<std::string> tags) {
+void C2DXMobPush::setAlias(const char *alias) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::setAlias(alias);
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::setAlias(alias);
+#endif
+}
 
+void C2DXMobPush::getAlias()
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::getAlias();
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::getAlias();
+#endif
+}
+
+void C2DXMobPush::clearAllAlias() {
+    
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::clearAllAlias();
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::clearAllAlias();
+#endif
+}
+
+void C2DXMobPush::addTags(C2DXArray tags) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
     //Andorid
     C2DXAndroidMobPush::addTags(tags);
-
+    
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
+    
     //iOS
     C2DXiOSMobPush::addTags(tags);
 #endif
 }
 
-void C2DXMobPush::setAlias(const char *alias) {
+void C2DXMobPush::getTags()
+{
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
+    
     //Andorid
-    C2DXAndroidMobPush::setAlias(alias);
-
+    C2DXAndroidMobPush::getTags();
+    
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
+    
     //iOS
-    C2DXiOSMobPush::setAlias(alias);
+    C2DXiOSMobPush::getTags();
+#endif
+}
+
+void C2DXMobPush::deleteTags(C2DXArray tags)
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::deleteTags(tags);
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::deleteTags(tags);
+#endif
+}
+
+void C2DXMobPush::clearAllTags()
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::clearAllTags();
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::clearAllTags();
 #endif
 }
 

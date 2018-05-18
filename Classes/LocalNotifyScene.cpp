@@ -91,7 +91,7 @@ bool LocalNotify::init() {
 
     C2DXMobPush::setC2DXMessageCallBack(&LocalNotify::onC2DXMessageCallBack);
     C2DXMobPush::setC2DXAliasCallBack(&LocalNotify::onC2DXAliasCallBack);
-    C2DXMobPush::setC2DXTagsCallBack(&LocalNotify::onC2DXTagsCallBack);
+//    C2DXMobPush::setC2DXTagsCallBack(&LocalNotify::onC2DXTagsCallBack);
     C2DXMobPush::addPushReceiver();
     return true;
 }

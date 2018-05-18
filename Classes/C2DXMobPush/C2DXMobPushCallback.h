@@ -46,7 +46,7 @@ namespace mob {
 
          @param onTags <#onTags description#>
          */
-        typedef void(*C2DXTagsCallBack) (std::list<std::string> tags, int operation, int errorCode);
+        typedef void(*C2DXTagsCallBack) (C2DXArray tags, int operation, int errorCode);
     }
 }
 

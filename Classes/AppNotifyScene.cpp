@@ -96,7 +96,7 @@ bool AppNotify::init() {
 
     C2DXMobPush::setC2DXMessageCallBack(&AppNotify::onC2DXMessageCallBack);
     C2DXMobPush::setC2DXAliasCallBack(&AppNotify::onC2DXAliasCallBack);
-    C2DXMobPush::setC2DXTagsCallBack(&AppNotify::onC2DXTagsCallBack);
+//    C2DXMobPush::setC2DXTagsCallBack(&AppNotify::onC2DXTagsCallBack);
     C2DXMobPush::addPushReceiver();
     C2DXMobPush::getRegistrationId(&AppNotify::getId);
     return true;

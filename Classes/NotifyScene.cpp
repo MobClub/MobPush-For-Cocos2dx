@@ -90,7 +90,7 @@ bool Notify::init() {
     this->addChild(button);
     C2DXMobPush::setC2DXMessageCallBack(&Notify::onC2DXMessageCallBack);
     C2DXMobPush::setC2DXAliasCallBack(&Notify::onC2DXAliasCallBack);
-    C2DXMobPush::setC2DXTagsCallBack(&Notify::onC2DXTagsCallBack);
+//    C2DXMobPush::setC2DXTagsCallBack(&Notify::onC2DXTagsCallBack);
     return true;
 }
 

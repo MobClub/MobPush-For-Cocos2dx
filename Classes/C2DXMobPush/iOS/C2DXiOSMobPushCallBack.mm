@@ -7,6 +7,10 @@
 
 #import "C2DXiOSMobPushCallBack.h"
 #import <MobPush/MobPush.h>
+#import "C2DXiOSMobPush.h"
+#import <MOBFoundation/MOBFJson.h>
+
+using namespace mob::mobpush;
 
 @implementation C2DXiOSMobPushCallBack
 
@@ -20,11 +24,6 @@
     return instance;
 }
 
-- (void)didFinishLaunching
-{
-    [MobPush setAPNsForProduction:_isPro];
-}
-
 - (void)addPushObserver
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -36,15 +35,17 @@
 - (void)didReceiveMessage:(NSNotification *)notification
 {
     MPushMessage *message = notification.object;
-    NSMutableDictionary *resultDict = [NSMutableDictionary dictionary];
-    NSMutableDictionary *reslut = [NSMutableDictionary dictionary];
+    int action;
     
+    NSMutableDictionary *reslut = [NSMutableDictionary dictionary];
     switch (message.messageType)
     {
         case MPushMessageTypeCustom:
         {// 自定义消息
-            [resultDict setObject:@0 forKey:@"action"];
-            
+            action = 0;
+
+            [reslut setObject:@1 forKey:@"msgType"];
+
             if (message.extraInfomation)
             {
                 [reslut setObject:message.extraInfomation forKey:@"extra"];
@@ -83,6 +84,9 @@
              mobpushMessageId = 159346875878223872;
              }
              */
+            
+            [reslut setObject:@2 forKey:@"msgType"];
+
             if (message.apnsDict.count)
             {
                 NSDictionary *aps = message.apnsDict[@"aps"];
@@ -128,7 +132,7 @@
             NSString *mobpushMessageId = message.apnsDict[@"mobpushMessageId"];
             if (mobpushMessageId)
             {
-                [reslut setObject:mobpushMessageId forKey:@"mobpushMessageId"];
+                [reslut setObject:mobpushMessageId forKey:@"messageId"];
             }
             
             NSMutableDictionary *extra = [NSMutableDictionary dictionary];
@@ -149,17 +153,19 @@
             if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
             {
                 // 前台收到
-                [resultDict setObject:@1 forKey:@"action"];
+                action = 1;
             }
             else
             {
                 // 点击通知
-                [resultDict setObject:@2 forKey:@"action"];
+                action = 2;
             }
         }
             break;
         case MPushMessageTypeLocal:
         { // 本地通知回调
+            [reslut setObject:@3 forKey:@"msgType"];
+            
             NSString *body = message.notification.body;
             NSString *title = message.notification.title;
             NSString *subtitle = message.notification.subTitle;
@@ -169,22 +175,22 @@
             {
                 [reslut setObject:body forKey:@"content"];
             }
-            
+
             if (title)
             {
                 [reslut setObject:title forKey:@"title"];
             }
-            
+
             if (subtitle)
             {
                 [reslut setObject:subtitle forKey:@"subtitle"];
             }
-            
+
             if (badge)
             {
                 [reslut setObject:@(badge) forKey:@"badge"];
             }
-            
+
             if (sound)
             {
                 [reslut setObject:sound forKey:@"sound"];
@@ -193,12 +199,12 @@
             if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
             {
                 // 前台收到
-                [resultDict setObject:@1 forKey:@"action"];
+                action = 1;
             }
             else
             {
                 // 点击通知
-                [resultDict setObject:@2 forKey:@"action"];
+                action = 2;
             }
         }
             break;
@@ -208,14 +214,10 @@
     
     if (reslut.count)
     {
-        [resultDict setObject:reslut forKey:@"result"];
+        NSString *resultStr = [MOBFJson jsonStringFromObject:reslut];
+        C2DXiOSMobPush::iOSMessageCallBack(action, [resultStr UTF8String]);
     }
     
-//    if (resultDict.count)
-//    {
-//        NSString *resultStr = [MOBFJson jsonStringFromObject:resultDict];
-//        UnitySendMessage([_observerStr UTF8String], "_MobPushCallback", [resultStr UTF8String]);
-//    }
 }
 
 - (void)dealloc

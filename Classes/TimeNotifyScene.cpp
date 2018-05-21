@@ -101,10 +101,6 @@ void TimeNotify::menuCloseCallback(Ref *pSender) {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->popScene();
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
-
     /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
 
     //EventCustom customEndEvent("game_scene_close_event");
@@ -122,9 +118,9 @@ void TimeNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) 
     int style = message->style;
     CCLOG(">>>>style>>>>>>%d", style);
 //    CCLOG(">>>>title>>>>>>%d", title->_string.c_str());
-    CCLOG(">>>>content>>>>>>%s", message->content._string.c_str());
+    CCLOG(">>>>content>>>>>>%s", message->content->_string.c_str());
 //    CCLOG(">>>>styleContent>>>>>>%d", styleContent->_string.c_str());
-    CCLOG(">>>>messageId>>>>>>%s", message->messageId._string.c_str());
+    CCLOG(">>>>messageId>>>>>>%s", message->messageId->_string.c_str());
     CCLOG(">>>>channel>>>>>>%s", message->channel);
     if (message->voice) {
         CCLOG(">>>>voice>>>>>>%s", "true");
@@ -150,5 +146,4 @@ void TimeNotify::onC2DXAliasCallBack(const char *alias, int operation, int error
 
 void TimeNotify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
     CCLOG(">>>onC2DXTagsCallBack>>time>>>%s", "onC2DXTagsCallBack");
-
 }

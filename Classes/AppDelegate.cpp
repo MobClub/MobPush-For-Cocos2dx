@@ -1,5 +1,7 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "C2DXMobPush.h"
+#include "C2DXMobPushCustomNotification.hpp"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -17,6 +19,7 @@ using namespace CocosDenshion;
 #endif
 
 USING_NS_CC;
+using namespace mob::mobpush;
 
 static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
@@ -54,6 +57,21 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
+    
+    #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+        
+        //iOS
+    C2DXMobPush::setAPNsForProduction(false);
+    
+    C2DXMobPushCustomNotification *noti = new C2DXMobPushCustomNotification();
+    noti->type = (AuthorizationType) (AuthorizationTypeBadge | AuthorizationTypeAlert | AuthorizationTypeSound);
+    C2DXMobPush::setCustomNotification(noti);
+    
+    #endif
+    
+    C2DXMobPush::setC2DXMessageCallBack(&AppDelegate::onC2DXMessageCallBack);
+    C2DXMobPush::addPushReceiver();
+    
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
@@ -124,4 +142,9 @@ void AppDelegate::applicationWillEnterForeground() {
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
     SimpleAudioEngine::getInstance()->resumeAllEffects();
 #endif
+}
+
+
+void AppDelegate::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
+    CCLOG(">>>onC2DXMessageCallBack>>>AppDelegate>>%s", "onC2DXMessageCallBack");
 }

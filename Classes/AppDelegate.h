@@ -4,6 +4,8 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
+#import "C2DXMobPushMessage.h"
+
 /**
 @brief    The cocos2d Application.
 
@@ -35,6 +37,8 @@ public:
     @param  the pointer of the application
     */
     virtual void applicationWillEnterForeground();
+    
+    static void onC2DXMessageCallBack(int action, C2DXMobPushMessage *message);
 };
 
 

@@ -39,7 +39,6 @@ void C2DXMobPush::initMobPush(const char *appkey, const char *appScrect) {
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-//    C2DXiOSMobPush::initMobPush(appkey,appScrect);
 #endif
 }
 
@@ -201,6 +200,7 @@ void C2DXMobPush::setC2DXMessageCallBack(C2DXMessageCallBack messageCallBack){
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
+    C2DXiOSMobPush::setC2DXMessageCallBack(messageCallBack);
 
 #endif
 }
@@ -214,7 +214,8 @@ void C2DXMobPush::setC2DXAliasCallBack(C2DXAliasCallBack aliasCallBack){
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-
+    C2DXiOSMobPush::setC2DXAliasCallBack(aliasCallBack);
+    
 #endif
 }
 
@@ -227,7 +228,8 @@ void C2DXMobPush::setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack){
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-
+    C2DXiOSMobPush::setC2DXTagsCallBack(tagsCallBack);
+    
 #endif
 }
 
@@ -245,6 +247,4 @@ void C2DXMobPush::req(int type, const char *text, int space, const char *extras,
     C2DXiOSMobPush::req(type, text, space, extras, reqResultEvent);
 #endif
 }
-
-
 

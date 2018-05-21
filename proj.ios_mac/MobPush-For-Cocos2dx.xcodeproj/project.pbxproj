@@ -22,7 +22,6 @@
 		44DE8AAA20AE6D490061B9BC /* LocalNotifyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8AA520AE6D490061B9BC /* LocalNotifyScene.cpp */; };
 		44DE8AD120AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ACB20AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm */; };
 		44DE8AD220AE6EEA0061B9BC /* C2DXiOSMobPush.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ACC20AE6EEA0061B9BC /* C2DXiOSMobPush.mm */; };
-		44DE8AD320AE6EEA0061B9BC /* AppController+MobPushInit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ACE20AE6EEA0061B9BC /* AppController+MobPushInit.mm */; };
 		44DE8ADA20AE6F090061B9BC /* MobPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE8AD620AE6F090061B9BC /* MobPush.framework */; };
 		44DE8ADB20AE6F090061B9BC /* MOBFoundationEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE8AD820AE6F090061B9BC /* MOBFoundationEx.framework */; };
 		44DE8ADC20AE6F090061B9BC /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE8AD920AE6F090061B9BC /* MOBFoundation.framework */; };
@@ -148,8 +147,6 @@
 		44DE8ACB20AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = C2DXiOSMobPushCallBack.mm; sourceTree = "<group>"; };
 		44DE8ACC20AE6EEA0061B9BC /* C2DXiOSMobPush.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = C2DXiOSMobPush.mm; sourceTree = "<group>"; };
 		44DE8ACD20AE6EEA0061B9BC /* C2DXiOSMobPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXiOSMobPush.h; sourceTree = "<group>"; };
-		44DE8ACE20AE6EEA0061B9BC /* AppController+MobPushInit.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "AppController+MobPushInit.mm"; sourceTree = "<group>"; };
-		44DE8ACF20AE6EEA0061B9BC /* AppController+MobPushInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppController+MobPushInit.h"; sourceTree = "<group>"; };
 		44DE8AD020AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXiOSMobPushCallBack.h; sourceTree = "<group>"; };
 		44DE8AD620AE6F090061B9BC /* MobPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPush.framework; sourceTree = "<group>"; };
 		44DE8AD820AE6F090061B9BC /* MOBFoundationEx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundationEx.framework; sourceTree = "<group>"; };
@@ -358,12 +355,10 @@
 		44DE8ACA20AE6EEA0061B9BC /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				44DE8ACB20AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm */,
 				44DE8ACC20AE6EEA0061B9BC /* C2DXiOSMobPush.mm */,
 				44DE8ACD20AE6EEA0061B9BC /* C2DXiOSMobPush.h */,
-				44DE8ACE20AE6EEA0061B9BC /* AppController+MobPushInit.mm */,
-				44DE8ACF20AE6EEA0061B9BC /* AppController+MobPushInit.h */,
 				44DE8AD020AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.h */,
+				44DE8ACB20AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -648,7 +643,6 @@
 				44DE8AA820AE6D490061B9BC /* NotifyScene.cpp in Sources */,
 				44DE8AA920AE6D490061B9BC /* TimeNotifyScene.cpp in Sources */,
 				44DE8AAA20AE6D490061B9BC /* LocalNotifyScene.cpp in Sources */,
-				44DE8AD320AE6EEA0061B9BC /* AppController+MobPushInit.mm in Sources */,
 				44DE8AD220AE6EEA0061B9BC /* C2DXiOSMobPush.mm in Sources */,
 				44DE8AE120AE6FD80061B9BC /* C2DXMobPushCustomNotification.cpp in Sources */,
 				44DE8AE220AE6FD80061B9BC /* C2DXMobPushLocalNotification.cpp in Sources */,

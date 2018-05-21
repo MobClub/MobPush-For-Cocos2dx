@@ -10,6 +10,14 @@
 
 #include <stdio.h>
 
+enum AuthorizationType
+{
+    AuthorizationTypeNone =  0, //不提醒
+    AuthorizationTypeBadge = 1 << 0, //角标提醒
+    AuthorizationTypeSound = 1 << 1, //声音提醒
+    AuthorizationTypeAlert = 1 << 2, //弹框提醒
+};
+
 namespace mob
 {
     namespace mobpush
@@ -17,14 +25,6 @@ namespace mob
         class C2DXMobPushCustomNotification
         {
         public:
-            
-            enum AuthorizationType
-            {
-                None =  0, //不提醒
-                Badge = 1 << 0, //角标提醒
-                Sound = 1 << 1, //声音提醒
-                Alert = 1 << 2, //弹框提醒
-            };
             
             AuthorizationType type;
             

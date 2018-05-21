@@ -34,7 +34,6 @@ namespace mob
             static void getAlias();
             static void clearAllAlias();
             static void addLocalNotification(C2DXMobPushLocalNotification *notification);
-            static void setCustomNotification(C2DXMobPushCustomNotification *notification);
             static void req(int type, const char* text, int space, const char* extras, C2DXReqResultEvent reqResultEvent);
         };
 

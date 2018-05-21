@@ -65,7 +65,7 @@ public class MobPushReceiver implements com.mob.pushsdk.MobPushReceiver {
 
     @Override
     public void onTagsCallback(Context context, String[] strings, int i, int i1) {
-        System.out.println(">>>>>>>>>>>>>onTagsCallback>>>>>>>>>>>"+strings[0]);
+        System.out.println(">>>>>>>>>>>>>onTagsCallback>>>>>>>>>>>"+strings[0]+">>>>"+i);
         nativeOnTagsCallback(strings, i, i1);
     }
 

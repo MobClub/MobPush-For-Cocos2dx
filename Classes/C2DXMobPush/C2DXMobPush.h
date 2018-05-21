@@ -25,14 +25,6 @@ namespace mob {
              @param isPro false：开发环境 true：生产环境
              */
             static void setAPNsForProduction(bool isPro);
-            
-            /**
-             初始化 SDK（仅限 安卓，iOS 忽略）
-
-             @param appkey appkey
-             @param appScrect appScrect
-             */
-            static void initMobPush(const char *appkey, const char *appScrect);
 
             /**
              获取注册id
@@ -93,11 +85,12 @@ namespace mob {
              @param noti 本地通知对象
              */
             static void addLocalNotification(mob::mobpush::C2DXMobPushLocalNotification *noti);
-            
+
+
             /**
              定制通知样式
 
-             @param noti 通知对象
+             @param noti 通知对象 (仅限 iOS，安卓忽略)
              */
             static void setCustomNotification(mob::mobpush::C2DXMobPushCustomNotification *noti);
 

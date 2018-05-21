@@ -24,7 +24,8 @@ android {
 }
 
 MobSDK{
-    MobPush{}
+    MobPush{
+    }
 }
 
 dependencies {

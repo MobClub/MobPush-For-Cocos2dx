@@ -30,18 +30,6 @@ void C2DXMobPush::setAPNsForProduction(bool isPro)
 #endif
 }
 
-void C2DXMobPush::initMobPush(const char *appkey, const char *appScrect) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
-    //Andorid
-    C2DXAndroidMobPush::initMobPush(appkey, appScrect);
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-    //iOS
-#endif
-}
-
 void C2DXMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
@@ -182,7 +170,6 @@ void C2DXMobPush::setCustomNotification(mob::mobpush::C2DXMobPushCustomNotificat
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
     //Andorid
-//    C2DXAndroidMobPush::setCustomNotification(noti);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 

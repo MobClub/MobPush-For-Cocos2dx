@@ -31,10 +31,10 @@ public:
     int style;//标题栏样式
     C2DXString *styleContent;//大段文本和大图模式的样式内容
     C2DXArray *inboxStyleContent;//收件箱样式的内容
-    bool voice = true;
-    bool shake = true;
-    bool light = true;
-    int channel;
+    bool voice = true;//通知声音，1是声音，2是静音
+    bool shake = true;//通知震动，1是震动，2是不震动
+    bool light = true;//通知闪光，1是闪光，2是不闪光
+    int channel;//通知频道
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 

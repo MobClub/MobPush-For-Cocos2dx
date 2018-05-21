@@ -33,25 +33,4 @@ public class SendPushHelper {
         MobPush.addLocalNotification(notification);
     }
 
-    public static void sendNotifyOpenUrl(String content, String url, MobPushCallback<Boolean> callback){
-        if(TextUtils.isEmpty(url)){
-            url = "http://m.mob.com";
-        }
-        JSONObject object = new JSONObject();
-        try {
-            object.put(MOB_PUSH_DEMO_URL, url);//URLEncoder.encode(url, "utf-8")
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        String extras = object.toString();
-        if (TextUtils.isEmpty(content)) {
-            Toast.makeText(getContext(), R.string.toast_input_not_allowed_null, Toast.LENGTH_SHORT).show();
-//					new DialogShell(getContext()).autoDismissDialog(R.string.toast_input_not_allowed_null, null, 2);
-            return;
-        }
-        SimulateRequest.sendPush(1, content, 0, extras.toString(), callback);
-    }
-
-
 }

@@ -124,15 +124,6 @@ bool HelloWorld::init() {
     button->addTouchEventListener(this, (SEL_TouchEvent) &HelloWorld::onTouch);
     this->addChild(button);
 
-    button = Button::create();
-    button->setTitleText("通过推送打开指定页面");
-    button->setTitleFontSize(13);
-    button->_ID = 5;
-    button->setPosition(Vec2(visibleSize.width / 2 + origin.x,
-                             origin.y + visibleSize.height - button->getContentSize().height * 10));
-    button->addTouchEventListener(this, (SEL_TouchEvent) &HelloWorld::onTouch);
-//    this->addChild(button);
-
     return true;
 }
 

@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
-#import "C2DXMobPushMessage.h"
+#include "C2DXMobPushMessage.h"
 
 /**
 @brief    The cocos2d Application.

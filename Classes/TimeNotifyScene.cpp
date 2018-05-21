@@ -83,67 +83,23 @@ bool TimeNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-            C2DXMobPush::setAlias("xiaoxintime");
             C2DXMobPush::req(3, mEditBox->getText(), 1, NULL, &TimeNotify::getSendReqResult);
         }
     });
 
     this->addChild(button);
-    C2DXMobPush::setC2DXMessageCallBack(&TimeNotify::onC2DXMessageCallBack);
-    C2DXMobPush::setC2DXAliasCallBack(&TimeNotify::onC2DXAliasCallBack);
-    C2DXMobPush::setC2DXTagsCallBack(&TimeNotify::onC2DXTagsCallBack);
-    C2DXMobPush::addPushReceiver();
     return true;
 }
 
 
 void TimeNotify::menuCloseCallback(Ref *pSender) {
-    //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->popScene();
-
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
-
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
 }
 
 void TimeNotify::getSendReqResult(bool result) {
-    CCLOG(">>>>>>>>%d", "aaaa");
-//    CCLOG(">>>>>>>>%s", result);
-}
-void TimeNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
-    CCLOG(">>>onC2DXMessageCallBack>>>TimeNotify>>%s", "onC2DXMessageCallBack");
-
-    CCLOG(">>>>action>>>>>>%d", action);
-    int style = message->style;
-    CCLOG(">>>>style>>>>>>%d", style);
-//    CCLOG(">>>>title>>>>>>%d", title->_string.c_str());
-    CCLOG(">>>>content>>>>>>%s", message->content->_string.c_str());
-//    CCLOG(">>>>styleContent>>>>>>%d", styleContent->_string.c_str());
-    CCLOG(">>>>messageId>>>>>>%s", message->messageId->_string.c_str());
-    CCLOG(">>>>channel>>>>>>%s", message->channel);
-    if (message->voice) {
-        CCLOG(">>>>voice>>>>>>%s", "true");
+    if (result) {
+        CCLOG(">>>getSendReqResult>>>>>%s", "true");
     } else {
-        CCLOG(">>>>voice>>>>>>%s", "false");
+        CCLOG(">>>>getSendReqResult>>>>%s", "false");
     }
-    if (message->shake) {
-        CCLOG(">>>>shake>>>>>>%s", "true");
-    } else {
-        CCLOG(">>>>shake>>>>>>%s", "false");
-    }
-    if (message->light) {
-        CCLOG(">>>>light>>>>>>%s", "true");
-    } else {
-        CCLOG(">>>>light>>>>>>%s", "false");
-    }
-}
-
-void TimeNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
-
-    CCLOG(">>>onC2DXAliasCallBack>>time>>>%s", alias);
-}
-
-void TimeNotify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
-    CCLOG(">>>onC2DXTagsCallBack>>time>>>%s", "onC2DXTagsCallBack");
 }

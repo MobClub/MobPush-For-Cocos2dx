@@ -75,38 +75,20 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNot
     bool light = (bool) dictionary->objectForKey("light");
     CCNumber *channel = (CCNumber *) dictionary->objectForKey("channel");
 
-    CCLOG(">>>>style>>>>>>%d", style->getIntValue());
-    CCLOG(">>>>title>>>>>>%d", title->_string.c_str());
-    CCLOG(">>>>content>>>>>>%d", content->_string.c_str());
-    CCLOG(">>>>styleContent>>>>>>%d", styleContent->_string.c_str());
-    CCLOG(">>>>messageId>>>>>>%d", messageId->_string.c_str());
-    CCLOG(">>>>channel>>>>>>%d", channel->getIntValue());
-    if (voice) {
-        CCLOG(">>>>voice>>>>>>%s", "true");
-    } else {
-        CCLOG(">>>>voice>>>>>>%s", "false");
-    }
-    if (shake) {
-        CCLOG(">>>>shake>>>>>>%s", "true");
-    } else {
-        CCLOG(">>>>shake>>>>>>%s", "false");
-    }
-    if (light) {
-        CCLOG(">>>>light>>>>>>%s", "true");
-    } else {
-        CCLOG(">>>>light>>>>>>%s", "false");
-    }
-
     C2DXMobPushMessage *message = new C2DXMobPushMessage();
     message->style = style->getIntValue();
-    message->title = title->_string.c_str();
     message->content = content->_string.c_str();
-    message->styleContent = styleContent->_string.c_str();
     message->messageId = messageId->_string.c_str();
     message->voice = voice;
     message->shake = shake;
     message->light = light;
     message->channel = channel->getIntValue();
+    if (title != NULL) {
+        message->title = title->_string.c_str();
+    }
+    if (styleContent != NULL) {
+        message->styleContent = styleContent->_string.c_str();
+    }
     receiver->onNotifyMessageReceive(message);
 }
 
@@ -120,8 +102,34 @@ Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnNotifyMessageOpenedReceive
         (JNIEnv *env, jobject jthiz, jstring js) {
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
 
+    CCJSONConverter *ccjsonConverter = CCJSONConverter::sharedConverter();
+    const char *c = env->GetStringUTFChars(js, NULL);
+    C2DXDictionary *dictionary = ccjsonConverter->dictionaryFrom(c);
+    env->ReleaseStringUTFChars(js, c);
+    CCNumber *style = (CCNumber *) dictionary->objectForKey("style");
+    C2DXString *title = (C2DXString *) dictionary->objectForKey("title");
+    C2DXString *content = (C2DXString *) dictionary->objectForKey("content");
+    C2DXString *styleContent = (C2DXString *) dictionary->objectForKey("styleContent");
+    C2DXString *messageId = (C2DXString *) dictionary->objectForKey("messageId");
+    bool voice = (bool) dictionary->objectForKey("voice");
+    bool shake = (bool) dictionary->objectForKey("shake");
+    bool light = (bool) dictionary->objectForKey("light");
+    CCNumber *channel = (CCNumber *) dictionary->objectForKey("channel");
+
     C2DXMobPushMessage *message = new C2DXMobPushMessage();
-    message->channel = 1;
+    message->style = style->getIntValue();
+    message->content = content->_string.c_str();
+    message->messageId = messageId->_string.c_str();
+    message->voice = voice;
+    message->shake = shake;
+    message->light = light;
+    message->channel = channel->getIntValue();
+    if (title != NULL) {
+        message->title = title->_string.c_str();
+    }
+    if (styleContent != NULL) {
+        message->styleContent = styleContent->_string.c_str();
+    }
     receiver->onNotifyMessageOpenedReceive(message);
 }
 
@@ -134,7 +142,19 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnTag
         (JNIEnv *env, jobject jthiz, jobjectArray jobjectArray1, jint jint1, jint jint2) {
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
 
-//    receiver->onTagsCallback(jobjectArray1, jint1, jint2);
+    if (jobjectArray1 != NULL) {
+        C2DXArray *array = C2DXArray::create();
+
+        for(int i =0;i<env->GetArrayLength(jobjectArray1);i++){
+            jobject  jo = env->GetObjectArrayElement(jobjectArray1, i);
+
+            C2DXString *cs = C2DXString::create(env->GetStringUTFChars((jstring) jo, NULL));
+            array->addObject(cs);
+        }
+        receiver->onTagsCallback(array, jint1, jint2);
+    } else {
+        receiver->onTagsCallback(NULL, jint1, jint2);
+    }
 }
 
 /*
@@ -144,8 +164,11 @@ JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnTag
  */
 JNIEXPORT void JNICALL Java_com_mob_mobpush_cocos2dx_MobPushReceiver_nativeOnAliasCallback
         (JNIEnv *env, jobject jthiz, jstring jstring1, jint jint1, jint jint2) {
-    CCLOG(">>>>>onAlias>>>>%s", env->GetStringUTFChars(jstring1, NULL));
     C2DXAndroidMobPushReceiver *receiver = (C2DXAndroidMobPushReceiver *) getCxxObject(env, jthiz);
-    receiver->onAliasCallback(env->GetStringUTFChars(jstring1, NULL), jint1, jint2);
+    if (jstring1 == NULL) {
+        receiver->onAliasCallback(NULL, jint1, jint2);
+    } else {
+        receiver->onAliasCallback(env->GetStringUTFChars(jstring1, NULL), jint1, jint2);
+    }
 }
 

@@ -11,6 +11,8 @@
 #include "cocos2d.h"
 #include "jni.h"
 #include "C2DXMobPushCallback.h"
+#include "C2DXMobPushLocalNotification.hpp"
+#include "C2DXMobPushCustomNotification.hpp"
 
 USING_NS_CC;
 
@@ -24,16 +26,15 @@ namespace mob
             static void initMobPush(const char* appkey, const char* appScrect);
             static void getRegistrationId(C2DXGetRegistrationIdResultEvent callback);
             static void addPushReceiver();
-            static void removePushReceiver();
-            static void addTags(std::list<std::string> tags);
+            static void addTags(C2DXArray *tags);
+            static void getTags();
+            static void deleteTags(C2DXArray *tags);
+            static void clearAllTags();
             static void setAlias(const char* alias);
-            static void addLocalNotification(const char* text, int space);
-            static void setCustomNotification(long when, const char *tickerText, const char *title,
-                                              const char *content, int flag, int style,
-                                              const char *styleContent,
-                                              std::list<std::string> inboxStyleContent,
-                                              const char *smallIcon, boolean voice, boolean shake,
-                                              boolean light);
+            static void getAlias();
+            static void clearAllAlias();
+            static void addLocalNotification(C2DXMobPushLocalNotification *notification);
+            static void setCustomNotification(C2DXMobPushCustomNotification *notification);
             static void req(int type, const char* text, int space, const char* extras, C2DXReqResultEvent reqResultEvent);
         };
 

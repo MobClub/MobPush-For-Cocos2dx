@@ -117,6 +117,30 @@ void TimeNotify::getSendReqResult(bool result) {
 }
 void TimeNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
     CCLOG(">>>onC2DXMessageCallBack>>>TimeNotify>>%s", "onC2DXMessageCallBack");
+
+    CCLOG(">>>>action>>>>>>%d", action);
+    int style = message->style;
+    CCLOG(">>>>style>>>>>>%d", style);
+//    CCLOG(">>>>title>>>>>>%d", title->_string.c_str());
+    CCLOG(">>>>content>>>>>>%s", message->content._string.c_str());
+//    CCLOG(">>>>styleContent>>>>>>%d", styleContent->_string.c_str());
+    CCLOG(">>>>messageId>>>>>>%s", message->messageId._string.c_str());
+    CCLOG(">>>>channel>>>>>>%s", message->channel);
+    if (message->voice) {
+        CCLOG(">>>>voice>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>voice>>>>>>%s", "false");
+    }
+    if (message->shake) {
+        CCLOG(">>>>shake>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>shake>>>>>>%s", "false");
+    }
+    if (message->light) {
+        CCLOG(">>>>light>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>light>>>>>>%s", "false");
+    }
 }
 
 void TimeNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
@@ -124,7 +148,7 @@ void TimeNotify::onC2DXAliasCallBack(const char *alias, int operation, int error
     CCLOG(">>>onC2DXAliasCallBack>>time>>>%s", alias);
 }
 
-void TimeNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
+void TimeNotify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
     CCLOG(">>>onC2DXTagsCallBack>>time>>>%s", "onC2DXTagsCallBack");
 
 }

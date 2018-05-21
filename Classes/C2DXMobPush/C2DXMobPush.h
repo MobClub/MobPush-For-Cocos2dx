@@ -9,6 +9,8 @@
 
 #include "cocos2d.h"
 #include "C2DXMobPushCallback.h"
+#include "C2DXMobPushLocalNotification.hpp"
+#include "C2DXMobPushCustomNotification.hpp"
 
 USING_NS_CC;
 
@@ -17,6 +19,8 @@ namespace mob {
         class C2DXMobPush {
         public:
 
+            static void setAPNsForProduction(bool isPro);
+            
             static void initMobPush(const char *appkey, const char *appScrect);
 
             /**
@@ -28,8 +32,6 @@ namespace mob {
 
             /**
              *  设置推送监听
-             *
-             *  @param pushReceiver 设置推送监听
              */
             static void addPushReceiver();
 
@@ -55,33 +57,22 @@ namespace mob {
              *
              * @param tags 标签集合
              */
-            static void addTags(std::list<std::string> tags);
+            static void addTags(C2DXArray *tags);
 
             static void getTags();
 
-            static void deleteTags(std::list<std::string> tags);
+            static void deleteTags(C2DXArray *tags);
 
             static void clearAllTags();
-
-            static void setC2DXMessageCallBack(C2DXMessageCallBack messageCallBack);
-
-            static void setC2DXAliasCallBack(C2DXAliasCallBack aliasCallBack);
-
-            static void setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack);
 
             /**
              * 添加本地通知
              *
              * @param notification 本地通知对象
              */
-            static void addLocalNotification(const char *text, int space);
-
-            static void setCustomNotification(long when, const char *tickerText, const char *title,
-                                              const char *content, int flag, int style,
-                                              const char *styleContent,
-                                              std::list<std::string> inboxStyleContent,
-                                              const char *smallIcon, boolean voice, boolean shake,
-                                              boolean light);
+            static void addLocalNotification(mob::mobpush::C2DXMobPushLocalNotification *noti);
+            
+            static void setCustomNotification(mob::mobpush::C2DXMobPushCustomNotification *noti);
 
             /**
 			 * 模拟发送推送消息
@@ -93,6 +84,12 @@ namespace mob {
 			 */
             static void req(int type, const char *text, int space, const char *extras,
                             C2DXReqResultEvent reqResultEvent);
+            
+            static void setC2DXMessageCallBack(C2DXMessageCallBack messageCallBack);
+            
+            static void setC2DXAliasCallBack(C2DXAliasCallBack aliasCallBack);
+            
+            static void setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack);
 
         };
 

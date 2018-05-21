@@ -84,7 +84,10 @@ bool LocalNotify::init() {
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
             C2DXMobPush::setAlias("xiaoxinLocal");
-            C2DXMobPush::addLocalNotification(mEditBox->getText(), 1);
+            C2DXMobPushLocalNotification *notification = new C2DXMobPushLocalNotification();
+            notification->content = mEditBox->getText();
+            notification->timeStamp = 0;
+            C2DXMobPush::addLocalNotification(notification);
         }
     });
 
@@ -119,6 +122,29 @@ void LocalNotify::getSendReqResult(bool result) {
 
 void LocalNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
     CCLOG(">>>onC2DXMessageCallBack>>>LocalNotify>>%s", "onC2DXMessageCallBack");
+    CCLOG(">>>>action>>>>>>%d", action);
+    int style = message->style;
+    CCLOG(">>>>style>>>>>>%d", style);
+//    CCLOG(">>>>title>>>>>>%d", title->_string.c_str());
+    CCLOG(">>>>content>>>>>>%s", message->content._string.c_str());
+//    CCLOG(">>>>styleContent>>>>>>%d", styleContent->_string.c_str());
+    CCLOG(">>>>messageId>>>>>>%s", message->messageId._string.c_str());
+    CCLOG(">>>>channel>>>>>>%d", message->channel);
+    if (message->voice) {
+        CCLOG(">>>>voice>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>voice>>>>>>%s", "false");
+    }
+    if (message->shake) {
+        CCLOG(">>>>shake>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>shake>>>>>>%s", "false");
+    }
+    if (message->light) {
+        CCLOG(">>>>light>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>light>>>>>>%s", "false");
+    }
 }
 
 void LocalNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
@@ -126,7 +152,7 @@ void LocalNotify::onC2DXAliasCallBack(const char *alias, int operation, int erro
     CCLOG(">>>onC2DXAliasCallBack>>local>>>%s", alias);
 }
 
-void LocalNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
+void LocalNotify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
     CCLOG(">>>onC2DXTagsCallBack>>local>>>%s", "onC2DXTagsCallBack");
 
 }

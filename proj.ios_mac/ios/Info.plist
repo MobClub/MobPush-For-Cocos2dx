@@ -10,8 +10,6 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string>Icon-57.png</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.mob.mobpush</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-29</string>
@@ -48,6 +46,8 @@
 		<string>Icon-152</string>
 		<string>Icon-180</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -55,7 +55,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string></string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -64,6 +64,10 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
@@ -71,5 +75,14 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
+    <key>MOBAppKey</key>
+    <string>moba6b6c6d6</string>
+    <key>MOBAppSecret</key>
+    <string>b89d2427a3bc7ad1aea1e1e8c1d36bf3</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

@@ -83,7 +83,6 @@ bool Notify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-            C2DXMobPush::setAlias("xiaoxinnotify");
             C2DXMobPush::req(1, mEditBox->getText(), 0, NULL, &Notify::getSendReqResult);
         }
     });
@@ -120,6 +119,30 @@ void Notify::getSendReqResult(bool result) {
 }
 void Notify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
     CCLOG(">>>onC2DXMessageCallBack>>>Notify>>%s", "onC2DXMessageCallBack");
+
+    CCLOG(">>>>action>>>>>>%d", action);
+    int style = message->style;
+    CCLOG(">>>>style>>>>>>%d", style);
+//    CCLOG(">>>>title>>>>>>%d", title->_string.c_str());
+    CCLOG(">>>>content>>>>>>%s", message->content._string.c_str());
+//    CCLOG(">>>>styleContent>>>>>>%d", styleContent->_string.c_str());
+    CCLOG(">>>>messageId>>>>>>%s", message->messageId._string.c_str());
+    CCLOG(">>>>channel>>>>>>%d", message->channel);
+    if (message->voice) {
+        CCLOG(">>>>voice>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>voice>>>>>>%s", "false");
+    }
+    if (message->shake) {
+        CCLOG(">>>>shake>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>shake>>>>>>%s", "false");
+    }
+    if (message->light) {
+        CCLOG(">>>>light>>>>>>%s", "true");
+    } else {
+        CCLOG(">>>>light>>>>>>%s", "false");
+    }
 }
 
 void Notify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
@@ -127,7 +150,7 @@ void Notify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode
     CCLOG(">>>onC2DXAliasCallBack>>Notify>>>%s", alias);
 }
 
-void Notify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
+void Notify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
     CCLOG(">>>onC2DXTagsCallBack>>>>Notify>%s", "onC2DXTagsCallBack");
 
 }

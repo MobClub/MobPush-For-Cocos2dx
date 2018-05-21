@@ -26,7 +26,7 @@ public:
     void onCustomMessageReceive(C2DXMobPushMessage *mobPushCustomMessage);
     void onNotifyMessageReceive(C2DXMobPushMessage *mobPushNotifyMessage);
     void onNotifyMessageOpenedReceive(C2DXMobPushMessage *mobPushNotifyMessage);
-    void onTagsCallback(std::list<std::string>& tags, int i, int j1);
+    void onTagsCallback(C2DXArray *tags, int i, int j1);
     void onAliasCallback(const char* alias, int i, int j1);
 };
 

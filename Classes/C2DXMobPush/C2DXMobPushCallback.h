@@ -37,7 +37,8 @@ namespace mob {
         /**
          <#Description#>
 
-         @param C2DXAlias <#C2DXAlias description#>
+         @param C2DXAlias <#C2DXAlias description#>0 获取， 1 设置， 2 删除
+         0 成功，其他失败
          */
         typedef void(*C2DXAliasCallBack) (const char *alias, int operation, int errorCode);
 
@@ -46,7 +47,7 @@ namespace mob {
 
          @param onTags <#onTags description#>
          */
-        typedef void(*C2DXTagsCallBack) (std::list<std::string> tags, int operation, int errorCode);
+        typedef void(*C2DXTagsCallBack) (C2DXArray *tags, int operation, int errorCode);
     }
 }
 

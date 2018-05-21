@@ -87,8 +87,107 @@ bool AppNotify::init() {
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
 //            C2DXMobPush::getRegistrationId(&AppNotify::getId);
-            C2DXMobPush::setAlias("xiaoxin");
             C2DXMobPush::req(2, mEditBox->getText(), 0, NULL, &AppNotify::getSendReqResult);
+        }
+    });
+
+    this->addChild(button);
+
+    button = Button::create();
+    button->setTitleText("设置别名");
+    button->setTitleFontSize(10);
+    button->setPosition(Vec2(visibleSize.width / 8  + origin.x,
+                             origin.y + visibleSize.height -
+                             button->getContentSize().height * 11));
+    button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            C2DXMobPush::setAlias("xiaoxin");
+        }
+    });
+
+    this->addChild(button);
+
+    button = Button::create();
+    button->setTitleText("获取别名");
+    button->setTitleFontSize(10);
+    button->setPosition(Vec2(visibleSize.width /8 *2+ origin.x,
+                             origin.y + visibleSize.height -
+                             button->getContentSize().height * 11));
+    button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            C2DXMobPush::getAlias();
+        }
+    });
+    this->addChild(button);
+
+    button = Button::create();
+    button->setTitleText("设置标签");
+    button->setTitleFontSize(10);
+    button->setPosition(Vec2(visibleSize.width / 8 *3 + origin.x,
+                             origin.y + visibleSize.height -
+                             button->getContentSize().height * 11));
+    button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            C2DXArray *tags = C2DXArray::create();
+            tags->addObject(C2DXString::create("tagxiaoxin"));
+            C2DXMobPush::addTags(tags);
+        }
+    });
+    this->addChild(button);
+
+    button = Button::create();
+    button->setTitleText("获取标签");
+    button->setTitleFontSize(10);
+    button->setPosition(Vec2(visibleSize.width / 8 *4+ origin.x,
+                             origin.y + visibleSize.height -
+                             button->getContentSize().height * 11));
+    button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
+        if (type == ui::Widget::TouchEventType::ENDED) {
+//            C2DXMobPush::set
+        }
+    });
+
+    this->addChild(button);
+
+    button = Button::create();
+    button->setTitleText("删除标签");
+    button->setTitleFontSize(10);
+    button->setPosition(Vec2(visibleSize.width / 8 *5 + origin.x,
+                             origin.y + visibleSize.height -
+                             button->getContentSize().height * 11));
+    button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
+        if (type == ui::Widget::TouchEventType::ENDED) {
+//            C2DXMobPush::set
+        }
+    });
+
+    this->addChild(button);
+
+    button = Button::create();
+    button->setTitleText("删除别名");
+    button->setTitleFontSize(10);
+    button->setPosition(Vec2(visibleSize.width / 8*6 + origin.x,
+                             origin.y + visibleSize.height -
+                             button->getContentSize().height * 11));
+    button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            C2DXMobPush::clearAllAlias();
+        }
+    });
+
+    this->addChild(button);
+
+    button = Button::create();
+    button->setTitleText("设置自定义通知栏");
+    button->setTitleFontSize(10);
+    button->setPosition(Vec2(visibleSize.width / 8*7 + origin.x,
+                             origin.y + visibleSize.height -
+                             button->getContentSize().height * 11));
+    button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
+        if (type == ui::Widget::TouchEventType::ENDED) {
+            C2DXMobPushCustomNotification *customNotification = new C2DXMobPushCustomNotification();
+
+            C2DXMobPush::setCustomNotification(customNotification);
         }
     });
 
@@ -124,11 +223,15 @@ void AppNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
 }
 
 void AppNotify::onC2DXAliasCallBack(const char *alias, int operation, int errorCode) {
-
     CCLOG(">>>onC2DXAliasCallBack>>>>>%s", alias);
+    CCLOG(">>>onC2DXAliasCallBack>>>>>%d", operation);
+    CCLOG(">>>onC2DXAliasCallBack>>>>>%d", errorCode);
 }
 
-void AppNotify::onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode) {
-    CCLOG(">>>onC2DXTagsCallBack>>>>>%s", "onC2DXTagsCallBack");
-
+void AppNotify::onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode) {
+    C2DXObject *ob = tags->getLastObject();
+    C2DXString *xc = (__String *) ob;
+    CCLOG(">>>onC2DXTagsCallBack>>>>>%s",xc->_string.c_str());
+    CCLOG(">>>onC2DXTagsCallBack>>>>>%d", operation);
+    CCLOG(">>>onC2DXTagsCallBack>>>>>%d", errorCode);
 }

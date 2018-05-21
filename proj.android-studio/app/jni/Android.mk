@@ -20,6 +20,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../../Classes/TimeNotifyScene.cpp \
                    ../../../Classes/LocalNotifyScene.cpp \
                    ../../../Classes/C2DXMobPush/C2DXMobPush.cpp \
+                   ../../../Classes/C2DXMobPush/C2DXMobPushCustomNotification.cpp \
+                   ../../../Classes/C2DXMobPush/C2DXMobPushLocalNotification.cpp \
                    ../../../Classes/C2DXMobPush/Android/C2DXAndroidMobPush.cpp \
                    ../../../Classes/C2DXMobPush/Android/C2DXAndroidCallback.cpp \
                    ../../../Classes/C2DXMobPush/Android/C2DXAndroidSReqCallback.cpp \
@@ -29,6 +31,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../../Classes/C2DXMobPush/Android/com_mob_mobpush_cocos2dx_MobPushReceiver.cpp \
                    ../../../Classes/C2DXMobPush/Android/JSON/CCJSONConverter.cpp \
                    ../../../Classes/C2DXMobPush/Android/JSON/cJSON/cJSON.c
+
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
                     $(LOCAL_PATH)/../../../Classes/C2DXMobPush \

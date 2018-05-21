@@ -6,6 +6,8 @@
 #include <C2DXMobPushMessage.h>
 #include "cocos2d.h"
 
+#import "C2DXMobPushMessage.h"
+
 using namespace cocos2d;
 using namespace cocos2d::ui;
 
@@ -31,7 +33,7 @@ public:
 
     static void onC2DXAliasCallBack(const char *alias, int operation, int errorCode);
 
-    static void onC2DXTagsCallBack(std::list<std::string> tags, int operation, int errorCode);
+    static void onC2DXTagsCallBack(C2DXArray *tags, int operation, int errorCode);
 private:
     EditBox* mEditBox;
 };

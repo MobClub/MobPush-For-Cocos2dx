@@ -17,6 +17,19 @@
 
 using namespace mob::mobpush;
 
+void C2DXMobPush::setAPNsForProduction(bool isPro)
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::setAPNsForProduction(isPro);
+#endif
+}
+
 void C2DXMobPush::initMobPush(const char *appkey, const char *appScrect) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
@@ -26,7 +39,7 @@ void C2DXMobPush::initMobPush(const char *appkey, const char *appScrect) {
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::initMobPush(appkey,appScrect);
+//    C2DXiOSMobPush::initMobPush(appkey,appScrect);
 #endif
 }
 
@@ -39,7 +52,7 @@ void C2DXMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::getRegistrationId(scene, callback);
+    C2DXiOSMobPush::getRegistrationId(callback);
 #endif
 
 }
@@ -53,68 +66,129 @@ void C2DXMobPush::addPushReceiver() {
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::addPushReceiver(pushReceiver);
-#endif
-}
-
-void C2DXMobPush::addTags(std::list<std::string> tags) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
-    //Andorid
-    C2DXAndroidMobPush::addTags(tags);
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-    //iOS
-    C2DXiOSMobPush::addTags(tags);
+    C2DXiOSMobPush::addPushReceiver();
 #endif
 }
 
 void C2DXMobPush::setAlias(const char *alias) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
+    
     //Andorid
     C2DXAndroidMobPush::setAlias(alias);
-
+    
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
+    
     //iOS
-    C2DXiOSMobPush::setAlias(tags);
+    C2DXiOSMobPush::setAlias(alias);
 #endif
 }
 
-void C2DXMobPush::addLocalNotification(const char *text, int space) {
+void C2DXMobPush::getAlias()
+{
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
+    
     //Andorid
-    C2DXAndroidMobPush::addLocalNotification(text, space);
-
+    C2DXAndroidMobPush::getAlias();
+    
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
+    
     //iOS
-    C2DXiOSMobPush::sendLocalNotification(tags);
+    C2DXiOSMobPush::getAlias();
 #endif
 }
 
-void C2DXMobPush::setCustomNotification(long when, const char *tickerText, const char *title,
-                                        const char *content, int flag, int style,
-                                        const char *styleContent,
-                                        std::list<std::string> inboxStyleContent,
-                                        const char *smallIcon, boolean voice, boolean shake,
-                                        boolean light) {
+void C2DXMobPush::clearAllAlias() {
+    
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::clearAllAlias();
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::clearAllAlias();
+#endif
+}
+
+void C2DXMobPush::addTags(C2DXArray *tags) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::addTags(tags);
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::addTags(tags);
+#endif
+}
+
+void C2DXMobPush::getTags()
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::getTags();
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::getTags();
+#endif
+}
+
+void C2DXMobPush::deleteTags(C2DXArray *tags)
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::deleteTags(tags);
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::deleteTags(tags);
+#endif
+}
+
+void C2DXMobPush::clearAllTags()
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    //Andorid
+    C2DXAndroidMobPush::clearAllTags();
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    //iOS
+    C2DXiOSMobPush::clearAllTags();
+#endif
+}
+
+void C2DXMobPush::addLocalNotification(mob::mobpush::C2DXMobPushLocalNotification *noti) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
     //Andorid
-    C2DXAndroidMobPush::setCustomNotification(when, tickerText, title, content, flag, style,
-                                              styleContent, inboxStyleContent, smallIcon, voice,
-                                              shake, light);
+    C2DXAndroidMobPush::addLocalNotification(noti);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-    C2DXiOSMobPush::setCustomNotification(when, tickerText, title, content, flag, style,
-                                              styleContent, inboxStyleContent, smallIcon, voice,
-                                              shake, light);
+    C2DXiOSMobPush::addLocalNotification(noti);
+#endif
+}
+
+void C2DXMobPush::setCustomNotification(mob::mobpush::C2DXMobPushCustomNotification *noti) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+//    C2DXAndroidMobPush::setCustomNotification(noti);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+    C2DXiOSMobPush::setCustomNotification(noti);
 #endif
 }
 
@@ -148,7 +222,7 @@ void C2DXMobPush::setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack){
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
     //Andorid
-//    C2DXAndroidMobPushReceiver::tagsCallBack = tagsCallBack;
+    C2DXAndroidMobPushReceiver::tagsCallBack = tagsCallBack;
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 

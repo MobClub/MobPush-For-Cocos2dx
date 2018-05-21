@@ -27,12 +27,11 @@ void C2DXAndroidMobPushReceiver::onNotifyMessageOpenedReceive(C2DXMobPushMessage
 }
 
 void
-C2DXAndroidMobPushReceiver::onTagsCallback(std::list<std::string>& tags, int i, int j1) {
+C2DXAndroidMobPushReceiver::onTagsCallback(C2DXArray *tags, int i, int j1) {
     tagsCallBack(tags, i, j1);
 }
 
 void C2DXAndroidMobPushReceiver::onAliasCallback(const char* alias, int i, int j1) {
-    CCLOG(">>>>>onAlias>>333>>%s", alias);
     aliasCallBack(alias, i, j1);
 }
 

@@ -1,6 +1,7 @@
 package com.mob.mobpush.cocos2dx;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.mob.pushsdk.MobPushCustomMessage;
 import com.mob.pushsdk.MobPushNotifyMessage;
@@ -52,13 +53,20 @@ public class MobPushReceiver implements com.mob.pushsdk.MobPushReceiver {
     @Override
     public void onNotifyMessageOpenedReceive(Context context, MobPushNotifyMessage mobPushNotifyMessage) {
         System.out.println(">>>>>onNotifyMessageOpenedReceive>>>>>"+mobPushNotifyMessage.toString());
-        System.out.println(">>>>>onNotifyMessageOpenedReceive>>>json>>"+hashon.fromObject(mobPushNotifyMessage));
-        nativeOnNotifyMessageOpenedReceive(hashon.fromObject(mobPushNotifyMessage));
+        HashMap<String, Object> map = hashon.fromJson(hashon.fromObject(mobPushNotifyMessage));
+        if(map.containsKey("timestamp")){
+            long timestamp = (long) map.get("timestamp");
+            map.put("timestamp", timestamp+"");
+        }
+        String json = hashon.fromHashMap(map);
+        System.out.println(">>>>>onNotifyMessageOpenedReceive>>>json>>"+json);
+        nativeOnNotifyMessageOpenedReceive(json);
     }
 
     @Override
     public void onTagsCallback(Context context, String[] strings, int i, int i1) {
-//        nativeOnTagsCallback(strings, i, i1);
+        System.out.println(">>>>>>>>>>>>>onTagsCallback>>>>>>>>>>>"+strings[0]);
+        nativeOnTagsCallback(strings, i, i1);
     }
 
     @Override

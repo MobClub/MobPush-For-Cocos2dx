@@ -1,6 +1,8 @@
 //
 // Created by yyfu on 2018/5/14.
 //
+#include <C2DXMobPush/C2DXMobPushCustomNotification.hpp>
+#include <C2DXMobPush/C2DXMobPushLocalNotification.hpp>
 #include "C2DXAndroidMobPush.h"
 #include "cocos2d.h"
 #include "C2DXMobPushCallback.h"
@@ -60,24 +62,24 @@ void C2DXAndroidMobPush::addPushReceiver() {
     env->CallStaticVoidMethod(jm.classID, jm.methodID, jReceiver);
 }
 
-void C2DXAndroidMobPush::removePushReceiver() {
-    JNIEnv *env = JniHelper::getEnv();
-    JniMethodInfo jm;
-    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "removePushReceiver",
-                                   "(Lcom/mob/pushsdk/MobPushReceiver;)V");
-
-    JniMethodInfo jmJavaMobPushReceiverImpl;
-    JniHelper::getStaticMethodInfo(jmJavaMobPushReceiverImpl,
-                                   "com/mob/mobpush/cocos2dx/MobPushReceiver", "newInstance",
-                                   "()Lcom/mob/pushsdk/MobPushReceiver;");
-    jobject jReceiver = env->CallStaticObjectMethod(jmJavaMobPushReceiverImpl.classID,
-                                                    jmJavaMobPushReceiverImpl.methodID);
-
-//    C2DXAndroidMobPushReceiver *c2DXAndroidMobPushReceiver = (C2DXAndroidMobPushReceiver *) getCxxObject(
-//            env, jReceiver);
-
-    env->CallStaticVoidMethod(jm.classID, jm.methodID, jReceiver);
-}
+//void C2DXAndroidMobPush::removePushReceiver() {
+//    JNIEnv *env = JniHelper::getEnv();
+//    JniMethodInfo jm;
+//    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "removePushReceiver",
+//                                   "(Lcom/mob/pushsdk/MobPushReceiver;)V");
+//
+//    JniMethodInfo jmJavaMobPushReceiverImpl;
+//    JniHelper::getStaticMethodInfo(jmJavaMobPushReceiverImpl,
+//                                   "com/mob/mobpush/cocos2dx/MobPushReceiver", "newInstance",
+//                                   "()Lcom/mob/pushsdk/MobPushReceiver;");
+//    jobject jReceiver = env->CallStaticObjectMethod(jmJavaMobPushReceiverImpl.classID,
+//                                                    jmJavaMobPushReceiverImpl.methodID);
+//
+////    C2DXAndroidMobPushReceiver *c2DXAndroidMobPushReceiver = (C2DXAndroidMobPushReceiver *) getCxxObject(
+////            env, jReceiver);
+//
+//    env->CallStaticVoidMethod(jm.classID, jm.methodID, jReceiver);
+//}
 
 void C2DXAndroidMobPush::setAlias(const char *alias) {
     JNIEnv *env = JniHelper::getEnv();
@@ -87,35 +89,87 @@ void C2DXAndroidMobPush::setAlias(const char *alias) {
     env->CallStaticVoidMethod(jm.classID, jm.methodID, env->NewStringUTF(alias));
 }
 
-void C2DXAndroidMobPush::addTags(std::list<std::string> tags) {
+void C2DXAndroidMobPush::getAlias() {
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "getAlias",
+                                   "()V");
+    env->CallStaticVoidMethod(jm.classID, jm.methodID);
+}
+
+void C2DXAndroidMobPush::clearAllAlias() {
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "deleteAlias",
+                                   "()V");
+    env->CallStaticVoidMethod(jm.classID, jm.methodID);
+}
+
+void C2DXAndroidMobPush::addTags(C2DXArray *tags) {
     JNIEnv *env = JniHelper::getEnv();
     JniMethodInfo jm;
     JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "addTags",
                                    "([Ljava/lang/String;)V");
-    jobjectArray joa = env->NewObjectArray(tags.size(), env->FindClass("java/lang/String"), NULL);
 
+    jobjectArray joa = env->NewObjectArray(tags->count(), env->FindClass("java/lang/String"), NULL);
+
+    C2DXObject *obj = NULL;
     int i = 0;
-    for (std::list<std::string>::iterator it = tags.begin(); it != tags.end() ; it++, i++) {
-        jstring jString = env->NewStringUTF(it->c_str());
-        env->SetObjectArrayElement(joa, i, jString);
-    }
+    CCARRAY_FOREACH(tags, obj) {
+            C2DXString *s = (__String *) obj;
+            env->SetObjectArrayElement(joa, i, env->NewStringUTF(s->_string.c_str()));
+            i++;
+        }
+
     env->CallStaticVoidMethod(jm.classID, jm.methodID, joa);
 }
 
-void C2DXAndroidMobPush::addLocalNotification(const char *text, int space) {
+void C2DXAndroidMobPush::getTags(){
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "getTags",
+                                   "()V");
+    env->CallStaticVoidMethod(jm.classID, jm.methodID);
+}
+
+void C2DXAndroidMobPush::deleteTags(C2DXArray *tags){
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "deleteTags",
+                                   "([Ljava/lang/String;)V");
+
+    jobjectArray joa = env->NewObjectArray(tags->count(), env->FindClass("java/lang/String"), NULL);
+
+    C2DXObject *obj = NULL;
+    int i = 0;
+    CCARRAY_FOREACH(tags, obj) {
+            C2DXString *s = (__String *) obj;
+            env->SetObjectArrayElement(joa, i, env->NewStringUTF(s->_string.c_str()));
+            i++;
+        }
+
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, joa);
+}
+
+void C2DXAndroidMobPush::clearAllTags(){
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "cleanTags",
+                                   "()V");
+
+    env->CallStaticVoidMethod(jm.classID, jm.methodID);
+}
+
+void C2DXAndroidMobPush::addLocalNotification(C2DXMobPushLocalNotification *notification) {
     JNIEnv *env = JniHelper::getEnv();
     JniMethodInfo jm;
     JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/SendPushHelper", "sendLocalNotify",
                                    "(Ljava/lang/String;I)V");
-    env->CallStaticVoidMethod(jm.classID, jm.methodID, env->NewStringUTF(text), space);
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, env->NewStringUTF(notification->content),
+                              notification->timeStamp);
 }
 
-void C2DXAndroidMobPush::setCustomNotification(long when, const char *tickerText, const char *title,
-                                               const char *content, int flag, int style,
-                                               const char *styleContent,
-                                               std::list<std::string> inboxStyleContent,
-                                               const char *smallIcon, boolean voice, boolean shake,
-                                               boolean light) {
+void C2DXAndroidMobPush::setCustomNotification(C2DXMobPushCustomNotification *notification) {
 //    JNIEnv *env = JniHelper::getEnv();
 //    JniMethodInfo jm;
 //    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/CustomNotification", "newInstance",

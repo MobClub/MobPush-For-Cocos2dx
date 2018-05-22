@@ -61,11 +61,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
         
         //iOS
-    C2DXMobPush::setAPNsForProduction(false);
+        C2DXMobPush::setAPNsForProduction(false);
     
-    C2DXMobPushCustomNotification *noti = new C2DXMobPushCustomNotification();
-    noti->type = (AuthorizationType) (AuthorizationTypeBadge | AuthorizationTypeAlert | AuthorizationTypeSound);
-    C2DXMobPush::setCustomNotification(noti);
+        C2DXMobPushCustomNotification *noti = new C2DXMobPushCustomNotification();
+        noti->type = (AuthorizationType) (AuthorizationTypeBadge | AuthorizationTypeAlert | AuthorizationTypeSound);
+        C2DXMobPush::setCustomNotification(noti);
     
     #endif
     

@@ -83,11 +83,7 @@ bool Notify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-            C2DXMobPushCustomNotification *noti = new C2DXMobPushCustomNotification();
-            noti->voice = 2;
-            noti->shake = 2;
-            noti->light = 2;
-            C2DXMobPush::setCustomNotification(noti);
+        
             C2DXMobPush::req(1, mEditBox->getText(), 0, NULL, &Notify::getSendReqResult);
         }
     });

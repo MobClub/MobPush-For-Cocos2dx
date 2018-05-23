@@ -10,3 +10,5 @@
 /proj.android-studio/app/*.iml
 /cocos2d/cocos/platform/android/libcocos2dx/build
 /cocos2d/cocos/platform/android/libcocos2dx/*.iml
+/sh.exe.stackdump
+/bash.exe.stackdump

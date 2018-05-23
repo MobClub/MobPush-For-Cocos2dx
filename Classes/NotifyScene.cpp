@@ -83,6 +83,8 @@ bool Notify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
+			
+			
             C2DXMobPush::req(1, mEditBox->getText(), 0, NULL, &Notify::getSendReqResult);
         }
     });

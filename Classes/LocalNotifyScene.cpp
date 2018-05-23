@@ -32,6 +32,8 @@ bool LocalNotify::init() {
         return false;
     }
 
+    C2DXMobPush::setC2DXMessageCallBack(&LocalNotify::onC2DXMessageCallBack);
+    
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -99,6 +101,11 @@ bool LocalNotify::init() {
 
 void LocalNotify::menuCloseCallback(Ref *pSender) {
     Director::getInstance()->popScene();
+}
+
+void LocalNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message)
+{
+    CCLOG(">>>onC2DXMessageCallBack>>>>>");
 }
 
 void LocalNotify::getSendReqResult(bool result) {

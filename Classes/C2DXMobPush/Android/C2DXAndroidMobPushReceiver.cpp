@@ -16,14 +16,14 @@ C2DXAndroidMobPushReceiver::C2DXAndroidMobPushReceiver() {
 }
 
 void C2DXAndroidMobPushReceiver::onCustomMessageReceive(C2DXMobPushMessage* mobPushCustomMessage) {
-    messageCallBack(1,mobPushCustomMessage);
+    messageCallBack(0,mobPushCustomMessage);
 }
 
 void C2DXAndroidMobPushReceiver::onNotifyMessageReceive(C2DXMobPushMessage* mobPushNotifyMessage) {
     messageCallBack(1,mobPushNotifyMessage);
 }
 void C2DXAndroidMobPushReceiver::onNotifyMessageOpenedReceive(C2DXMobPushMessage* mobPushNotifyMessage) {
-    messageCallBack(1,mobPushNotifyMessage);
+    messageCallBack(2,mobPushNotifyMessage);
 }
 
 void

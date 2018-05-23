@@ -31,8 +31,6 @@ bool LocalNotify::init() {
     if (!Scene::init()) {
         return false;
     }
-
-    C2DXMobPush::setC2DXMessageCallBack(&LocalNotify::onC2DXMessageCallBack);
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();

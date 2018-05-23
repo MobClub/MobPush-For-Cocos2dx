@@ -101,17 +101,17 @@ namespace mob {
              */
             static void setCustomNotification(mob::mobpush::C2DXMobPushCustomNotification *noti);
             
-            /**
-             模拟发送推送消息
-             
-             @param type 消息类型：1、通知测试；2、内推测试；3、定时
-             @param text 模拟发送内容，500字节以内，UTF-8
-             @param space 仅对定时消息有效，单位分钟，默认1分钟
-             @param extras 附加字段
-             @param reqResultEvent 回调
-             */
-            static void req(int type, const char *text, int space, const char *extras,
-                            C2DXReqResultEvent reqResultEvent);
+/**
+ 模拟发送推送消息
+ 
+ @param type 消息类型：1、通知测试；2、内推测试；3、定时
+ @param text 模拟发送内容，500字节以内，UTF-8
+ @param space 仅对定时消息有效，单位分钟，默认1分钟
+ @param extras 附加字段
+ @param reqResultEvent 回调
+ */
+static void req(int type, const char *text, int space, const char *extras,
+                C2DXReqResultEvent reqResultEvent);
             
             /**
              收到消息回调 （需要先调用 addPushReceiver）
@@ -135,7 +135,7 @@ namespace mob {
             static void setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack);
             
             /**
-             iOS 收到消息回调
+             iOS 收到消息回调 （开发者忽略）
 
              @param action (action： 0自定义消息, 1收到消息, 2点击消息)
              @param message 消息实体

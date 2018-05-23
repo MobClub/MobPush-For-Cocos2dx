@@ -27,8 +27,6 @@ public:
     static void getId(const char* c);
     static void getSendReqResult(bool result);
     
-    static void onC2DXMessageCallBack(int action, C2DXMobPushMessage *message);
-
 private:
     EditBox* mEditBox;
 };

@@ -86,7 +86,6 @@ bool LocalNotify::init() {
                              button->getContentSize().height * 7));
     button->addTouchEventListener([&](Ref *sender, Widget::TouchEventType type) {
         if (type == ui::Widget::TouchEventType::ENDED) {
-            C2DXMobPush::setAlias("xiaoxinLocal");
             C2DXMobPushLocalNotification *notification = new C2DXMobPushLocalNotification();
             notification->content = mEditBox->getText();
             notification->timeStamp = 0;
@@ -101,11 +100,6 @@ bool LocalNotify::init() {
 
 void LocalNotify::menuCloseCallback(Ref *pSender) {
     Director::getInstance()->popScene();
-}
-
-void LocalNotify::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message)
-{
-    CCLOG(">>>onC2DXMessageCallBack>>>>>");
 }
 
 void LocalNotify::getSendReqResult(bool result) {

@@ -18,15 +18,12 @@ public class MobPushReceiver implements com.mob.pushsdk.MobPushReceiver {
     private Hashon hashon;
 
     public MobPushReceiver() {
-        System.out.println(">>>>>MobPushReceiver>>>>>");
-
         hashon = new Hashon();
         this.cxxObject = nativeOnCreateCxxObject();
     }
 
     @Override
     public void onCustomMessageReceive(Context context, MobPushCustomMessage mobPushCustomMessage) {
-        System.out.println(">>>>>onNotifyMessageReceive>>>>>"+mobPushCustomMessage.toString());
         HashMap<String, Object> map = hashon.fromJson(hashon.fromObject(mobPushCustomMessage));
         if(map.containsKey("timestamp")){
             long timestamp = (long) map.get("timestamp");
@@ -39,7 +36,6 @@ public class MobPushReceiver implements com.mob.pushsdk.MobPushReceiver {
 
     @Override
     public void onNotifyMessageReceive(Context context, MobPushNotifyMessage mobPushNotifyMessage) {
-        System.out.println(">>>>>onNotifyMessageReceive>>>>>"+mobPushNotifyMessage.toString());
         HashMap<String, Object> map = hashon.fromJson(hashon.fromObject(mobPushNotifyMessage));
         if(map.containsKey("timestamp")){
             long timestamp = (long) map.get("timestamp");
@@ -52,7 +48,6 @@ public class MobPushReceiver implements com.mob.pushsdk.MobPushReceiver {
 
     @Override
     public void onNotifyMessageOpenedReceive(Context context, MobPushNotifyMessage mobPushNotifyMessage) {
-        System.out.println(">>>>>onNotifyMessageOpenedReceive>>>>>"+mobPushNotifyMessage.toString());
         HashMap<String, Object> map = hashon.fromJson(hashon.fromObject(mobPushNotifyMessage));
         if(map.containsKey("timestamp")){
             long timestamp = (long) map.get("timestamp");
@@ -65,7 +60,6 @@ public class MobPushReceiver implements com.mob.pushsdk.MobPushReceiver {
 
     @Override
     public void onTagsCallback(Context context, String[] strings, int i, int i1) {
-        System.out.println(">>>>>>>>>>>>>onTagsCallback>>>>>>>>>>>"+strings[0]+">>>>"+i);
         nativeOnTagsCallback(strings, i, i1);
     }
 

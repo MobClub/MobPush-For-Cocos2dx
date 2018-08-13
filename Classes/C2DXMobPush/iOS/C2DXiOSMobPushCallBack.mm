@@ -87,9 +87,9 @@ using namespace mob::mobpush;
             
             [reslut setObject:@2 forKey:@"msgType"];
 
-            if (message.apnsDict.count)
+            if (message.msgInfo.count)
             {
-                NSDictionary *aps = message.apnsDict[@"aps"];
+                NSDictionary *aps = message.msgInfo[@"aps"];
                 if ([aps isKindOfClass:[NSDictionary class]])
                 {
                     NSDictionary *alert = aps[@"alert"];
@@ -129,14 +129,14 @@ using namespace mob::mobpush;
                 }
             }
             
-            NSString *mobpushMessageId = message.apnsDict[@"mobpushMessageId"];
+            NSString *mobpushMessageId = message.msgInfo[@"mobpushMessageId"];
             if (mobpushMessageId)
             {
                 [reslut setObject:mobpushMessageId forKey:@"messageId"];
             }
             
             NSMutableDictionary *extra = [NSMutableDictionary dictionary];
-            [message.apnsDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            [message.msgInfo enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 
                 if (![key isEqualToString:@"aps"] && ![key isEqualToString:@"mobpushMessageId"])
                 {
@@ -222,6 +222,7 @@ using namespace mob::mobpush;
 
 - (void)dealloc
 {
+    [super dealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

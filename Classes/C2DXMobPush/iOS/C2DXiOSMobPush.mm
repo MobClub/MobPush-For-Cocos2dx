@@ -511,11 +511,13 @@ void C2DXiOSMobPush::req(int type, const char *text, int space, const char *extr
 {
     NSString *textStr = [NSString stringWithUTF8String:text];
 
-    [MobPush sendMessageWithMessageType:(MPushMsgType)type
+    [MobPush sendMessageWithMessageType:(MSendMessageType)type
                                 content:textStr
                                   space:@(space)
                 isProductionEnvironment:[C2DXiOSMobPushCallBack defaultCallBack].isPro
                                  extras:nil
+                             linkScheme:@""
+                               linkData:@""
                                  result:^(NSError *error) {
                                      
                                      if (error)

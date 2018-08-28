@@ -91,6 +91,7 @@ bool AppNotify::init() {
     });
     this->addChild(button);
 
+    C2DXMobPush::getRegistrationId(&AppNotify::getId);
     C2DXMobPush::setC2DXAliasCallBack(&AppNotify::onC2DXAliasCallBack);
     C2DXMobPush::setC2DXTagsCallBack(&AppNotify::onC2DXTagsCallBack);
     return true;

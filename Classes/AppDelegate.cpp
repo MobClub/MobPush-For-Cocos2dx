@@ -69,8 +69,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     #endif
     
-    C2DXMobPush::setC2DXMessageCallBack(&AppDelegate::onC2DXMessageCallBack);
     C2DXMobPush::addPushReceiver();
+    
+    
+    C2DXMobPush::setC2DXMessageCallBack(&AppDelegate::onC2DXMessageCallBack);
     
     // initialize director
     auto director = Director::getInstance();

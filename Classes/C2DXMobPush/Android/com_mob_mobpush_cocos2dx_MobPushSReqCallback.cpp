@@ -40,4 +40,5 @@ JNIEXPORT jint JNICALL Java_com_mob_mobpush_cocos2dx_MobPushSReqCallback_nativeO
         (JNIEnv *env, jobject jthiz) {
     C2DXAndroidSReqCallback *callback = (C2DXAndroidSReqCallback *) getCxxObject(env, jthiz);
     delete callback;
+    return 0;
 }

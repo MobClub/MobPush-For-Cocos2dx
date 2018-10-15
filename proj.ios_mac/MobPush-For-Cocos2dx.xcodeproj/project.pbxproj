@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		294D0D641D0D56D500F7F5D4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D0D631D0D56D500F7F5D4 /* CoreText.framework */; };
+		3CA942362174437E0037EACA /* MobPushServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA942342174437E0037EACA /* MobPushServiceExtension.framework */; };
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		44DE8A9520AE6D210061B9BC /* C2DXMobPush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8A7B20AE6D210061B9BC /* C2DXMobPush.cpp */; };
@@ -130,6 +131,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		294D0D631D0D56D500F7F5D4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		3CA942342174437E0037EACA /* MobPushServiceExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPushServiceExtension.framework; sourceTree = "<group>"; };
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		44DE8A7A20AE6D210061B9BC /* C2DXMobPushTypeDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXMobPushTypeDef.h; sourceTree = "<group>"; };
 		44DE8A7B20AE6D210061B9BC /* C2DXMobPush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = C2DXMobPush.cpp; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				44DE8ADA20AE6F090061B9BC /* MobPush.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
+				3CA942362174437E0037EACA /* MobPushServiceExtension.framework in Frameworks */,
 				BF1712471292920000B8313A /* libz.dylib in Frameworks */,
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
@@ -375,6 +378,7 @@
 		44DE8AD520AE6F090061B9BC /* MobPush */ = {
 			isa = PBXGroup;
 			children = (
+				3CA942342174437E0037EACA /* MobPushServiceExtension.framework */,
 				44DE8AD620AE6F090061B9BC /* MobPush.framework */,
 			);
 			path = MobPush;

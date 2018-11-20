@@ -12,3 +12,6 @@
 /cocos2d/cocos/platform/android/libcocos2dx/*.iml
 /sh.exe.stackdump
 /bash.exe.stackdump
+build/
+DerivedData/
+index/

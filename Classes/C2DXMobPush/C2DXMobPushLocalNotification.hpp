@@ -27,15 +27,15 @@ namespace mob {
 
             int badge;
 
-        public:
-
-            C2DXMobPushLocalNotification(){
-
-            }
-
-            virtual ~C2DXMobPushLocalNotification(){
-
-            }
+//        public:
+//
+//            C2DXMobPushLocalNotification(){
+//
+//            }
+//
+//            virtual ~C2DXMobPushLocalNotification(){
+//
+//            }
         };
 
     }

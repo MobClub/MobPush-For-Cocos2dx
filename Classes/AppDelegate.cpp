@@ -149,4 +149,5 @@ void AppDelegate::applicationWillEnterForeground() {
 
 void AppDelegate::onC2DXMessageCallBack(int action, C2DXMobPushMessage *message) {
     CCLOG(">>>onC2DXMessageCallBack>>>AppDelegate>>%s", "onC2DXMessageCallBack");
+    CCLOG(">>>onC2DXMessageCallBack--Action>>>AppDelegate>>%d", action);
 }

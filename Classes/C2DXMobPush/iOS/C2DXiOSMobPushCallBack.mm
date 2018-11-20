@@ -150,16 +150,16 @@ using namespace mob::mobpush;
                 [reslut setObject:extra forKey:@"extra"];
             }
             
-            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
-            {
+//            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+//            {
                 // 前台收到
                 action = 1;
-            }
-            else
-            {
-                // 点击通知
-                action = 2;
-            }
+//            }
+//            else
+//            {
+//                // 点击通知
+//                action = 2;
+//            }
         }
             break;
         case MPushMessageTypeLocal:
@@ -196,18 +196,122 @@ using namespace mob::mobpush;
                 [reslut setObject:sound forKey:@"sound"];
             }
             
-            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
-            {
+//            if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+//            {
                 // 前台收到
                 action = 1;
+//            }
+//            else
+//            {
+//                // 点击通知
+//                action = 2;
+//            }
+        }
+            break;
+        case MPushMessageTypeClicked:
+        {
+            action = 2;
+            
+            if (message.msgInfo.count)
+            {
+                [reslut setObject:@2 forKey:@"msgType"];
+
+                NSDictionary *aps = message.msgInfo[@"aps"];
+                if ([aps isKindOfClass:[NSDictionary class]])
+                {
+                    NSDictionary *alert = aps[@"alert"];
+                    if ([alert isKindOfClass:[NSDictionary class]])
+                    {
+                        NSString *body = alert[@"body"];
+                        if (body)
+                        {
+                            [reslut setObject:body forKey:@"content"];
+                        }
+                        
+                        NSString *subtitle = alert[@"subtitle"];
+                        if (subtitle)
+                        {
+                            [reslut setObject:subtitle forKey:@"subtitle"];
+                        }
+                        
+                        NSString *title = alert[@"title"];
+                        if (title)
+                        {
+                            [reslut setObject:title forKey:@"title"];
+                        }
+                    }
+                    
+                    NSString *sound = aps[@"sound"];
+                    if (sound)
+                    {
+                        [reslut setObject:sound forKey:@"sound"];
+                    }
+                    
+                    NSInteger badge = [aps[@"badge"] integerValue];
+                    if (badge)
+                    {
+                        [reslut setObject:@(badge) forKey:@"badge"];
+                    }
+                    
+                }
+                
+                NSString *mobpushMessageId = message.msgInfo[@"mobpushMessageId"];
+                if (mobpushMessageId)
+                {
+                    [reslut setObject:mobpushMessageId forKey:@"messageId"];
+                }
+                
+                NSMutableDictionary *extra = [NSMutableDictionary dictionary];
+                [message.msgInfo enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                    
+                    if (![key isEqualToString:@"aps"] && ![key isEqualToString:@"mobpushMessageId"])
+                    {
+                        [extra setObject:obj forKey:key];
+                    }
+                    
+                }];
+                
+                if (extra.count)
+                {
+                    [reslut setObject:extra forKey:@"extra"];
+                }
             }
             else
             {
-                // 点击通知
-                action = 2;
+                [reslut setObject:@3 forKey:@"msgType"];
+                
+                NSString *body = message.notification.body;
+                NSString *title = message.notification.title;
+                NSString *subtitle = message.notification.subTitle;
+                NSInteger badge = message.notification.badge;
+                NSString *sound = message.notification.sound;
+                if (body)
+                {
+                    [reslut setObject:body forKey:@"content"];
+                }
+                
+                if (title)
+                {
+                    [reslut setObject:title forKey:@"title"];
+                }
+                
+                if (subtitle)
+                {
+                    [reslut setObject:subtitle forKey:@"subtitle"];
+                }
+                
+                if (badge)
+                {
+                    [reslut setObject:@(badge) forKey:@"badge"];
+                }
+                
+                if (sound)
+                {
+                    [reslut setObject:sound forKey:@"sound"];
+                }
             }
         }
-            break;
+        
         default:
             break;
     }

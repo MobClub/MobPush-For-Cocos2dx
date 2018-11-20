@@ -482,7 +482,6 @@ void C2DXiOSMobPush::addLocalNotification(mob::mobpush::C2DXMobPushLocalNotifica
     {
         notification.subTitle = [NSString stringWithUTF8String:noti->subTitle];
     }
-    
     long timeStamp = noti->timeStamp;
     if (timeStamp == 0)
     {

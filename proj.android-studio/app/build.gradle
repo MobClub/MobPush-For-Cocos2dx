@@ -8,7 +8,7 @@ android {
     buildToolsVersion "26.0.2"
 
     defaultConfig {
-        applicationId "com.mob.mobpush"
+        applicationId "com.mob.demo.mobpush"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
@@ -20,22 +20,21 @@ android {
                     // skip the NDK Build step if PROP_NDK_MODE is none
                     targets 'MyGame'
                     arguments 'NDK_TOOLCHAIN_VERSION=4.9'
-                    arguments 'APP_PLATFORM=android-'+PROP_APP_PLATFORM
-                    
+                    arguments 'APP_PLATFORM=android-' + PROP_APP_PLATFORM
+
                     def module_paths = [project.file("../../cocos2d").absolutePath,
                                         project.file("../../cocos2d/cocos").absolutePath,
                                         project.file("../../cocos2d/external").absolutePath]
                     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                         // should use '/'
-                        module_paths = module_paths.collect {it.replaceAll('\\\\', '/')}
+                        module_paths = module_paths.collect { it.replaceAll('\\\\', '/') }
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
-                    }
-                    else {
+                    } else {
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(':')
                     }
-                    
+
                     arguments '-j' + Runtime.runtime.availableProcessors()
-                    abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
+                    abiFilters.addAll(PROP_APP_ABI.split(':').collect { it as String })
                 }
             }
         }
@@ -59,7 +58,7 @@ android {
 
     signingConfigs {
 
-       release {
+        release {
             if (project.hasProperty("RELEASE_STORE_FILE")) {
                 storeFile file(RELEASE_STORE_FILE)
                 storePassword RELEASE_STORE_PASSWORD
@@ -102,19 +101,30 @@ MobSDK {
     MobGUI(true)
     MobPush {
         devInfo {
-            HUAWEI{
+            HUAWEI {
                 appId "100215127"
             }
 
-            MEIZU{
+            MEIZU {
                 appId "112481"
                 appKey "03dd70b9be434446a7255c8586e1725a"
             }
 
-            XIAOMI{
+            XIAOMI {
                 appId "2882303761517721670"
                 appKey "5671772162670"
             }
+
+            FCM {
+                //设置默认推送通知显示图标
+                iconRes "@mipmap/ic_launcher"
+            }
+            //此处OPPO的配置信息只是用来展示配置示例，不能用了测试OPPO通道推送，如需推送请替换成自己的正确应用信息
+
+//            OPPO {
+//                appKey "OPPO 的 appKey"
+//                appSecret "OPPO 的appSecret"
+//            }
         }
     }
 }
@@ -124,3 +134,6 @@ dependencies {
     compile project(':libcocos2dx')
     compile project(':c2dxbridge')
 }
+
+//apply plugin: 'com.google.gms.google-services'
+

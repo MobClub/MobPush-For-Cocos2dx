@@ -15,7 +15,7 @@ import static com.mob.MobSDK.getContext;
 
 public class MobPushWrapper {
 
-	public static void sendLocalNotify(String content, int space){
+	public static void sendLocalNotify(String content, int space) {
 		MobPushLocalNotification notification = new MobPushLocalNotification();
 		String appName = DeviceHelper.getInstance(getContext()).getAppName();
 		notification.setTitle(TextUtils.isEmpty(appName) ? getContext().getString(R.string.item_local) : appName);
@@ -26,10 +26,15 @@ public class MobPushWrapper {
 		MobPush.addLocalNotification(notification);
 	}
 
-	public void setNotifyIcon(String resIcon){
-		if(!TextUtils.isEmpty(resIcon)){
+	public static void setNotifyIcon(String resIcon) {
+		if (!TextUtils.isEmpty(resIcon)) {
 			MobPush.setNotifyIcon(ResHelper.getBitmapRes(MobSDK.getContext(), resIcon));
 		}
+	}
+
+	public static void setAppForegroundHiddenNotification(boolean hidden) {
+		System.out.println("setAppForegroundHiddenNotification>>>>>>>>>"+hidden);
+		MobPush.setAppForegroundHiddenNotification(hidden);
 	}
 
 }

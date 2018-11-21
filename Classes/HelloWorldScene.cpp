@@ -1,4 +1,5 @@
 #include <ui/UIButton.h>
+#include "C2DXMobPush.h"
 #include "HelloWorldScene.h"
 #include "AppNotifyScene.h"
 #include "NotifyScene.h"
@@ -10,6 +11,7 @@
 
 USING_NS_CC;
 using namespace cocos2d::ui;
+using namespace mob::mobpush;
 
 Scene *HelloWorld::createScene() {
     return HelloWorld::create();
@@ -124,6 +126,7 @@ bool HelloWorld::init() {
     button->addTouchEventListener(this, (SEL_TouchEvent) &HelloWorld::onTouch);
     this->addChild(button);
 
+    C2DXMobPush::setNotifyIcon("icon");
     return true;
 }
 

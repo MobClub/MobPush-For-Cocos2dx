@@ -153,6 +153,33 @@ void C2DXMobPush::clearAllTags()
 #endif
 }
 
+
+void C2DXMobPush::setNotifyIcon(const char *resIcon){
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::setNotifyIcon(resIcon);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+
+#endif
+}
+
+void C2DXMobPush::setAppForegroundHiddenNotification(bool hidden){
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::setAppForegroundHiddenNotification(hidden);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+
+#endif
+}
+
 void C2DXMobPush::addLocalNotification(mob::mobpush::C2DXMobPushLocalNotification *noti) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 

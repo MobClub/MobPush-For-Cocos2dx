@@ -41,7 +41,6 @@ public class AppActivity extends Cocos2dxActivity {
             return;
         }
         // DO OTHER INITIALIZATION BELOW
-        
     }
 
 }

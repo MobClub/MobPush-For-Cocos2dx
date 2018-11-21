@@ -143,10 +143,28 @@ void C2DXAndroidMobPush::clearAllTags(){
     env->CallStaticVoidMethod(jm.classID, jm.methodID);
 }
 
+void C2DXAndroidMobPush::setNotifyIcon(const char* resIcon){
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/MobPushWrapper", "setNotifyIcon",
+                                   "(Ljava/lang/String;)V");
+
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, env->NewStringUTF(resIcon));
+}
+
+void C2DXAndroidMobPush::setAppForegroundHiddenNotification(bool hidden){
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/MobPushWrapper", "setAppForegroundHiddenNotification",
+                                   "(Z)V");
+
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, hidden);
+}
+
 void C2DXAndroidMobPush::addLocalNotification(C2DXMobPushLocalNotification *notification) {
     JNIEnv *env = JniHelper::getEnv();
     JniMethodInfo jm;
-    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/SendPushHelper", "sendLocalNotify",
+    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/MobPushWrapper", "sendLocalNotify",
                                    "(Ljava/lang/String;I)V");
     env->CallStaticVoidMethod(jm.classID, jm.methodID, env->NewStringUTF(notification->content),
                               notification->timeStamp);

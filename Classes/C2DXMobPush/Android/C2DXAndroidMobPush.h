@@ -33,6 +33,8 @@ namespace mob
             static void setAlias(const char* alias);
             static void getAlias();
             static void clearAllAlias();
+            static void setNotifyIcon(const char* resIcon);
+            static void setAppForegroundHiddenNotification(bool hidden);
             static void addLocalNotification(C2DXMobPushLocalNotification *notification);
             static void req(int type, const char* text, int space, const char* extras, C2DXReqResultEvent reqResultEvent);
         };

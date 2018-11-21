@@ -80,6 +80,20 @@ namespace mob {
             static void clearAllTags();
 
             /**
+             设置通知图标
+
+             @param resIcon 图标资源名（为空时无效，仅限安卓，iOS忽略）
+             */
+            static void setNotifyIcon(const char *resIcon);
+
+            /**
+             设置应用正在运行在前台时接收到推送是否显示通知
+
+             @param hidden 是否显示通知（true 表示不显示通知，false 表示显示通知，仅限安卓，iOS忽略）
+             */
+            static void setAppForegroundHiddenNotification(bool hidden);
+
+            /**
              添加本地通知
 
              @param noti 本地通知对象

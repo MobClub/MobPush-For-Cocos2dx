@@ -135,5 +135,5 @@ dependencies {
     compile project(':c2dxbridge')
 }
 
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
 

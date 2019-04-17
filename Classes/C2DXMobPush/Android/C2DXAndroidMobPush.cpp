@@ -29,6 +29,27 @@ void C2DXAndroidMobPush::initMobPush(const char *appkey, const char *appScrect) 
                               env->NewStringUTF(appScrect));
 }
 
+void C2DXAndroidMobPush::bindPhoneNum(const char* alias, C2DXReqResultEvent callback) {
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "bindPhoneNum",
+                                   "(Ljava/lang/String;Lcom/mob/pushsdk/MobPushCallback;)V");
+
+    JniMethodInfo jniMethodInfo;
+    JniHelper::getStaticMethodInfo(jniMethodInfo, "com/mob/mobpush/cocos2dx/MobPushSReqCallback",
+                                   "newInstance",
+                                   "()Lcom/mob/mobpush/cocos2dx/MobPushSReqCallback;");
+
+    jobject jz = env->CallStaticObjectMethod(jniMethodInfo.classID, jniMethodInfo.methodID);
+
+    C2DXAndroidSReqCallback *c2DXAndroidSReqCallback = (C2DXAndroidSReqCallback *) getCxxObject(env,
+                                                                                                jz);
+    c2DXAndroidSReqCallback->setC2DXAndroidSReqCallback(callback);
+
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, env->NewStringUTF(alias), jz);
+}
+
+
 void C2DXAndroidMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback) {
     JNIEnv *env = JniHelper::getEnv();
 

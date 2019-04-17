@@ -33,7 +33,6 @@ public class MobPushWrapper {
 	}
 
 	public static void setAppForegroundHiddenNotification(boolean hidden) {
-		System.out.println("setAppForegroundHiddenNotification>>>>>>>>>"+hidden);
 		MobPush.setAppForegroundHiddenNotification(hidden);
 	}
 

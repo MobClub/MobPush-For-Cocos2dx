@@ -141,6 +141,12 @@ namespace mob {
              */
             static void setC2DXTagsCallBack(C2DXTagsCallBack tagsCallBack);
 
+            /**
+             绑定手机号
+
+             @param callback 回调
+             */
+            static void bindPhoneNum(const char* alias, C2DXReqResultEvent callback);
         };
 
     }

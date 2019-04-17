@@ -262,3 +262,15 @@ void C2DXMobPush::req(int type, const char *text, int space, const char *extras,
 #endif
 }
 
+void C2DXMobPush::bindPhoneNum(const char* alias,  C2DXReqResultEvent reqResultEvent) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::bindPhoneNum(alias, reqResultEvent);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+
+#endif
+}

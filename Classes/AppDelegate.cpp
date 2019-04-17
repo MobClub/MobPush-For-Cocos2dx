@@ -59,8 +59,9 @@ static int register_all_packages()
 bool AppDelegate::applicationDidFinishLaunching() {
     
     #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-        
-        //iOS
+
+#warning 线上环境 true， 开发环境 false
+        //iOS 线上环境 true， 开发环境 false
         C2DXMobPush::setAPNsForProduction(false);
     
         C2DXMobPushCustomNotification *noti = new C2DXMobPushCustomNotification();

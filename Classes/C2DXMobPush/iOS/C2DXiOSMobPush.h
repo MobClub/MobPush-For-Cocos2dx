@@ -27,7 +27,7 @@ namespace mob {
             static void setAPNsForProduction(bool isPro);
             
             /**
-             初始化 SDK（仅限 安卓，iOS 忽略）
+             初始化 SDK（仅限安卓，iOS 在 infoplist 配置 appkey 和 secret）
              
              @param appkey appkey
              @param appScrect appScrect
@@ -100,6 +100,21 @@ namespace mob {
              @param noti 通知对象
              */
             static void setCustomNotification(mob::mobpush::C2DXMobPushCustomNotification *noti);
+            
+            
+            /**
+             设置应用在前台是否展示通知横幅
+
+             @param hidden 是否展示
+             */
+            static void setAppForegroundHiddenNotification(bool hidden);
+            
+            /**
+             绑定手机号，短信补量
+
+             @param phoneNum 手机号
+             */
+            static void bindPhoneNum(const char *phoneNum, C2DXReqResultEvent callback);
             
 /**
  模拟发送推送消息

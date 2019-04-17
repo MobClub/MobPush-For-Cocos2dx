@@ -146,7 +146,7 @@ namespace mob {
 
              @param callback 回调
              */
-            static void bindPhoneNum(const char* alias, C2DXReqResultEvent callback);
+            static void bindPhoneNum(const char* phoneNum, C2DXReqResultEvent callback);
         };
 
     }

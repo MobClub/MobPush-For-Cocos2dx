@@ -147,6 +147,13 @@ namespace mob {
              @param callback 回调
              */
             static void bindPhoneNum(const char* alias, C2DXReqResultEvent callback);
+
+            /**
+             设置显示角标
+
+             @param show 是否显示角标（true 表示显示角标，false 表示不显示角标，仅限安卓，iOS忽略）
+             */
+            static void setShowBadge(bool show);
         };
 
     }

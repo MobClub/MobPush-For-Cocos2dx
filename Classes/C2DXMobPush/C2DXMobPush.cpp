@@ -274,3 +274,16 @@ void C2DXMobPush::bindPhoneNum(const char* alias,  C2DXReqResultEvent reqResultE
 
 #endif
 }
+
+void C2DXMobPush::setShowBadge(bool show) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+
+    //Andorid
+    C2DXAndroidMobPush::setShowBadge(show);
+
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+
+    //iOS
+
+#endif
+}

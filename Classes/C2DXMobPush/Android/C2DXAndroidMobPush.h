@@ -37,6 +37,7 @@ namespace mob
             static void setAppForegroundHiddenNotification(bool hidden);
             static void addLocalNotification(C2DXMobPushLocalNotification *notification);
             static void bindPhoneNum(const char* alias, C2DXReqResultEvent callback);
+            static void setShowBadge(bool show);
             static void req(int type, const char* text, int space, const char* extras, C2DXReqResultEvent reqResultEvent);
         };
 

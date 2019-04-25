@@ -29,6 +29,15 @@ void C2DXAndroidMobPush::initMobPush(const char *appkey, const char *appScrect) 
                               env->NewStringUTF(appScrect));
 }
 
+void C2DXAndroidMobPush::setShowBadge(bool show) {
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/pushsdk/MobPush", "setShowBadge",
+                                   "(Z)V");
+
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, show);
+}
+
 void C2DXAndroidMobPush::bindPhoneNum(const char* alias, C2DXReqResultEvent callback) {
     JNIEnv *env = JniHelper::getEnv();
     JniMethodInfo jm;

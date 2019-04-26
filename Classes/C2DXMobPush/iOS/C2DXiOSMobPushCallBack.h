@@ -11,8 +11,6 @@
 
 + (instancetype)defaultCallBack;
 
-@property (nonatomic, assign) BOOL isPro;
-
 - (void)addPushObserver;
 
 @end

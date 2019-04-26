@@ -290,10 +290,35 @@ static mob::mobpush::C2DXMessageCallBack _messageCallBack;
 static mob::mobpush::C2DXAliasCallBack _aliasCallBack;
 static mob::mobpush::C2DXTagsCallBack _tagsCallBack;
 
+bool _isPro;
+
+void C2DXiOSMobPush::setAppForegroundHiddenNotification(bool hidden)
+{
+    if (hidden)
+    {
+        [MobPush setAPNsShowForegroundType:MPushAuthorizationOptionsNone];
+    }
+    else
+    {
+        [MobPush setAPNsShowForegroundType:MPushAuthorizationOptionsBadge | MPushAuthorizationOptionsAlert | MPushAuthorizationOptionsSound];
+    }
+}
+
+void C2DXiOSMobPush::bindPhoneNum(const char *phoneNum, C2DXReqResultEvent callback)
+{
+    NSString *phoneNumStr = [NSString stringWithUTF8String:phoneNum];
+    [MobPush bindPhoneNum:phoneNumStr result:^(NSError *error) {
+        if (callback)
+        {
+            callback(error == nil ? true : false);
+        }
+    }];
+}
+
 void C2DXiOSMobPush::setAPNsForProduction(bool isPro)
 {
-    [C2DXiOSMobPushCallBack defaultCallBack].isPro = isPro == true ? YES : NO;
-    [MobPush setAPNsForProduction:isPro == true ? YES : NO];
+    _isPro = isPro == true ? YES : NO;
+    [MobPush setAPNsForProduction:_isPro];
 }
 
 void C2DXiOSMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback)
@@ -513,7 +538,7 @@ void C2DXiOSMobPush::req(int type, const char *text, int space, const char *extr
     [MobPush sendMessageWithMessageType:(MSendMessageType)type
                                 content:textStr
                                   space:@(space)
-                isProductionEnvironment:[C2DXiOSMobPushCallBack defaultCallBack].isPro
+                isProductionEnvironment:_isPro
                                  extras:nil
                              linkScheme:@""
                                linkData:@""

@@ -176,6 +176,7 @@ void C2DXMobPush::setAppForegroundHiddenNotification(bool hidden){
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
+    C2DXiOSMobPush::setAppForegroundHiddenNotification(hidden);
 
 #endif
 }
@@ -262,16 +263,18 @@ void C2DXMobPush::req(int type, const char *text, int space, const char *extras,
 #endif
 }
 
-void C2DXMobPush::bindPhoneNum(const char* alias,  C2DXReqResultEvent reqResultEvent) {
+void C2DXMobPush::bindPhoneNum(const char* phoneNum,  C2DXReqResultEvent reqResultEvent) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
     //Andorid
-    C2DXAndroidMobPush::bindPhoneNum(alias, reqResultEvent);
+    C2DXAndroidMobPush::bindPhoneNum(phoneNum, reqResultEvent);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
     //iOS
-
+    
+    C2DXiOSMobPush::bindPhoneNum(phoneNum, reqResultEvent);
+    
 #endif
 }
 

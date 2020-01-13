@@ -24,7 +24,6 @@
 		44DE8AD120AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ACB20AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.mm */; };
 		44DE8AD220AE6EEA0061B9BC /* C2DXiOSMobPush.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ACC20AE6EEA0061B9BC /* C2DXiOSMobPush.mm */; };
 		44DE8ADA20AE6F090061B9BC /* MobPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE8AD620AE6F090061B9BC /* MobPush.framework */; };
-		44DE8ADB20AE6F090061B9BC /* MOBFoundationEx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE8AD820AE6F090061B9BC /* MOBFoundationEx.framework */; };
 		44DE8ADC20AE6F090061B9BC /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE8AD920AE6F090061B9BC /* MOBFoundation.framework */; };
 		44DE8AE120AE6FD80061B9BC /* C2DXMobPushCustomNotification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8ADD20AE6FD40061B9BC /* C2DXMobPushCustomNotification.cpp */; };
 		44DE8AE220AE6FD80061B9BC /* C2DXMobPushLocalNotification.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 44DE8AE020AE6FD80061B9BC /* C2DXMobPushLocalNotification.cpp */; };
@@ -151,7 +150,6 @@
 		44DE8ACD20AE6EEA0061B9BC /* C2DXiOSMobPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXiOSMobPush.h; sourceTree = "<group>"; };
 		44DE8AD020AE6EEA0061B9BC /* C2DXiOSMobPushCallBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C2DXiOSMobPushCallBack.h; sourceTree = "<group>"; };
 		44DE8AD620AE6F090061B9BC /* MobPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MobPush.framework; sourceTree = "<group>"; };
-		44DE8AD820AE6F090061B9BC /* MOBFoundationEx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundationEx.framework; sourceTree = "<group>"; };
 		44DE8AD920AE6F090061B9BC /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		44DE8ADD20AE6FD40061B9BC /* C2DXMobPushCustomNotification.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = C2DXMobPushCustomNotification.cpp; sourceTree = "<group>"; };
 		44DE8ADE20AE6FD50061B9BC /* C2DXMobPushLocalNotification.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = C2DXMobPushLocalNotification.hpp; sourceTree = "<group>"; };
@@ -225,7 +223,6 @@
 				D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				44DE8ADB20AE6F090061B9BC /* MOBFoundationEx.framework in Frameworks */,
 				44DE8ADA20AE6F090061B9BC /* MobPush.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
@@ -387,7 +384,6 @@
 		44DE8AD720AE6F090061B9BC /* Required */ = {
 			isa = PBXGroup;
 			children = (
-				44DE8AD820AE6F090061B9BC /* MOBFoundationEx.framework */,
 				44DE8AD920AE6F090061B9BC /* MOBFoundation.framework */,
 			);
 			path = Required;

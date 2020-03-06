@@ -4,13 +4,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.mob.sdk'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.mob.demo.mobpush"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -113,10 +113,10 @@ MobSDK {
                 appKey "5671772162670"
             }
 
-            FCM {
-                //设置默认推送通知显示图标
-                iconRes "@mipmap/default_ic_launcher"
-            }
+//            FCM {
+//                //设置默认推送通知显示图标
+//                iconRes "@mipmap/default_ic_launcher"
+//            }
             //此处OPPO的配置信息只是用来展示配置示例，不能用了测试OPPO通道推送，如需推送请替换成自己的正确应用信息
 
 //            OPPO {

@@ -72,6 +72,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     C2DXMobPush::addPushReceiver();
     
+    //隐私协议许可
+    C2DXMobPush::updatePrivacyPermissionStatus(true);
     
     C2DXMobPush::setC2DXMessageCallBack(&AppDelegate::onC2DXMessageCallBack);
     

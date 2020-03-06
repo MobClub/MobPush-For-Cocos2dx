@@ -19,6 +19,10 @@ namespace mob {
         class C2DXiOSMobPush {
         public:
             
+            /// 设置隐私协议许可
+            /// @param agree 是否同意
+            static void updatePrivacyPermissionStatus(bool agree);
+            
             /**
              设置推送环境 （在applicationDidFinishLaunching调用，仅限 iOS，安卓忽略）
              

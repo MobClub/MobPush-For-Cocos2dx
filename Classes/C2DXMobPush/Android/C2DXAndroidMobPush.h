@@ -39,6 +39,7 @@ namespace mob
             static void bindPhoneNum(const char* alias, C2DXReqResultEvent callback);
             static void setShowBadge(bool show);
             static void req(int type, const char* text, int space, const char* extras, C2DXReqResultEvent reqResultEvent);
+            static void updatePrivacyPermissionStatus(bool agree);
         };
 
         jint getCxxObject(JNIEnv* env, jobject jthiz);

@@ -38,6 +38,15 @@ void C2DXAndroidMobPush::setShowBadge(bool show) {
     env->CallStaticVoidMethod(jm.classID, jm.methodID, show);
 }
 
+void C2DXAndroidMobPush::updatePrivacyPermissionStatus(bool agree) {
+    JNIEnv *env = JniHelper::getEnv();
+    JniMethodInfo jm;
+    JniHelper::getStaticMethodInfo(jm, "com/mob/mobpush/cocos2dx/MobPushWrapper", "updatePrivacyPermissionStatus",
+                                   "(Z)V");
+
+    env->CallStaticVoidMethod(jm.classID, jm.methodID, agree);
+}
+
 void C2DXAndroidMobPush::bindPhoneNum(const char* alias, C2DXReqResultEvent callback) {
     JNIEnv *env = JniHelper::getEnv();
     JniMethodInfo jm;

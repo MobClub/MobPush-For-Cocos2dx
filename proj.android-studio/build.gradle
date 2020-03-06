@@ -12,7 +12,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         classpath 'com.mob.sdk:MobSDK:+'
         // 注册Google services，用于FCM推送，不配置FCM通道则无需配置
         classpath 'com.google.gms:google-services:4.0.1'

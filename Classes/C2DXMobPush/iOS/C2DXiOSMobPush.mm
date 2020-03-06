@@ -14,6 +14,8 @@
 #import <MobPush/MPushMessage.h>
 #import <MOBFoundation/MOBFJson.h>
 #import "C2DXiOSMobPushCallBack.h"
+#import <MOBFoundation/MobSDK+Privacy.h>
+
 
 using namespace mob::mobpush;
 
@@ -315,6 +317,11 @@ void C2DXiOSMobPush::bindPhoneNum(const char *phoneNum, C2DXReqResultEvent callb
     }];
 }
 
+void C2DXiOSMobPush::updatePrivacyPermissionStatus(bool agree)
+{
+    [MobSDK uploadPrivacyPermissionStatus:agree onResult:nil];
+}
+
 void C2DXiOSMobPush::setAPNsForProduction(bool isPro)
 {
     _isPro = isPro == true ? YES : NO;
@@ -330,6 +337,8 @@ void C2DXiOSMobPush::getRegistrationId(C2DXGetRegistrationIdResultEvent callback
         }
     }];
 }
+
+
 
 void C2DXiOSMobPush::addPushReceiver()
 {
